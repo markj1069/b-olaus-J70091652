@@ -1,14 +1,26 @@
+% title **assert**&mdash;Test a variable or condition at critical points in a script.
+% author Mark Jensen
+% date 26 APR 2020
+
 # Name assert
 
 **assert**&mdash;Test a variable or condition at critical points in a script.
 
 ## SYNOPSIS
 
-assert condition line_no
+**assert** condition line_no
 
 ## Description
 
 The **assert** function is used to test a variable or condition at critical points in a script. (This is an idea borrowed from C.)
+
+The pseudocode for this function is:
+
+```pseudocode
+if ! condition then
+    print "Assertion Fail."
+    exit with assert fail
+```
 
 ### ARGUMENTS
 
@@ -92,7 +104,7 @@ Version 0.0.0 14 SEP 2006 Initial Release
 
 ## Author
 
-[Mark Jensen](mark@jensen.net)
+[Mark Jensen](mailto:mark@jensen.net)
 
 ## History
 
@@ -103,7 +115,7 @@ Version 0.0.0 14 SEP 2006 Initial Release
 
 ## Resources
 
-Mendel Cooper, I<Advanced Bash-Scripting Guide>, Revision 4.0, 2006-06-18.
+Mendel Cooper, *Advanced Bash-Scripting Guide*, Revision 4.0, 2006-06-18.
 
-Wikipedia, I<Assertion (computing)>,
-L<http://en.wikipedia.org/wiki/Assertion_(computing)>
+Wikipedia, *Assertion (computing)*,
+[http://en.wikipedia.org/wiki/Assertion_(computing)](http://en.wikipedia.org/wiki/Assertion_(computing))
