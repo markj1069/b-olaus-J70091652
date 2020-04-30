@@ -1,8 +1,15 @@
 
-FILENAMESLIB := blib/olaus
+FILENAMESLIB := lib
 
-FILENAMES   := $(addprefix $(FILENAMESLIB)/,fileabs.sh filebase.sh filename.sh filepath.sh filesfx.sh filexsfx.sh)
-
+OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_errmsg.sh \
+           ols_file.sh ols_help.sh ols_list.sh ols_man.sh \
+		   ols_mktemp.sh ols_rmtemp.sh ols_setex.sh ols_signal.sh \
+		   ols_test.sh ols_type.sh ols_usage.sh ols_version.sh \
+		   filebase.sh filename.sh filepath.sh  filesfx.sh \
+		   getopt.sh \
+		   tst_plan.sh is.sh isnot.sh ok.sh \
+		   diag.sh pass.sh fail.sh BAIL_OUT.sh \
+		   dprintf.sh vprintf.sh)
 .SUFFIXES:
 .SUFFIXES: .bash .t
 
@@ -35,7 +42,6 @@ default: all
 .PHONY: html                 # Generate HTML documentation.
 .PHONY: pdf                  # Generate PDF documentation.
 .PHONY: ps                   # Generate postscript documentation.
-
 .PHONY: mostlyclean          # Like clean but leave files most people don't want to recompile.
 .PHONY: realclean            # Delete derived files
 .PHONY: maintainer-clean     # Delete almost everything that can be reconstructed by this makefile.
@@ -61,14 +67,24 @@ default: all
 
 #
 
+
+
 filenames.sh: $(FILENAMES)
 	rm filenames.sh
 	printf "%s" "#-h-b fileabs.sh" >filenames.sh
 	cat fileabs.sh >>filenames.sh
 	printf "%s" "#-h-e fileabs.sh" >>filenames.sh
 
+olslib.sh: $(OLSLIST)
+	-rm --force lib/olslib.sh
+	for f in $(OLSLIST); \
+	do \
+		bin/ols-append "$$f" /lib/olslib.sh ; \
+	done
 
-all: filenames.sh
+
+
+all: olslib.sh
 	echo "all:"
 
 install:
@@ -81,7 +97,29 @@ install-strip:
 	echo "install-strip:"
 
 clean:
-	echo "clean:"
+	-rm --force bin/core
+	-rm --force bin/*.stackdump
+	-rm --force bin/*.tmp
+	-rm --force bin/*.txt
+	-rm --force doc/*.html
+	-rm --force doc/*.docx
+	-rm --force doc/*.gfm
+	-rm --force doc/*.stackdump
+	-rm --force doc/*.tmp
+	-rm --force lib/*.html
+	-rm --force lib/*.stackdump
+	-rm --force lib/*.tmp
+	-rm --force lib/olslib.sh
+	-rm --force t/*.stackdump
+	-rm --force t/*.tmp
+	-rm --force t/*.txt
+	-rm --force core
+	-rm --force *.stackdump
+	-rm --force *.tmp
+	-rm --force *.txt
+	-rm --force *.html
+	-rm --force *.docx
+	-rm --force *.gfm	
 
 distclean:
 	echo "distclean:"
