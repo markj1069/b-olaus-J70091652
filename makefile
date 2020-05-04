@@ -1,7 +1,7 @@
 
 FILENAMESLIB := lib
 
-OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_errmsg.sh \
+OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_err.sh \
            ols_file.sh ols_help.sh ols_list.sh ols_man.sh \
 		   ols_mktemp.sh ols_rmtemp.sh ols_setex.sh ols_signal.sh \
 		   ols_test.sh ols_type.sh ols_usage.sh ols_version.sh \
@@ -9,7 +9,8 @@ OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_
 		   getopt.sh \
 		   tst_plan.sh is.sh isnot.sh ok.sh \
 		   diag.sh pass.sh fail.sh BAIL_OUT.sh \
-		   dprintf.sh vprintf.sh)
+		   vprintf.sh)
+OLSTARGET := lib/olslib
 .SUFFIXES:
 .SUFFIXES: .bash .t
 
@@ -68,23 +69,10 @@ default: all
 #
 
 
+olslib:
+	bin/ols-build
 
-filenames.sh: $(FILENAMES)
-	rm filenames.sh
-	printf "%s" "#-h-b fileabs.sh" >filenames.sh
-	cat fileabs.sh >>filenames.sh
-	printf "%s" "#-h-e fileabs.sh" >>filenames.sh
-
-olslib.sh: $(OLSLIST)
-	-rm --force lib/olslib.sh
-	for f in $(OLSLIST); \
-	do \
-		bin/ols-append "$$f" /lib/olslib.sh ; \
-	done
-
-
-
-all: olslib.sh
+all: olslib
 	echo "all:"
 
 install:
@@ -101,25 +89,48 @@ clean:
 	-rm --force bin/*.stackdump
 	-rm --force bin/*.tmp
 	-rm --force bin/*.txt
+	-rm --force bin/*~
 	-rm --force doc/*.html
 	-rm --force doc/*.docx
 	-rm --force doc/*.gfm
 	-rm --force doc/*.stackdump
+	-rm --force doc/*~
 	-rm --force doc/*.tmp
 	-rm --force lib/*.html
 	-rm --force lib/*.stackdump
 	-rm --force lib/*.tmp
-	-rm --force lib/olslib.sh
+	-rm --force lib/*~
+	-rm --force lib/ols_lib/*.html
+	-rm --force lib/ols_lib/*.stackdump
+	-rm --force lib/ols_lib/*.tmp
+	-rm --force lib/ols_lib/*~
+	-rm --force lib/ols_lst/*.html
+	-rm --force lib/ols_lst/*.stackdump
+	-rm --force lib/ols_lst/*.tmp
+	-rm --force lib/ols_lst/*~
+	-rm --force lib/ols_tmp/*.html
+	-rm --force lib/ols_tmp/*.stackdump
+	-rm --force lib/ols_tmp/*.tmp
+	-rm --force lib/ols_tst/*.html
+	-rm --force lib/ols_tst/*.stackdump
+	-rm --force lib/ols_tst/*.tmp
+	-rm --force lib/ols_tst/*~
+	-rm --force lib/olslib
+	-rm --force lib/olslst
+	-rm --force lib/olstmp
+	-rm --force lib/olstst
 	-rm --force t/*.stackdump
 	-rm --force t/*.tmp
 	-rm --force t/*.txt
+	-rm --force t/*~
 	-rm --force core
 	-rm --force *.stackdump
 	-rm --force *.tmp
 	-rm --force *.txt
 	-rm --force *.html
 	-rm --force *.docx
-	-rm --force *.gfm	
+	-rm --force *.gfm
+	-rm --force *~	
 
 distclean:
 	echo "distclean:"
