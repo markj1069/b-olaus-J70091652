@@ -54,6 +54,6 @@ lb=${lbf% *}                 # Strip off the filename from the wc answer.
 # Write shell library member header
 builtin printf "%s\n" "#-h- BEGIN $timestamp $lb $fname" >> "$libname"
 /usr/bin/cat   "$filename"                               >> "$libname"
-builtin printf "%s\n" "#-h- END   $timestamp $lb $fname" >> "$libname"
+builtin printf "%s\n" "#-e- END   $timestamp $lb $fname" >> "$libname"
 
 exit $EX_OK
