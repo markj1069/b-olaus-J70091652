@@ -1,0 +1,9 @@
+0100 tst_plan.sh             # How many expected tests
+0180 ok.sh                   # Values match expectation
+0190 cmp_ok.sh               # Test two values with binary operator
+0200 is.sh                   # Are two variables equal
+0210 isnot.sh                # Are two variables not equal
+0310 pass.sh                 # Force a test to pass
+0320 fail.sh                 # Force a test to fail
+0500 diag.sh                 # Issue a diagnostic message
+0900 BAIL_OUT.sh             # Fail Test with EX_TESTBAIL exit code

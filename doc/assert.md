@@ -8,7 +8,7 @@
 
 ## SYNOPSIS
 
-**assert** condition line_no
+**assert** *var1* *op* *var2* *line_no*
 
 ## Description
 
@@ -17,20 +17,18 @@ The **assert** function is used to test a variable or condition at critical poin
 The pseudocode for this function is:
 
 ```pseudocode
-if ! condition then
+if ! var1 op var2 then
     print "Assertion Fail."
     exit with assert fail
 ```
 
 ### ARGUMENTS
 
-*condition*
-
+* *var1* &mdash; Variable 1 in condition (required)
+* *op* &mdash; Comparison operator (required)
+* *var2* &mdash; Variable 2 in condition (required)
+* *line_no* &mdash; line number of the assertion (required)
 Assert the condition (required)
-
-*line_no*
-
-Line number of the assertion (required)
 
 
 ## EXAMPLES
@@ -38,20 +36,17 @@ Line number of the assertion (required)
 ### One
 
 ```bash
-    source $OLSLIB/assert.sh
+    source $OLSLIB
 
-    a=5
-    b=4
+    i=5
+    j=4
 
-    condition="$a -ge $b"
+    assert "$i" "-ge" "$j" $LINENO
 
-    echo assert "\"$condition\""
-    assert "$condition" $LINENO
+    a="abc def"
+    g="ghi jkl"
 
-    condition="$a -lt $b"
-
-    echo assert "\"$condition\""
-    assert "$condition" $LINENO
+    assert "$a" "==" "$g" $LINENO
 
     echo "This statement echoes only if the \"assert\" does not fail."
 ```
@@ -59,8 +54,6 @@ Line number of the assertion (required)
 results in
 
 ```console
-    assert "5 -ge 4" $LINENO
-    assert "5 -lt 4" $LINENO
     Assertion failed:  "5 -lt 4", File "ex1.sh", line 14
 ```
 
@@ -69,12 +62,12 @@ on stderr.
 ### Two
 
 ```bash
-    source $OLSLIB/assert.sh
+    source $OLSLIB
     declare -i x=8
     declare -i y=4
 
-    assert "$x -ge 0" $LINENO
-    assert "$y -le 0" $LINENO
+    assert "$x" "-ge" "0" $LINENO
+    assert "$y" "-le" "0" $LINENO
 ```
 
 results in
@@ -91,15 +84,26 @@ on stderr.
 
 ## Diagnostics
 
-assert: missing argument 1, condition
+assert: missing argument 1, var1
 
-assert: missing argument 2, line_no
+assert: missing argument 2, op
+
+assert: missing argument 3, var2
+
+assert: missing argument 4, line_no
 
 Assertion failed:
 
+## Dependencies
+
+The global variable $OLSLIB needs to be set to your installations Olaus Script Library
+and sourced before this function executes.
+The default location is _/usr/local/lib/olaus/olslib_.
+
 ## VERSION
 
-Version 1.0.0 26 APR 2020 Olaus Script Library Update
+Version 0.2.0 30 APR 2020 Fix *condition* passing with blank strings
+Version 0.1.0 26 APR 2020 Olaus Script Library Update
 Version 0.0.0 14 SEP 2006 Initial Release
 
 ## Author
@@ -107,6 +111,14 @@ Version 0.0.0 14 SEP 2006 Initial Release
 [Mark Jensen](mailto:mark@jensen.net)
 
 ## History
+
+30 APR 2020 - Converted condition from a single argument to three.
+old: **assert** *condition* *line_no*
+new: **assert** *var1* *op* *var2* *line_no*
+
+The shell uses blanks in their parsing algrothim so variables with blank values would not operate correctly.
+The breaking the condition into three parts, *var1*, *var2* and *op*, solves this problem.
+It does mean that more complicated operations can not be passed to **assert**.
 
 26 APR 2020 - Moved documentation to Markdown format.
 **assert** updated to use Olaus Script Library errmsg.

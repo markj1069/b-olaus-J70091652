@@ -1,0 +1,11 @@
+ok(LOGICAL,TEST_NAME)
+is(INTEGER,INTEGER,TEST_NAME)
+isnot(INTEGER,INTEGER,TEST_NAME)
+diag("What went wrong")
+pass(TEST_NAME)
+fail(TEST_NAME)
+bail_out("Why")
+plan(NO_TESTS)
+done_testing(NO_TESTS)
+note(diagnostic message)
+

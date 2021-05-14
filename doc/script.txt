@@ -22,6 +22,22 @@ E<lt>script nameE<gt> E<mdash> E<lt>One-line description of this script's purpos
 [--]
 [F<input_file> ...]
 
+| **Options**     |   Option Value  | Description                                 |
+|-----------------|:---------------:|---------------------------------------------|
+| --output \| -o  |  _output file_  | Specify output destination [Default STDOUT] |
+| --input \| -i   |   _input file_  | Specify input source [Default: STDIN]       |
+| --debug         |                 | Include debugging info on STDOUT            |
+| --quiet \| -q   |                 | Run silent, opposite of verbose.            |
+| --verbose \| -v | [verbose Level] | --quiet is equivalent to level 0            |
+| --log           |    _logfile_    | Log significant events to _logfile_         |
+| --version       |                 | Print version information                   |
+| --usage         |                 | Print the usage line for this program       |
+| --help          |                 | Print summary for this program              |
+| --man           |                 | Print the complete man page                 |
+|                 |                 |                                             |
+| **Arguments**   |                 |                                             |
+| _input file_    |                 | Multiple _input files_ are supported        |
+
 =back
 
 =head1 DESCRIPTION
@@ -49,6 +65,22 @@ Program ID
 =back
 
 =head1 OPTIONS & ARGUMENTS
+
+| **Options**     |   Option Value  | Description                                 |
+|-----------------|:---------------:|---------------------------------------------|
+| --output \| -o  |  _output file_  | Specify output destination [Default STDOUT] |
+| --input \| -i   |   _input file_  | Specify input source [Default: STDIN]       |
+| --debug         |                 | Include debugging info on STDOUT            |
+| --quiet \| -q   |                 | Run silent, opposite of verbose.            |
+| --verbose \| -v | [verbose Level] | --quiet is equivalent to level 0            |
+| --log           |    _logfile_    | Log significant events to _logfile_         |
+| --version       |                 | Print version information                   |
+| --usage         |                 | Print the usage line for this program       |
+| --help          |                 | Print summary for this program              |
+| --man           |                 | Print the complete man page                 |
+|                 |                 |                                             |
+| **Arguments**   |                 |                                             |
+| _input file_    |                 | Multiple _input files_ are supported        |
 
 =head2 Standard Options
 

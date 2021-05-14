@@ -1,24 +1,26 @@
-% title olsusage &mdash; Print Program Synopsys and Exit
+% title olsusage&mdash;Print Program Synopsis and Exit
 
-# Name olsusage &mdash; print usage help and exit
+# NAME
+
+olsusage -- Print Program Synopsis and Exit
 
 # Synopsis
 
-olsusage("synopstring")
+olsusage "synopis"
 
-| Argument        | **Description**  |
-|-----------------|------------------|
-| **synopstring** | Program Synopsis |
+| Argument     | **Description**  |
+|--------------|------------------|
+| **synopsis** | Program Synopsis |
 
 # Description
 
-Print the program synopsis on _STDERR_ and exit with a return code of EX_USAGE.
+Print the program synopsis on _STDIN_ and exit with a return code of EX_OK.
 
-# Argument
+# ARGUMENTS
 
 olsusage has a single argument.
 
-## synopstring
+## synopsis
 
 A string containing the program synopsis, _e.g._,
 
@@ -26,18 +28,18 @@ A string containing the program synopsis, _e.g._,
 olserr number EX_CODE Message
 ```
 
-# Security
+# SECURITY
 
 You do not need to be the superuser/root to run this function.
 
 This function contains no secure/classified information.
 
-# Examples
+# EXAMPLES
 
 ## Usage Example for the perl Program
 
 ```shell
-olsusage("perl [switches] [--] [programfile] [arguments]")
+olsusage "perl [switches] [--] [programfile] [arguments]"
 ```
 
 produces
@@ -46,12 +48,12 @@ produces
 Usage: perl [switches] [--] [programfile] [arguments]
 ```
 
-with an exit code of EX_USAGE.
+with an exit code of EX_OK.
 
 ## Usage Example for the grep Program
 
 ```shell
-olsusage("Usage: grep [OPTION]... PATTERN [FILE]...")
+olsusage "Usage: grep [OPTION]... PATTERN [FILE]..."
 ```
 
 produces
@@ -60,12 +62,12 @@ produces
 Usage: grep [OPTION]... PATTERN [FILE]...
 ```
 
-with an exit code of EX_USAGE.
+with an exit code of EX_OK.
 
 ## Usage Example for the kill Program
 
 ```shell
-olsusage("kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]")
+olsusage "kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]"
 ```
 
 produces
@@ -74,13 +76,13 @@ produces
 Usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
 ```
 
-with an exit code of EX_USAGE.
+with an exit code of EX_OK.
 
 # Notes & Caveats
 
 # Diagnostics
 
-## OLSLIB7000F olsusage: Missing required synopsys argument
+## OLSLIB7000F olsusage: Missing required synopsis argument
 
 ### Explanation
 
@@ -88,7 +90,7 @@ The program synopsis argument was not supplied.
 
 ### Standard Corrective Action
 
-The program is ended with an exit code of EX_SOFTWARE.
+The program is ended with an exit code of EX_OK.
 
 ### Programmer Response
 
@@ -97,36 +99,42 @@ the program sysopsis.
 
 # Return Codes
 
-* EX_SOFTWARE &mdash; Usage called without an argument.
-* EX_USAGE &mdash; Normal return code for usage.
+* EX_SOFTWARE&mdash;Usage called without an argument.
+* EX_OK&mdash;Normal return code for usage.
 
 # Configuration & Environment
 
 * EX_CODE is set by olserr and olsrc within Usage
+
+# Dependencies
+
+* olserr
+* olssetex
+* olsend
   
 # Files
 
-**olsusage** writes to _STDERR_.
+**olsusage** writes to _STDIN_.
 
-# Standards
+# STANDARDS tandards
 
 **olsusage** was tested under
 
 * GNU bash, version 4.4.12(3)-release (x86_64-unknown-cygwin)
 
-# Version
+# VERSION
 
 A2.0.0
 
-# See Also
+# SEE ALSO
 
 olsdef
 
-# Author
+# AUTHOR
 
 [[Mark J Jensen](mailto:mark@jensen.net)]
 
-# Colophon
+# COLOPHON
 
 | Item      | Value           |
 |-----------|-----------------|

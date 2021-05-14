@@ -1,0 +1,1700 @@
+# Library: Olaus Shell Library
+# Created: 2020-05-08T12:54:30
+# Version: A2.0.0
+#-h- BEGIN 2020-04-30T17:12:15   64 3307 ols_def.sh
+#================== Olaus General Symbol Definitions ===================
+
+# $Id: olaus_def.sh 203 2007-05-09 17:38:51Z a0214394 $
+# $URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/lib/olaus_def.sh $
+
+if [[ -z "$OLSDEF" ]]; then
+
+    declare    -r TRUE="T"
+    declare    -r FALSE="F"
+
+  # Exit code definitions:
+    declare -i -r EX_OK=0               # Successful termination
+    declare -i -r EX_WARNING=4          # Warning
+    declare -i -r EX_ERROR=8            # Error
+    declare -i -r EX_SEVERE=12          # Severe error
+    declare -i -r EX_FATAL=16           # Fatal error
+    declare -i -r EX_BASE=64            # Base value for error messages
+    declare -i -r EX_USAGE=64           # Command line usage error
+    declare -i -r EX_DATAERR=65         # Data format error
+    declare -i -r EX_NOINPUT=66         # Cannot open input
+    declare -i -r EX_NOUSER=67          # Addressee unknown
+    declare -i -r EX_NOHOST=68          # Host name unknown 
+    declare -i -r EX_UNAVAILABLE=69     # Service unavailable
+    declare -i -r EX_SOFTWARE=70        # Internal software error
+    declare -i -r EX_OSERR=71           # System error (e.g., can't fork)
+    declare -i -r EX_OSFILE=72          # Critical OS file missing
+    declare -i -r EX_CANTCREAT=73       # Can't create (user) output file
+    declare -i -r EX_IOERR=74           # Input/output error
+    declare -i -r EX_TEMPFAIL=75        # Temp failure; user is invited to retry
+    declare -i -r EX_PROTOCOL=76        # Remote error in protocol
+    declare -i -r EX_NOPERM=77          # Permission denied
+    declare -i -r EX_CONFIG=78          # Configuration error
+    declare -i -r EX_MISSINGFILE=79     # A file is missing
+    declare -i -r EX_CANTC8TEMP=80      # Can't create temporary file
+    declare -i -r EX_ASSERTFAIL=81      # Assertion failed
+    declare -i -r EX_CANTC8LOCK=82      # Can't create lock file.
+    declare -i -r EX_USERABORT=83       # Aborted by user
+    declare -i -r EX_TERMINATION=84     # Trapped termination interrupt
+    declare -i -r EX_TRAPINT=85         # Trapped interrupt
+    declare -i -r EX_TESTMAXERR=254     # Maximum error count for Olaus Test
+    declare -i -r EX_TESTBAIL=255       # BAIL_OUT function terminated script
+    declare -i    EX_CODE=$EX_OK        # Initialize Exit Code to OK
+
+  # Special Linear List definitions:
+  # declare -i -r OLSSTACK=236887691    # Stack Magic Identifier
+  # declare -i -r OLSQUEUE=256203221    # Queue Magic Identifier 
+  # declare -i -r OLSDEQUE=275604541    # Deque Magic Identifier
+  # declare -i -r OLSMAXQ=2147483647    # Maximum Number of Elements
+  # declare -i -r OLSMINQ=3             # Initial index value
+  # declare       OLSELEMENT            # List routine return value
+  # declare -i    OLSLISTSIZE           # Number of elements returned by list_size
+
+  # Temporary file definitions:
+    declare -a    OLSTMPQUEUE           # Temporary filename queue
+    declare       OLSTMPFILE            # Return the temporary filename
+
+  # Test harness definitions:
+    declare -i -r OLSTST_NOPLAN=0       # Signal no test plan
+    declare -i    OLSTST_NO=0           # Initialize test plan number.
+    
+  # Switch to load definitions one time.
+    declare    -r OLSDEF=$TRUE          # OLSDEF=T ==> olaus_def loaded.
+
+fi # if [[ -z "$OLSDEF" ]]
+#-e- END   2020-04-30T17:12:15   64 3307 ols_def.sh
+#-h- BEGIN 2020-05-07T10:30:53   64 3307 olsdef.sh
+#================== Olaus General Symbol Definitions ===================
+
+# $Id: olaus_def.sh 203 2007-05-09 17:38:51Z a0214394 $
+# $URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/lib/olaus_def.sh $
+
+if [[ -z "$OLSDEF" ]]; then
+
+    declare    -r TRUE="T"
+    declare    -r FALSE="F"
+
+  # Exit code definitions:
+    declare -i -r EX_OK=0               # Successful termination
+    declare -i -r EX_WARNING=4          # Warning
+    declare -i -r EX_ERROR=8            # Error
+    declare -i -r EX_SEVERE=12          # Severe error
+    declare -i -r EX_FATAL=16           # Fatal error
+    declare -i -r EX_BASE=64            # Base value for error messages
+    declare -i -r EX_USAGE=64           # Command line usage error
+    declare -i -r EX_DATAERR=65         # Data format error
+    declare -i -r EX_NOINPUT=66         # Cannot open input
+    declare -i -r EX_NOUSER=67          # Addressee unknown
+    declare -i -r EX_NOHOST=68          # Host name unknown 
+    declare -i -r EX_UNAVAILABLE=69     # Service unavailable
+    declare -i -r EX_SOFTWARE=70        # Internal software error
+    declare -i -r EX_OSERR=71           # System error (e.g., can't fork)
+    declare -i -r EX_OSFILE=72          # Critical OS file missing
+    declare -i -r EX_CANTCREAT=73       # Can't create (user) output file
+    declare -i -r EX_IOERR=74           # Input/output error
+    declare -i -r EX_TEMPFAIL=75        # Temp failure; user is invited to retry
+    declare -i -r EX_PROTOCOL=76        # Remote error in protocol
+    declare -i -r EX_NOPERM=77          # Permission denied
+    declare -i -r EX_CONFIG=78          # Configuration error
+    declare -i -r EX_MISSINGFILE=79     # A file is missing
+    declare -i -r EX_CANTC8TEMP=80      # Can't create temporary file
+    declare -i -r EX_ASSERTFAIL=81      # Assertion failed
+    declare -i -r EX_CANTC8LOCK=82      # Can't create lock file.
+    declare -i -r EX_USERABORT=83       # Aborted by user
+    declare -i -r EX_TERMINATION=84     # Trapped termination interrupt
+    declare -i -r EX_TRAPINT=85         # Trapped interrupt
+    declare -i -r EX_TESTMAXERR=254     # Maximum error count for Olaus Test
+    declare -i -r EX_TESTBAIL=255       # BAIL_OUT function terminated script
+    declare -i    EX_CODE=$EX_OK        # Initialize Exit Code to OK
+
+  # Special Linear List definitions:
+  # declare -i -r OLSSTACK=236887691    # Stack Magic Identifier
+  # declare -i -r OLSQUEUE=256203221    # Queue Magic Identifier 
+  # declare -i -r OLSDEQUE=275604541    # Deque Magic Identifier
+  # declare -i -r OLSMAXQ=2147483647    # Maximum Number of Elements
+  # declare -i -r OLSMINQ=3             # Initial index value
+  # declare       OLSELEMENT            # List routine return value
+  # declare -i    OLSLISTSIZE           # Number of elements returned by list_size
+
+  # Temporary file definitions:
+    declare -a    OLSTMPQUEUE           # Temporary filename queue
+    declare       OLSTMPFILE            # Return the temporary filename
+
+  # Test harness definitions:
+    declare -i -r OLSTST_NOPLAN=0       # Signal no test plan
+    declare -i    OLSTST_NO=0           # Initialize test plan number.
+    
+  # Switch to load definitions one time.
+    declare    -r OLSDEF=$TRUE          # OLSDEF=T ==> olaus_def loaded.
+
+fi # if [[ -z "$OLSDEF" ]]
+#-e- END   2020-05-07T10:30:53   64 3307 olsdef.sh
+#-h- BEGIN 2020-04-27T07:37:46  148 3107 ols_begin.sh
+# ols_begin - Olaus BASH Shell Housekeeping Function at Beginning of Script
+
+cat >/dev/null <<'/*'
+
+=head1 NAME
+
+ols_begin - Olaus BASH Shell Housekeeping Function at Beginning of Script
+
+=head1 SYNOPSIS
+
+. $OLSLIB/ols_begin.sh
+
+ols_begin 
+
+=head1 DESCRIPTION
+
+=head1 SUBROUTINES/FUNCTIONS/METHODS
+
+=head1 SECURITY
+
+B<ols_begin> does not need to run as root.
+
+=head1 AVAILABILITY
+
+=head1 EXAMPLES
+
+=head1 NOTES
+
+=head1 CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head1 RETURN STATUS
+
+=over 4
+
+=item EX_OK
+
+=back
+
+=head1 DEPENDENCIES
+
+=head1 INCOMPATABILITIES
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=over 4
+
+=item DATE
+
+=item EX_OK
+
+B<errmsg>, 
+
+=item PGMDATE
+
+=item PGMREL
+
+=item YEAR
+
+=back
+
+=head1 FILES
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2006-09-22 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=head1 BUGS AND LIMITATIONS
+
+=head1 SEE ALSO
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2006 Texas Instruments. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+=over 4
+
+=item 1.
+
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+=item 2.
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+=back
+
+THIS SOFTWARE IS PROVIDED BY TEXAS INSTRUMENTS ``AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL TEXAS INSTRUMENTS OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+
+The views and conclusions contained in the software and
+documentation are those of the authors and should not be interpreted
+as representing official policies, either expressed or implied, of
+Texas Instruments.
+
+=cut
+
+/*
+
+declare -a SYSIN=('')            # Input  files
+declare -a SYSOUT=('')           # Output files
+
+function ols_begin() {
+
+  # Setup default Exception Handeling
+    trap 'ols_signal SIGTERM' SIGTERM  # Process Terminal signal
+    trap 'ols_signal SIGHUP'  SIGHUP   # Process Hang Up signal
+    trap 'ols_signal SIGINT'  SIGINT   # Cleanup after cntl-C
+    trap 'ols_signal EXIT'    EXIT     # Insure a graceful exit
+    trap 'ols_signal ERR'     ERR      # Trap failing commands
+
+  # Make some pretty date strings
+    DATE=$(date +'%Y-%m-%d')
+    YEAR=$(date +'%Y')
+    readonly DATE
+    readonly YEAR
+
+    return $EX_OK
+} # end ols_begin
+
+#-e- END   2020-04-27T07:37:46  148 3107 ols_begin.sh
+#-h- BEGIN 2020-05-07T10:27:06  148 3105 olsbegin.sh
+# ols_begin - Olaus BASH Shell Housekeeping Function at Beginning of Script
+
+cat >/dev/null <<'/*'
+
+=head1 NAME
+
+ols_begin - Olaus BASH Shell Housekeeping Function at Beginning of Script
+
+=head1 SYNOPSIS
+
+. $OLSLIB/ols_begin.sh
+
+ols_begin 
+
+=head1 DESCRIPTION
+
+=head1 SUBROUTINES/FUNCTIONS/METHODS
+
+=head1 SECURITY
+
+B<ols_begin> does not need to run as root.
+
+=head1 AVAILABILITY
+
+=head1 EXAMPLES
+
+=head1 NOTES
+
+=head1 CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head1 RETURN STATUS
+
+=over 4
+
+=item EX_OK
+
+=back
+
+=head1 DEPENDENCIES
+
+=head1 INCOMPATABILITIES
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=over 4
+
+=item DATE
+
+=item EX_OK
+
+B<errmsg>, 
+
+=item PGMDATE
+
+=item PGMREL
+
+=item YEAR
+
+=back
+
+=head1 FILES
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2006-09-22 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=head1 BUGS AND LIMITATIONS
+
+=head1 SEE ALSO
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2006 Texas Instruments. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+=over 4
+
+=item 1.
+
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+=item 2.
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+=back
+
+THIS SOFTWARE IS PROVIDED BY TEXAS INSTRUMENTS ``AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL TEXAS INSTRUMENTS OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+
+The views and conclusions contained in the software and
+documentation are those of the authors and should not be interpreted
+as representing official policies, either expressed or implied, of
+Texas Instruments.
+
+=cut
+
+/*
+
+declare -a SYSIN=('')            # Input  files
+declare -a SYSOUT=('')           # Output files
+
+function olsbegin() {
+
+  # Setup default Exception Handeling
+    trap 'ols_signal SIGTERM' SIGTERM  # Process Terminal signal
+    trap 'ols_signal SIGHUP'  SIGHUP   # Process Hang Up signal
+    trap 'ols_signal SIGINT'  SIGINT   # Cleanup after cntl-C
+    trap 'ols_signal EXIT'    EXIT     # Insure a graceful exit
+    trap 'ols_signal ERR'     ERR      # Trap failing commands
+
+  # Make some pretty date strings
+    DATE=$(date +'%Y-%m-%d')
+    YEAR=$(date +'%Y')
+    readonly DATE
+    readonly YEAR
+
+    return $EX_OK
+} # end olsbegin
+
+#-e- END   2020-05-07T10:27:06  148 3105 olsbegin.sh
+#-h- BEGIN 2020-04-27T07:34:59  241 7794 getopt.sh
+#! /bin/bash
+
+# getopt.sh:
+# functions like getopts but do long-named options parsing
+# and support optional arguments
+#
+# Version 1.1 2004 by Raphael <raphael at oninet dot pt>
+# Date modified: April 6, 2004
+# Version 1.0 1997 by Grigoriy Strokin (grg@philol.msu.ru), Public Domain
+# Date created: December 21, 1997
+# Date modified: December 21, 1997
+#
+# UPDATE (by raphael)
+#
+# I found the routine wouldn't report option that need arguments right
+# if they where between or before other options. Rather it would take
+# the following option as the argument. The routine now checks if
+# the required argument starts with a dash '-' indicating that it is an
+# option. See source below.
+#
+# IMPORTANT FEATURES
+#
+# 1) Parses both short and long-named options
+# 2) Supports optional arguments
+# 3) Only uses bash builtins, thus no calls to external
+# utilities such as expr or sed is done. Therefore,
+# parsing speed is high enough
+#
+#
+# DESCRIPTION
+#
+# FUNCTION getopt
+# Usage: getopt OPTLIST {"$@"|ALTERNATIVE_PARAMETERS}
+#
+# like getopts, but parse options with both required and optional arguments,
+# Options with optional arguments must have "." instead of ":" after them.
+# Furthemore, a variable name to place option name cannot be specified
+# and is always placed in OPTOPT variable
+#
+# This function is provided for compatibility with getopts()
+# OPTLIST style, and it actually calls getoptex (see bellow)
+#
+# NOTE that a list of parameters is required and must be either "$@",
+# if processing command line arguments, or some alternative parameters.
+#
+# FUNCTION getoptex
+# Usage: getoptex OPTION_LIST {"$@"|ALTERNATIVE_PARAMETERS}
+#
+# like getopts, but parse long-named options.
+#
+# Both getopt and getoptex return 0 if an option has been parsed,
+# and 1 if all options are already parsed or an error occured
+#
+# Both getopt and getoptex set or test the following variables:
+#
+# OPTERR -- tested for whether error messages must be given for invalid options
+#
+# OPTOPT -- set to the name of an option parsed,
+# or to "?" if no more options or error
+# OPTARG -- set to the option argument, if any;
+# unset if ther is no argument;
+# on error, set to the erroneous option name
+#
+# OPTIND -- Initialized to 1.
+# Then set to the number of the next parameter to be parsed
+# when getopt or getoptex will be called next time.
+# When all options are parsed, contains a number of
+# the first non-option argument.
+#
+#
+# OPTOFS -- If a parameter number $OPTIND containg an option parsed
+# does not contain any more options, OPTOFS is unset;
+# otherwise, OPTOFS is set to such a number of "?" signs
+# which is equal to the number of options parsed
+#
+# You might not set variables OPTIND and OPTOFS yourself
+# unless you want to parse a list of parameters more than once.
+# Otherwise, you whould unset OPTIND (or set it to 1)
+# and unset OPTOFS each time you want to parse a new parameters list
+#
+# Option list format is DIFFERENT from one for getopts or getopt. getopts-style
+# option list can be converted to getoptex-style using a function optlistex
+# (see bellow)
+#
+# DESCRIPTION of option list used with getoptex:
+# Option names are separated by whitespace. Options consiting of
+# more than one character are treated as long-named (--option)
+#
+# Special characters can appear at the and of option names specifying
+# whether an argument is required (default is ";"):
+# ";" (default) -- no argument
+# ":" -- required argument
+# "," -- optional argument
+#
+# For example, an option list "a b c help version f: file: separator."
+# defines the following options:
+# -a, -b, -c, --help, --version -- no argument
+# -f, --file -- argument required
+# --separator -- optional argument
+#
+# FUNCTION optlistex
+# Usage new_style_optlist=`optlistex OLD_STYLE_OPTLIST`
+#
+# Converts getopts-style option list in a format suitable for use with getoptex
+# Namely, it inserts spaces after each option name.
+#
+#
+# HOW TO USE
+#
+# In order o use in your bash scripts the functions described,
+# include a command ". getopt.sh" to the file containing the script,
+# which will define functions getopt, getoptex, and optlistex
+#
+# EXAMPLES
+#
+# See files 'getopt1' and 'getopt2' that contain sample scripts that use
+# getopt and getoptex functions respectively
+#
+#
+# Please send your comments to grg@philol.msu.ru
+
+function getoptex()
+{
+  let $# || return 1
+  local optlist="${1#;}"
+  let OPTIND || OPTIND=1
+  [ $OPTIND -lt $# ] || return 1
+  shift $OPTIND
+  if [ "$1" != "-" -a "$1" != "${1#-}" ]
+  then OPTIND=$[OPTIND+1]; if [ "$1" != "--" ]
+  then
+    local o
+    o="-${1#-$OPTOFS}"
+    for opt in ${optlist#;}
+    do
+      OPTOPT="${opt%[;.:]}"
+      unset OPTARG
+      local opttype="${opt##*[^;:.]}"
+      [ -z "$opttype" ] && opttype=";"
+      if [ ${#OPTOPT} -gt 1 ]
+      then # long-named option
+        case $o in
+          "--$OPTOPT")
+            if [ "$opttype" != ":" ]; then return 0; fi
+            OPTARG="$2"
+
+# Added test on following argument being an option identified by '-' this way #
+# the routine no longer takes options as an argument thus breaking error #
+# detection. 2004-04-04 by raphael at oninet dot pt #
+
+            if [ -z "$OPTARG" -o "${OPTARG:0:1}" = "-" ] ;
+            then # error: must have an agrument
+              let OPTERR && echo "$0: error: $OPTOPT must have an argument" >&2
+              OPTARG="$OPTOPT";
+              OPTOPT="?"
+              return 1;
+            fi
+            OPTIND=$[OPTIND+1] # skip option's argument
+            return 0
+          ;;
+          "--$OPTOPT="*)
+            if [ "$opttype" = ";" ];
+            then # error: must not have arguments
+              let OPTERR && echo "$0: error: $OPTOPT must not have arguments" >&2
+              OPTARG="$OPTOPT"
+              OPTOPT="?"
+              return 1
+            fi
+            OPTARG=${o#"--$OPTOPT="}
+            return 0
+          ;;
+        esac
+      else # short-named option
+        case "$o" in
+          "-$OPTOPT")
+            unset OPTOFS
+            [ "$opttype" != ":" ] && return 0
+            OPTARG="$2"
+
+# Added test on following argument being an option identified by '-' this way #
+# the routine no longer takes options as an argument thus breaking error #
+# detection. 2004-04-04 by raphael at oninet dot pt #
+
+            if [ -z "$OPTARG" -o "${OPTARG:0:1}" = "-" ] ;
+            then
+              echo "$0: error: -$OPTOPT must have an argument" >&2
+              OPTARG="$OPTOPT"
+              OPTOPT="?"
+              return 1
+            fi
+            OPTIND=$[OPTIND+1] # skip option's argument
+            return 0
+          ;;
+          "-$OPTOPT"*)
+            if [ $opttype = ";" ]
+            then # an option with no argument is in a chain of options
+              OPTOFS="$OPTOFS?" # move to the next option in the chain
+              OPTIND=$[OPTIND-1] # the chain still has other options
+              return 0
+            else
+              unset OPTOFS
+              OPTARG="${o#-$OPTOPT}"
+              return 0
+            fi
+          ;;
+        esac
+      fi
+    done
+    echo "$0: error: invalid option: $o"
+  fi; fi
+  OPTOPT="?"
+  unset OPTARG
+  return 1
+}
+function optlistex
+{
+  local l="$1"
+  local m # mask
+  local r # to store result
+  while [ ${#m} -lt $[${#l}-1] ]; do m="$m?"; done # create a "???..." mask
+  while [ -n "$l" ]
+  do
+    r="${r:+"$r "}${l%$m}" # append the first character of $l to $r
+    l="${l#?}" # cut the first charecter from $l
+    m="${m#?}" # cut one "?" sign from m
+    if [ -n "${l%%[^:.;]*}" ]
+    then # a special character (";", ".", or ":") was found
+      r="$r${l%$m}" # append it to $r
+      l="${l#?}" # cut the special character from l
+      m="${m#?}" # cut one more "?" sign
+    fi
+  done
+  echo $r
+}
+function getopt()
+{
+  local optlist=`optlistex "$1"`
+  shift
+  getoptex "$optlist" "$@"
+  return $?
+}
+#-e- END   2020-04-27T07:34:59  241 7794 getopt.sh
+#-h- BEGIN 2020-04-27T07:34:59   9 326 filename.sh
+# Return simple filename w/o path
+#
+function filename () {       # What is the filename?
+    local FN
+    local FL="$1"            # rrr/sss/ttt.uuu/vvv_www.yyy.zzz
+    FN=${FL##*/}             # vvv_www.yyy.zzz
+    builtin printf "%s" "$FN" # Return the filename.
+    return $EX_OK            # Set return code.
+} # filename
+#-e- END   2020-04-27T07:34:59   9 326 filename.sh
+#-h- BEGIN 2020-04-27T07:34:59  11 380 filebase.sh
+# Return the basename of filename
+#
+function filebase {          # What is the basename?
+    local BN
+    local FN
+    local FL="$1"            # rrr/sss/ttt.uuu/vvv_www.yyy.zzz
+    FN=${FL##*/}             # vvv_www.yyy.zzz
+    BN=${FN%.*}              # vvv_www.yyy
+    builtin printf "%s" "$BN" # Return the basename
+    return $EX_OK            # Set return code
+} # filebase
+#-e- END   2020-04-27T07:34:59  11 380 filebase.sh
+#-h- BEGIN 2020-04-27T07:34:59  13 436 filepath.sh
+# Return filename path
+#
+function filepath {          # What is the path on a filename?
+    local FP
+    local FL="$1"            # rrr/sss/ttt.uuu/vvv_www.yyy.zzz
+    FP=${FL%/*}              # rrr/sss/ttt.uuu
+    if [ "$FP" = "$FL" ]     # If path is missing
+    then 
+        FP="$PWD"               #   set path to .
+    fi
+    builtin printf "%s" "$FP" # Return the path
+    return $EX_OK           # Set return code.
+} # filepath
+#-e- END   2020-04-27T07:34:59  13 436 filepath.sh
+#-h- BEGIN 2020-04-27T07:34:59  22 689 filesfx.sh
+# Return filename suffix
+#
+function filesfx {           # What is the suffex on a filename?
+    local FN
+    local SX
+    local FL="$1"            # rrr/sss/ttt.uuu/vvv_www.yyy.zzz
+    local RC
+    FN=${FL##*/}             # vvv_www.yyy.zzz
+    SX=${FN##*\.}            # SX=zzz with bash pattern matching
+    if [ "$SX" = "$FN" ]
+    then
+        SX=""                # There may not be a suffex.
+        RC=$EX_WARNING        # Set return code to warning.
+    elif [ "$SX" = "" ]
+    then
+        RC=$EX_WARNING
+    else
+        RC=$EX_OK             # Return code OK.
+    fi
+    builtin printf "%s" "$SX" # Return the suffex.
+    return $RC               # Set return code.
+} # filesfx
+#-e- END   2020-04-27T07:34:59  22 689 filesfx.sh
+#-h- BEGIN 2020-05-07T14:28:03  135 2067 ols_err.sh
+# olserr -- Print an Olaus Shell Library Error Message
+
+function ols_err()
+{
+    if [[ -z "$1" ]]
+    then
+        ols_err 7001 $EX_SOFTWARE "${FUNCNAME}: missing argument 1, num"
+    else
+        local num=$(printf "%4u" "$1"); num=${num// /0}
+    fi
+    if [[ -z "$2" ]]
+    then
+        ols_err 7002 $EX_SOFTWARE "${FUNCNAME}: missing argument 2, ex_code"
+    else
+        local ex_code=$2
+    fi
+    shift 2
+    if [[ -z "$1" ]]; then
+        ols_err 7003 $EX_SOFTWARE "${FUNCNAME}: missing argument 3, msg"
+    else
+        local msg="$*"
+    fi
+
+    case $ex_code in
+        ( $EX_OK      ) local sev="I";;
+        ( $EX_WARNING ) local sev="W";;
+        ( $EX_ERROR   ) local sev="E";;
+        ( $EX_SEVERE  ) local sev="S";;
+        ( *           ) local sev="F";;
+    esac
+
+    printf "%s%s%s%s%s\n" $PGMID $num $sev ' ' "$msg" >&2
+
+    ols_setex $ex_code
+    if [[ $sev ==  "F" ]]; then ols_end; fi
+    
+    return $EX_CODE
+} # end ols_err
+
+cat >/dev/null <<'=cut'
+
+=head1 NAME
+
+ols_err - write an error message to STDERR, set exit code, exit if fatal.
+
+=head1 SYNOPSIS
+
+ols_err num ex_code msg
+
+=head1 DESCRIPTION
+
+=head1 ARGUMENTS
+
+=over 4
+
+=item I<num>
+
+(required) Error message number.
+
+=item I<ex_code>
+
+(required) Exit Code and Severity of message.
+
+=item I<msg>
+
+(required) Error message text. 
+
+=back
+
+=head1 SECURITY
+
+B<ols_err> does not require root access.
+
+=head1 AVAILABILITY
+
+=head1 EXAMPLES
+
+    ols_err 7001 $EX_SOFTWARE "${FUNCNAME}: missing argument 1, num"
+
+=head1 NOTES
+
+=head1 CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head1 ENVIRONMENT
+
+=over 4
+
+=item EX_CODE
+
+Current exit code.
+
+=item PGMID
+
+Program ID, see B<olausbegin>.
+
+=back
+
+=head1 FILES
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+Re
+
+$Revision: 162 $
+
+$Id: ols_err.sh 162 2007-03-13 00:19:18Z a0214394 $
+
+2006-09-17 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=head1 BUGS
+
+=head1 SEE ALSO
+
+B<olausbegin>, B<setexcode>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Mark Jensen.
+
+include(licsense.txt)
+
+=cut
+
+#-e- END   2020-05-07T14:28:03  135 2067 ols_err.sh
+#-h- BEGIN 2020-05-07T14:29:03  135 2060 olserr.sh
+# olserr -- Print an Olaus Shell Library Error Message
+
+function olserr()
+{
+    if [[ -z "$1" ]]
+    then
+        olserr 7001 $EX_SOFTWARE "${FUNCNAME}: missing argument 1, num"
+    else
+        local num=$(printf "%4u" "$1"); num=${num// /0}
+    fi
+    if [[ -z "$2" ]]
+    then
+        olserr 7002 $EX_SOFTWARE "${FUNCNAME}: missing argument 2, ex_code"
+    else
+        local ex_code=$2
+    fi
+    shift 2
+    if [[ -z "$1" ]]; then
+        olserr 7003 $EX_SOFTWARE "${FUNCNAME}: missing argument 3, msg"
+    else
+        local msg="$*"
+    fi
+
+    case $ex_code in
+        ( $EX_OK      ) local sev="I";;
+        ( $EX_WARNING ) local sev="W";;
+        ( $EX_ERROR   ) local sev="E";;
+        ( $EX_SEVERE  ) local sev="S";;
+        ( *           ) local sev="F";;
+    esac
+
+    printf "%s%s%s%s%s\n" $PGMID $num $sev ' ' "$msg" >&2
+
+    olssetex $ex_code
+    if [[ $sev ==  "F" ]]; then olsend; fi
+    
+    return $EX_CODE
+} # end olserr
+
+cat >/dev/null <<'=cut'
+
+=head1 NAME
+
+ols_err - write an error message to STDERR, set exit code, exit if fatal.
+
+=head1 SYNOPSIS
+
+ols_err num ex_code msg
+
+=head1 DESCRIPTION
+
+=head1 ARGUMENTS
+
+=over 4
+
+=item I<num>
+
+(required) Error message number.
+
+=item I<ex_code>
+
+(required) Exit Code and Severity of message.
+
+=item I<msg>
+
+(required) Error message text. 
+
+=back
+
+=head1 SECURITY
+
+B<ols_err> does not require root access.
+
+=head1 AVAILABILITY
+
+=head1 EXAMPLES
+
+    ols_err 7001 $EX_SOFTWARE "${FUNCNAME}: missing argument 1, num"
+
+=head1 NOTES
+
+=head1 CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head1 ENVIRONMENT
+
+=over 4
+
+=item EX_CODE
+
+Current exit code.
+
+=item PGMID
+
+Program ID, see B<olausbegin>.
+
+=back
+
+=head1 FILES
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+Re
+
+$Revision: 162 $
+
+$Id: ols_err.sh 162 2007-03-13 00:19:18Z a0214394 $
+
+2006-09-17 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=head1 BUGS
+
+=head1 SEE ALSO
+
+B<olausbegin>, B<setexcode>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Mark Jensen.
+
+include(licsense.txt)
+
+=cut
+
+#-e- END   2020-05-07T14:29:03  135 2060 olserr.sh
+#-h- BEGIN 2020-04-27T21:49:20  167 2404 ols_setex.sh
+function ols_setex()
+{
+    if [[ -z "$1" ]]; then
+        ols_err 7001 $EX_SOFTWARE "ols_setex: missing argument 1, ex_code"
+    else
+        local -i ex_code=$1
+    fi
+
+    if [[ $EX_CODE -lt $ex_code ]]; then EX_CODE=$ex_code; fi
+    
+    return $EX_CODE
+} # end ols_setex
+
+cat >/dev/null <<'=cut'
+
+=head1 NAME
+
+setexcode - set the exit code for a program.
+
+=head1 SYNOPSIS
+
+B<setexcode> I<ex_code>
+
+=head1 DESCRIPTION
+
+B<setexcode> remembers the highest exit code set
+in the EX_CODE global variable.
+EX_CODE is initialized to 0 (successful termination)
+in the Olaus General Symbol Definitions file,
+F<olausdef.sh>.
+
+=head1 ARGUMENTS
+
+=over 4
+
+=item I<xcode>
+
+(required) Exit Code and Severity of message.
+The exit code definitions are defined
+in the Olaus General Symbol Definitions file,
+F<olausdef.sh>.
+
+=back
+
+=head1 SECURITY
+
+B<setexcode> does not require root access.
+It does not contain security information.
+
+=head1 AVAILABILITY
+
+B<setexcode> is available as part of the Olaus Library
+
+=head1 EXAMPLES
+
+    setexcode $EX_USAGE
+
+=head1 NOTES & CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head2 7001 missing argument
+
+=over 4
+
+=item Error Code
+
+7001
+
+=item Error Message
+
+[FUNCNAME]: missing argument [NUMBER], [AUGUMENT_NAME]
+
+=item Severity Level
+
+Fatal - 70
+
+=item Message Origin
+
+[FUNCNAME]
+
+=item Message Audience
+
+Programmer
+
+=item Problem Determination
+
+Argument left off [FUNCNAME] call.
+
+=item User Response
+
+Include the appropriate Argument in [FUNCNAME] call.
+
+=item System Action
+
+The program exits with an exit code of 70.
+
+=back
+
+=head1 ENVIRONMENT
+
+=over 4
+
+=item EX_CODE
+
+Current exit code.
+
+=item EX_OK
+
+Successful termination
+
+=item EX_SOFTWARE
+
+Internal software error
+
+=back
+
+=head1 FILES
+
+=over 4
+
+=item F<olsdef.sh>
+
+Olaus General Symbol Definitions
+
+=back
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+$Date: 2007-05-09 12:38:51 -0500 (Wed, 09 May 2007) $
+
+$Rev: 203 $
+
+$URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/lib/setexcode.sh $
+
+$Id: setexcode.sh 203 2007-05-09 17:38:51Z a0214394 $
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2007-03-10 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=head1 BUGS
+
+When I<xcode> is not numeric,
+it is interpreted as zero
+without an error message.
+
+=head1 SEE ALSO
+
+B<olsbegin>, B<errmsg>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013 Mark Jensen.
+Copyright (c) 2007 Texas Instruments.
+
+include(license.txt)
+
+=cut
+#-e- END   2020-04-27T21:49:20  167 2404 ols_setex.sh
+#-h- BEGIN 2020-05-07T12:11:10  169 2435 olssetex.sh
+# olssetex -- set the exit code.
+
+function olssetex()
+{
+    if [[ -z "$1" ]]; then
+        olserr 7001 $EX_SOFTWARE "ols_setex: missing argument 1, ex_code"
+    else
+        local -i ex_code=$1
+    fi
+
+    if [[ $EX_CODE -lt $ex_code ]]; then EX_CODE=$ex_code; fi
+    
+    return $EX_CODE
+} # end olssetex
+
+cat >/dev/null <<'=cut'
+
+=head1 NAME
+
+setexcode - set the exit code for a program.
+
+=head1 SYNOPSIS
+
+B<setexcode> I<ex_code>
+
+=head1 DESCRIPTION
+
+B<setexcode> remembers the highest exit code set
+in the EX_CODE global variable.
+EX_CODE is initialized to 0 (successful termination)
+in the Olaus General Symbol Definitions file,
+F<olausdef.sh>.
+
+=head1 ARGUMENTS
+
+=over 4
+
+=item I<xcode>
+
+(required) Exit Code and Severity of message.
+The exit code definitions are defined
+in the Olaus General Symbol Definitions file,
+F<olausdef.sh>.
+
+=back
+
+=head1 SECURITY
+
+B<setexcode> does not require root access.
+It does not contain security information.
+
+=head1 AVAILABILITY
+
+B<setexcode> is available as part of the Olaus Library
+
+=head1 EXAMPLES
+
+    setexcode $EX_USAGE
+
+=head1 NOTES & CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head2 7001 missing argument
+
+=over 4
+
+=item Error Code
+
+7001
+
+=item Error Message
+
+[FUNCNAME]: missing argument [NUMBER], [AUGUMENT_NAME]
+
+=item Severity Level
+
+Fatal - 70
+
+=item Message Origin
+
+[FUNCNAME]
+
+=item Message Audience
+
+Programmer
+
+=item Problem Determination
+
+Argument left off [FUNCNAME] call.
+
+=item User Response
+
+Include the appropriate Argument in [FUNCNAME] call.
+
+=item System Action
+
+The program exits with an exit code of 70.
+
+=back
+
+=head1 ENVIRONMENT
+
+=over 4
+
+=item EX_CODE
+
+Current exit code.
+
+=item EX_OK
+
+Successful termination
+
+=item EX_SOFTWARE
+
+Internal software error
+
+=back
+
+=head1 FILES
+
+=over 4
+
+=item F<olsdef.sh>
+
+Olaus General Symbol Definitions
+
+=back
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+$Date: 2007-05-09 12:38:51 -0500 (Wed, 09 May 2007) $
+
+$Rev: 203 $
+
+$URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/lib/setexcode.sh $
+
+$Id: setexcode.sh 203 2007-05-09 17:38:51Z a0214394 $
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2007-03-10 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=head1 BUGS
+
+When I<xcode> is not numeric,
+it is interpreted as zero
+without an error message.
+
+=head1 SEE ALSO
+
+B<olsbegin>, B<errmsg>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013 Mark Jensen.
+Copyright (c) 2007 Texas Instruments.
+
+include(license.txt)
+
+=cut
+#-e- END   2020-05-07T12:11:10  169 2435 olssetex.sh
+#-h- BEGIN 2020-05-07T10:50:06  25 650 olssignal.sh
+# olssignal -- Process interupts
+
+function olssignal() {
+
+    case "$1" in
+        EXIT    )   ols_end;;
+        i       )   echo $OPTOPT: $OPTARG;;
+        output  )   echo $OPTOPT: $OPTARG;;
+        o       )   echo $OPTOPT: $OPTARG;;
+        help    )   ols_help;;
+        h       )   ols_help;;
+        man     )   ols_man;;
+        m       )   ols_man;;
+        usage   )   ols_usage;;
+        u       )   ols_usage;;
+        debug   )   DEBUG=Y;;
+        d       )   DEBUG=Y;;
+        version )   ols_version;;
+        V       )   ols_version;;
+        verbose )   VERBOSE=Y;;
+        v       )   VERBOSE=Y;;
+    esac
+
+    olsend
+
+} # olssignal#-e- END   2020-05-07T10:50:06  25 650 olssignal.sh
+#-h- BEGIN 2020-05-07T10:39:36  4 85 olsinput.sh
+# input -- Process input
+
+function olsinput () {
+    echo olsinput: Stub
+} # olsinput#-e- END   2020-05-07T10:39:36  4 85 olsinput.sh
+#-h- BEGIN 2020-05-07T10:45:12  6 99 olsoutput.sh
+# olsoutput -- Process output file
+
+function olsoutput ()
+{
+    echo olsoutput: Stub
+
+} # olsoutput#-e- END   2020-05-07T10:45:12  6 99 olsoutput.sh
+#-h- BEGIN 2020-05-07T10:29:14  6 97 olsdebug.sh
+# olsdebug -- turn on debug mode.
+
+function olsdebug ()
+{
+    echo "olsdebug: Stub"
+
+} # olsdebug#-e- END   2020-05-07T10:29:14  6 97 olsdebug.sh
+#-h- BEGIN 2020-05-07T10:38:26  5 78 olslog.sh
+# olslog -- Turn on logging
+
+function olslog ()
+{
+echo olslog: Stub
+} # olslog#-e- END   2020-05-07T10:38:26  5 78 olslog.sh
+#-h- BEGIN 2020-05-07T10:42:52  5 96 olsloglvl.sh
+# olsloglvl -- Set Logging Level
+
+function olsloglvl ()
+{
+    echo olsloglvl: Stub
+} # olsloglvl#-e- END   2020-05-07T10:42:52  5 96 olsloglvl.sh
+#-h- BEGIN 2020-05-07T10:46:15  6 90 olsquiet.sh
+# olsquiet -- Set quiet mode
+
+function olsquiet ()
+{
+    echo olsquiet: Stub
+
+} # olsquiet#-e- END   2020-05-07T10:46:15  6 90 olsquiet.sh
+#-h- BEGIN 2020-05-07T14:06:11   6 109 olsverbose.sh
+# olsverbose -- Process olsverbose option
+
+function olsverbose ()
+{
+    echo olsverbose: Stub
+
+} # olsverbose#-e- END   2020-05-07T14:06:11   6 109 olsverbose.sh
+#-h- BEGIN 2020-05-07T14:09:46  6 51 vprintf.sh
+function vprintf()
+{
+
+echo vecho stub
+
+} # vprintf
+#-e- END   2020-05-07T14:09:46  6 51 vprintf.sh
+#-h- BEGIN 2020-05-08T09:39:49  18 504 olsusage.sh
+# olsusage--Print Program Synopsys and Exit
+
+function olsusage()
+{
+    if [[ $# -eq 0 ]]        # At least one argument is required by olsusage
+    then
+        olserr 7000 $EX_SOFTWARE  "olsusage: Missing required synopsys argument"
+        olsend               # Exit program with EX_CODE of $EX_SOFTWARE
+    fi
+
+    printf "%s\n" "Usage:"   # Print usage tag
+    printf "%s\n" "$*"       # Print the usage string
+
+    olssetex $EX_OK
+    olsend                   # Exit program
+    
+} # end olsusage
+
+#-e- END   2020-05-08T09:39:49  18 504 olsusage.sh
+#-h- BEGIN 2020-05-07T14:04:07  12 229 olshelp.sh
+# olshelp -- 
+
+function olshelp()
+{
+    echo olshelp: Stub
+    exit 1
+#    podselect.bat -section SYNOPSIS \
+#                  -section 'OPTIONS & ARGUMENTS' tmpl.sh \
+#                | pod2text.bat >&2
+    olsend
+
+} # olshelp
+#-e- END   2020-05-07T14:04:07  12 229 olshelp.sh
+#-h- BEGIN 2020-05-08T12:54:27  24 587 olsversion.sh
+# olsversion -- Process version option
+
+function olsversion()
+{
+    if [[ $# -eq 0 ]]
+    then
+        olserr 7000 $EX_SOFTWARE "${FUNCNAME}: missing arguments: 1–3, version, copyright and license"
+    fi
+    if [[ $# -eq 1 ]]
+    then
+        olserr 7000 $EX_SOFTWARE "${FUNCNAME}: missing arguments: 2–3, copyright and license"
+    fi
+    if [[ $# -eq 2 ]]
+    then
+        olserr 7000 $EX_SOFTWARE "${FUNCNAME}: missing argument: 3, license"
+    fi
+
+    printf "%s\n" "Version:   $1"
+    printf "%s\n" "Copyright: $2"
+    printf "%s\n" "License:   $3"
+
+    olsend
+
+} # olsversion
+#-e- END   2020-05-08T12:54:27  24 587 olsversion.sh
+#-h- BEGIN 2020-05-07T10:44:03   9 112 olsman.sh
+# olsman -- Print man page
+
+function olsman()
+{
+echo olsman: Stub
+exit
+    pod2text.bat tmpl.sh >&2
+
+} # olsman
+#-e- END   2020-05-07T10:44:03   9 112 olsman.sh
+#-h- BEGIN 2020-04-27T21:38:10   92 1343 ols_end.sh
+# ols_end - Olaus BASH Shell Housekeeping Function at End of Script
+
+cat >/dev/null <<'/*'
+
+=head1 NAME
+
+ols_end - Olaus BASH Shell Housekeeping Function at End of Script
+
+=head1 SYNOPSIS
+
+ols_end
+
+=head1 DESCRIPTION
+
+B<ols_end> removes temporary files created by mktfile.
+
+=head1 EXAMPLE
+
+    TMPDIR=.
+    mktfile
+    mktfile
+    mktfile
+    mktfile
+    mktfile
+    clsfile
+
+results in
+
+    ./tmp.oLQAKu3856
+    ./tmp.YYPgYWa576
+    ./tmp.bleTsL1664
+    ./tmp.cQPswSq872
+    ./tmp.JVydYl5792
+    ./tmp.IinrNW1440
+    /tmp/OLSMKT.SDwX6040
+
+temporary files being removed.
+
+=head1 DIAGNOSTICS
+
+ols_clean: cannot remove $file
+
+=head1 ENVIRONMENT
+
+=over 4
+
+=item OLSMKT
+
+A temporary file to remember temporary file names.
+
+=back
+
+=head1 FILES
+
+OLKMKT
+
+clsfile removes temporary files.
+
+=head1 VERSION
+
+$Revision$
+
+$Id: clsfile.sh 87 2006-09-13 17:06:10Z a0214394 $
+
+$URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/clsfile/clsfile.sh $
+
+=head1 BUGS
+
+=head1 SEE ALSO
+
+mktemp, mktfile
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2006-09-12 - Function created by nuf ver. 3.0.0
+
+=cut
+
+/*
+function ols_end() {
+
+    trap '' EXIT                       # No need to trap exit here
+
+#   ols_rmtemp                         # Remove temporary files
+
+    exit $EX_CODE                      # exit with exit code
+
+} # end ols_end
+#-e- END   2020-04-27T21:38:10   92 1343 ols_end.sh
+#-h- BEGIN 2020-05-07T14:26:00   91 1297 olsend.sh
+# olsend - Olaus BASH Shell Housekeeping Function at End of Script
+
+cat >/dev/null <<'/*'
+
+=head1 NAME
+
+ols_end - Olaus BASH Shell Housekeeping Function at End of Script
+
+=head1 SYNOPSIS
+
+ols_end
+
+=head1 DESCRIPTION
+
+B<ols_end> removes temporary files created by mktfile.
+
+=head1 EXAMPLE
+
+    TMPDIR=.
+    mktfile
+    mktfile
+    mktfile
+    mktfile
+    mktfile
+    clsfile
+
+results in
+
+    ./tmp.oLQAKu3856
+    ./tmp.YYPgYWa576
+    ./tmp.bleTsL1664
+    ./tmp.cQPswSq872
+    ./tmp.JVydYl5792
+    ./tmp.IinrNW1440
+    /tmp/OLSMKT.SDwX6040
+
+temporary files being removed.
+
+=head1 DIAGNOSTICS
+
+ols_clean: cannot remove $file
+
+=head1 ENVIRONMENT
+
+=over 4
+
+=item OLSMKT
+
+A temporary file to remember temporary file names.
+
+=back
+
+=head1 FILES
+
+OLKMKT
+
+clsfile removes temporary files.
+
+=head1 VERSION
+
+$Revision$
+
+$Id: clsfile.sh 87 2006-09-13 17:06:10Z a0214394 $
+
+$URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/clsfile/clsfile.sh $
+
+=head1 BUGS
+
+=head1 SEE ALSO
+
+mktemp, mktfile
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2006-09-12 - Function created by nuf ver. 3.0.0
+
+=cut
+
+/*
+function olsend()
+{
+
+    trap '' EXIT                       # No need to trap exit here
+
+    exit $EX_CODE                      # exit with exit code we have been tracking
+
+} # end olsend
+#-e- END   2020-05-07T14:26:00   91 1297 olsend.sh

@@ -1,20 +1,42 @@
-% Title J72887030 Project File Structure Template
-% Mark Jensen
-% 
+# NAME
 
+Olaus - Create a Shell Template that Contains Standard Items to Kickstart a New Tool
 
-# Name Project
+---
+title: "Olaus - Create a Shell Template that Contains Standard Items to Kickstart a New Tool"
+author:
+    - Mark Jensen
+keywords: [system, markdown, project, template]
+date: 10 MAY 2020
+abstract: |
+Create a shell template that gives your script
+a kickstart by containing the standard items,
+including:
 
-Project — Template to start the file structure of a new project
+* Options
+  * Input
+  * Output
+  * Debug
+  * Quiet
+  * Verbose
+  * Log
+  * Usage
+  * Help
+  * Man
+  * Version
+* Files
+  * Input
+  * Output
+* Man Page Template
+* In-Situ File Processing
 
-## Description
+...
 
-The Project Template is the template used
-to start the file structure
-of new projects.
-It is a programming oriented structure with influence
-from Linux and Unix ([Garrels 2008](#garrels-2008)), and Perl ([Szabo N/D](#szabo-nd)).
-Check [See Also](#see-also) for less programming alternatives.
+# DESCRIPTION
+
+The Olaus Project will create a script to kickstart
+a 
+to create a script skeleton to  
 
 ### Project Number
 
@@ -34,7 +56,7 @@ What additional information would be useful to a user.
 
 ## Version
 
-R0.1
+A0.0.0
 
 ## History
 

@@ -1,0 +1,190 @@
+
+=head1 NAME
+
+stdsh -- Olaus BASH Shell Script Template
+
+=head1 SYNOPSIS
+
+=over 12
+
+=item B<stdsh.sh>
+
+[B<--input>=F<input_file> | B<-i> F<input_file>]
+[B<--output>=F<output_file> | B<-o> F<output_file>]
+[B<--help>]
+[B<--log=F<logfile>>]
+[B<--man>]
+[B<--quiet>]
+[B<--usage>]
+[B<--debug>]
+[B<--version>]
+[B<--verbose>]
+[--]
+[F<input_file> ...]
+
+=back
+
+=head1 DESCRIPTION
+
+A full description of the script and its features.
+
+May include numerous subsections (i.e., =head2, =head3, etc.).
+
+=head2 System Identification
+
+=over 4
+
+=item SYSTEM ID
+
+System Identification
+
+=item COMPONENT ID
+
+Component Identificaiton
+
+=item PROGRAM ID
+
+Program ID
+
+=back
+
+=head1 OPTIONS & ARGUMENTS
+
+=head2 Standard Options
+
+=over 4
+
+=item [B<--input>=F<input_file> | -i F<input_file>]
+
+Input file, default is standard in, F<STDIN>.
+Single dash,
+C<->,
+means read from F<STDIN>.
+
+=item [B<--output>=F<output_file> | -o F<output_file>]
+
+Output file, default is standard out, F<STDOUT>.
+Single dash,
+C<->,
+means write to F<STDOUT>.
+
+=item [B<--help>]
+
+Print the help message to standard out, F<STDOUT>, and exit.
+
+=item [B<--log=F<logfile>>]
+
+Copy all STDOUT and STDERR output to the F<logfile>.
+If F<logfile> is not specified, use F<E<lt>PGMNAMEE<gt>.log>.
+
+=item [B<--man>]
+
+Print the man page to standard out, F<STDOUT>, and exit.
+
+=item [B<--quiet>
+
+Only print fatal error messages to F<STDOUT> or F<STDERR>.
+
+=item [B<--usage>]
+
+Print the usage message to standard out, F<STDOUT>, and exit.
+
+=item [B<--debug>]
+
+Turn on the debug switch.
+
+=item [B<--version>]
+
+Print the version message to standard out, F<STDOUT>, and exit.
+
+=item [B<--verbose>]
+
+Turn on the verbose switch.
+
+=item [--] File list marker
+
+The the double dash, C<-->,
+on the command line signals the end options.
+The remaining items arguments,
+even if some look like options.
+
+=back
+
+=head1 SECURITY
+
+=head1 AVAILABILITY
+
+=head1 EXAMPLES
+
+=head1 NOTES & CAVEATS
+
+=head1 DIAGNOSTICS
+
+A list of every error and warning message that the module can generate (even
+the ones that will "never happen"), with a full explanation of each problem,
+one or more likely causes, and any suggested remedies.
+
+=head1 EXIT STATUS
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+No environmental variables were hurt during the development of this script.
+
+=head1 DEPENDENCIES
+
+A list of all of the other scripts that this script relies upon, including any
+restrictions on versions, part of this script's distribution,
+or must be installed separately.
+
+=head1 INCOMPATIBILITIES
+
+A list of any known scripts that this cannot be used in conjunction with.
+This may be due to name conflicts in the interface, or competition for system
+or program resources, or due to internal limitations of BASH.
+
+=head1 FILES
+
+=head1 STANDARDS
+
+=head1 BUGS AND LIMITATIONS
+
+A list of known problems with the module, together with some indication of
+whether they are likely to be fixed in an upcoming release.
+
+Also, a list of restrictions on the features the module does provide:
+data types that cannot be handled,
+performance issues
+and the circumstances in which they may arise,
+practical limitations on the size of data sets,
+special cases that are not (yet) handled, etc.
+
+The initial release usually just has:
+
+There are no known bugs in this script.
+
+Please report problems to Mark Jensen.
+
+Patches are welcome.
+
+=head1 VERSION
+
+=head1 HISTORY
+
+${DATE} File created by nush ver. $VERSION
+
+=head1 RESOURCES
+
+=head1 SEE ALSO
+
+=head1 AUTHOR
+
+Mark Jensen E<lt>mjjensen@ti.comE<gt>, E<lt>mark@jensen.netE<gt>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2007 Texas Instruments. All rights reserved.
+
+include(../lib/license.txt)
+
+=cut
+

@@ -1,0 +1,155 @@
+# ols_begin - Olaus BASH Shell Housekeeping Function at Beginning of Script
+
+
+#. $OLSLIB/errmsg.sh
+#. $OLSLIB/getopt.sh
+#. $OLSLIB/ols_file.sh
+#. $OLSLIB/ols_help.sh
+#. $OLSLIB/ols_list.sh
+#. $OLSLIB/ols_man.sh
+#. $OLSLIB/ols_msg.sh
+#. $OLSLIB/ols_temp.sh
+#. $OLSLIB/ols_signal.sh
+#. $OLSLIB/ols_test.sh
+#. $OLSLIB/ols_type.sh
+#. $OLSLIB/ols_usage.sh
+#. $OLSLIB/ols_version.sh
+#. $OLSLIB/vecho.sh
+
+#declare -a SYSIN=('')            # Input  files
+#declare -a SYSOUT=('')           # Output files
+
+function olaus_begin() {
+
+  # Setup default Exception Handeling
+#    trap 'olaus_signal SIGTERM' SIGTERM  # Process Terminal signal
+#    trap 'olaus_signal SIGHUP'  SIGHUP   # Process Hang Up signal
+#    trap 'olaus_signal SIGINT'  SIGINT   # Cleanup after cntl-C
+#    trap 'olaus_signal EXIT'    EXIT     # Insure a graceful exit
+#    trap 'olaus_signal ERR'     ERR      # Trap failing commands
+
+#   $Date: 2006-09-24 19:19:39 -0500 (Sun, 24 Sep 2006) $
+#   $URL: file:///cygdrive/c/svn/olaus/trnk/src/bash/ols_begin/lib/ols_begin.sh $
+#   $Author: a0214394 $
+#   $Id: ols_begin.sh 104 2006-09-25 00:19:39Z a0214394 $
+#   $Revision: 104 $
+
+    PGMDATE=${PGMDATE#\$Date:\ }
+    PGMDATE=${PGMDATE%%\ *}
+    PGMDATE=$(echo $PGMDATE | tr '/' '-')
+    readonly PGMDATE
+
+    PGMREL=${PGMREL#\$Name:\ }
+    PGMREL=${PGMREL%%\ *}
+    if [ "$PGMREL" ==  "$" ]; then
+        PGMREL='$Revision: 104 $'
+        PGMREL=${PGMREL#\$Revision:\ }
+        PGMREL=${PGMREL%%\ *}
+        PGMREL="Development $PGMREL"
+    fi
+    readonly PGMREL
+
+  # Make some pretty date strings
+    DATE=$(date +'%Y-%m-%d')
+    YEAR=$(date +'%Y')
+    readonly DATE
+    readonly YEAR
+
+    return $EX_OK
+} # end olaus_begin
+
+cat >/dev/null <<'=cut'
+
+=head1 NAME
+
+ols_begin - Olaus BASH Shell Housekeeping Function at Beginning of Script
+
+=head1 SYNOPSIS
+
+ols_begin 
+
+=head1 DESCRIPTION
+
+=head1 SUBROUTINES/FUNCTIONS/METHODS
+
+=head1 SECURITY
+
+B<ols_begin> does not need to run as root,
+nor does it contain security information.
+
+=head1 AVAILABILITY
+
+=head1 EXAMPLES
+
+=head1 NOTES
+
+=head1 CAVEATS
+
+=head1 DIAGNOSTICS
+
+=head1 RETURN STATUS
+
+=over 4
+
+=item EX_OK
+
+=back
+
+=head1 DEPENDENCIES
+
+=head1 INCOMPATABILITIES
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=over 4
+
+=item DATE
+
+=item EX_OK
+
+B<errmsg>, 
+
+=item PGMDATE
+
+=item PGMREL
+
+=item YEAR
+
+=back
+
+=head1 FILES
+
+=head1 STANDARDS
+
+=head1 VERSION
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+2006-09-22 - Function created by nuf ver. 3.0.0
+
+=head1 RESOURCES
+
+=over 4
+
+=item Robins and Beebe 2005
+
+Arnold Robins and Nelson H. F. Beebe
+2005.
+I<Classic Shell Scripting>.
+(Sebastopol: O'Reilly Media)
+
+=head1 BUGS AND LIMITATIONS
+
+=head1 SEE ALSO
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2006 Texas Instruments. All rights reserved.
+
+include(license.txt)
+
+=cut

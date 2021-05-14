@@ -70,10 +70,18 @@ default: all
 
 
 olslib:
-	bin/ols-build
+	bin/build-lib
 
-all: olslib
-	echo "all:"
+olstst:
+	bin/build-tst
+
+olslst:
+	bin/build-lst
+
+all: lib/OLSLIB lib/OLSTST lib/OLSTST
+	olslib
+	olstst
+	olslst
 
 install:
 	echo "install:"
@@ -115,10 +123,6 @@ clean:
 	-rm --force lib/ols_tst/*.stackdump
 	-rm --force lib/ols_tst/*.tmp
 	-rm --force lib/ols_tst/*~
-	-rm --force lib/olslib
-	-rm --force lib/olslst
-	-rm --force lib/olstmp
-	-rm --force lib/olstst
 	-rm --force t/*.stackdump
 	-rm --force t/*.tmp
 	-rm --force t/*.txt

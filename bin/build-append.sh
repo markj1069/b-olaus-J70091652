@@ -1,41 +1,36 @@
 #!/usr/bin/env bash
 
 # Pull in the needed functions.
-OLSLIB=/cygdrive/d/olaus-J70091652/lib/ols_lib  # We are running at project level directory.
-source $OLSLIB/ols_begin.sh
-source $OLSLIB/ols_err.sh
-source $OLSLIB/filename.sh
-source $OLSLIB/ols_setex.sh
-source $OLSLIB/ols_end.sh
 
-printf "%s\n" "Process $1 file."
+PGMID=OLSBLD
+source lib/ols_lib/filename.sh
+source lib/ols_lib/olserr.sh 
 
 # Validate arguments
 
 if [[ -z "$1" ]]             # Filename Argument Required
 then
-    ols_err 7000 $EX_USAGE "ols-append: missing argument 1, filename"
+    olserr 7000 $EX_USAGE "build-append: missing argument 1, filename"
 else
     declare filename="$1"
 fi
 if [[ -z "$2" ]]             # Libname Argument Required
 then
-    ols_err 7000 $EX_USAGE "ols-append: missing argument 2, libname"
+    olserr 7000 $EX_USAGE "build-append: missing argument 2, libname"
 else
     declare libname="$2"
 fi
 if [[ ! -f "$filename" ]]    # Filename must exist
 then
-    ols_err 7000 $EX_MISSINGFILE  "ols-append: '$filename' is missing"
+    olserr 7000 $EX_MISSINGFILE  "build-append: '$filename' is missing"
 fi
 if [[ ! -r "$filename" ]]
 then
-    ols_err 7000 $EX_NOINPUT  "ols-append: '$filename' is not readable"
+    olserr 7000 $EX_NOINPUT  "build-append: '$filename' is not readable"
 fi
-touch "$libname"
 if [[ ! -w "$libname" ]]     # We need write permission for libname
 then
-    ols_err 7000 $EX_FATAL "ols-append: '$libname' is not writeable"
+    olserr 7000 $EX_FATAL "build-append: '$libname' is not writeable"
 fi
 
 fname=$( filename "$filename" )

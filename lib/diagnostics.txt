@@ -1,0 +1,39 @@
+=head1 DIAGNOSTICS
+
+=head2 7001 missing argument
+
+=over 4
+
+=item Error Code
+
+7001
+
+=item Error Message
+
+[FUNCNAME]: missing argument [NUMBER], [AUGUMENT_NAME]
+
+=item Severity Level
+
+Fatal - 64
+
+=item Message Origin
+
+[FUNCNAME]
+
+=item Message Audiance
+
+Programmer
+
+=item Problem Determination
+
+Argument left off [FUNCNAME] call.
+
+=item User Response
+
+Include the appropriate Argument in [FUNCNAME] call.
+
+=item System Action
+
+The program exits with an exit code of 64.
+
+=back

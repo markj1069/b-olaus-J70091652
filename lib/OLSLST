@@ -1,0 +1,111 @@
+# Library: Olaus Shell List Library
+# Created: 2020-05-07T11:53:48
+# Version: A2.0.0
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-new.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-new.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-push.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-push.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-pop.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-pop.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-top.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-top.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-empty.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-empty.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-rm.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-rm.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-size.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-size.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-stack-type.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-stack-type.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-new.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-new.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-push.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-push.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-pop.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-pop.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-top.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-top.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-empty.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-empty.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-ist-queue-rm.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-ist-queue-rm.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-size.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-size.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-queue-type.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-queue-type.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-deque-new.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-deque-new.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-deque-head-push.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-deque-head-push.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-deque-head-pop.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-deque-head-pop.sh
+#-h- BEGIN 2020-05-07T11:51:44  2 23 lst-list-deque-head-top.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:44  2 23 lst-list-deque-head-top.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-tail-push.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-tail-push.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-tail-pop.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-tail-pop.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-tail-top.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-tail-top.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-empty.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-empty.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-rm.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-rm.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-size.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-size.sh
+#-h- BEGIN 2020-05-07T11:51:45  2 23 lst-list-deque-type.sh
+# List Stub
+
+# End Stup#-e- END   2020-05-07T11:51:45  2 23 lst-list-deque-type.sh
