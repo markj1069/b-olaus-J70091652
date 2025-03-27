@@ -82,7 +82,7 @@ B<ols_wt_excode> writes the exit code to the temporary file stored in OLS_EX_FIL
 
 =head1 VERSION
 
-Version V00.00.00
+Version V00.00.01
 
 =head1 BUGS
 
@@ -98,6 +98,7 @@ Mark J Jensen E<lt>mark@jensen.netE<gt>
 
    Date      Version   Description
 2025-03-10  V00.00.00  Function created by Mark
+2025-03-10  V00.00.01  Initial Release by Mark
 
 =cut
 
@@ -109,13 +110,13 @@ function ols_wt_excode() {
 
     if [[ -z "$1" ]]
     then
-        ols_err 7001 $EX_SOFTWARE "${FUNCNAME}: Missing argument #1, num"
+        ols_err "$OLSID" 7001 $EX_SOFTWARE "${FUNCNAME}: Missing argument #1, num"
     else
         num=$(printf "%3u" "$1");
     fi
 
     if (( $num < 0 || 255 < $num )); then
-        ols_err 7002 $EX_SOFTWARE "${FUNCNAME}: Exit Code must be between 0 and 255."
+        ols_err "$OLSID" 7002 $EX_SOFTWARE "${FUNCNAME}: Exit Code must be between 0 and 255."
     fi
 
     printf "%3d\n" $num >$OLS_EX_FILE

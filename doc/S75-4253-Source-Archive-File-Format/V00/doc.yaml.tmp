@@ -1,0 +1,94 @@
+
+---
+## Dublin Core Metadata Initiative
+
+dc.title: "Source Archive File Format"
+dc.title.alternative: "Source Archive File"
+dc.title.short: "Source Archive File"
+dc.title.subtitle: "Source Archive Format"
+dc.subject: N/A
+dc.description: The Source Archive .
+dc.description.abstract: (N/A)
+dc.description.note: (N/A)
+dc.description.release: "(N/A)"
+dc.description.tableOfContents: (N/A)
+dc.type: "text/markdown; charset=UTF-8"
+dc.source: "https://github.com/markj1069/templates-J70413419/tree/master/doc/S75-4253/V00"
+dc.relation: "Version 00"
+dc.relation.isVersionOf: "(N/A)"
+dc.relation.hasVersion: "(N/A)"
+dc.relation.isReplacedBy: "(N/A)"
+dc.relation.replaces: "(N/A)"
+dc.relation.requires: "(N/A)"
+dc.relation.isPartOf: "(N/A)"
+dc.relation.hasPart: "(N/A)"
+dc.relation.isReferencedBy: "(N/A)"
+dc.relation.references: "ar(1), archive[^1][^2]"
+dc.relation.isFormatOf: "(N/A)"
+dc.relation.hasFormat: "(N/A)"
+dc.relation.conformsTo: "(N/A)"
+dc.coverage: "(N/A)"
+
+# Intellectual Property
+
+dc.creator: "Mark J. Jensen"
+dc.publisher: "Mark J. Jensen"
+dc.contributor: "(N/A)"
+dc.contributor.role: "(N/A)"
+dc.rights: "CC BY 4.0"
+dc.rights.accessRights: "See license."
+dc.rights.license: "https://creativecommons.org/licenses/by/4.0/legalcode"
+
+# Instantiation
+
+dc.date: "YYYY-MM-DD"
+dc.date.accepted: "YYYY-MM-DD"
+dc.date.created: "YYYY-MM-DD"
+dc.date.dateAccepted: "YYYY-MM-DD"
+dc.date.dateCopyrighted: "YYYY-MM-DD"
+dc.date.valid: "YYYY-MM-DD"
+dc.date.available: "YYYY-MM-DD"
+dc.date.issued: "YYYY-MM-DD"
+dc.date.modified: "YYYY-MM-DD"
+dc.format: "Specification"
+dc.format.extent: "(N/A)"
+dc.format.medium: "Markdown"
+dc.identifier.doc: "X76-1590-00"
+dc.identifier.proj: "J70091652"
+dc.identifier.bibliographicCitation: "(N/A)"
+dc.language: "en-US"
+
+# DCMI Terms
+
+dc.accrualMethod: "Item Creation"
+dc.accrualPeriodicity: "(N/A)"
+dc.accrualPolicy: "(N/A)"
+dc.audience: "Other"
+dc.audience.educationLevel: "(N/A)"
+dc.instructionalMethod: "(N/A)"
+dc.provenance: "Item Creation"
+dc.rightsHolder: "Mark J. Jensen"
+
+# Pandoc Metadata
+
+title: "Source Archive File Format"
+title.short: "Source Archive File"
+author: "Mark J. Jensen"
+date: "YYYY-MM-DD"
+documentclass: "scrartcl"
+geometry:
+- top=72pt
+- left=72pt
+- right=60pt
+- heightrounded
+papersize: "letter"
+fontsize: "12pt"
+links-as-notes: "true"
+subject: "software, source archive, file format, srs, , "
+stand-alone: true
+keywords: "software, source archive, file format, srs, , "
+description: "The Source Archive ."
+lang: "en-US"
+test: "Independent Scholar"
+toc: false
+...

@@ -1,0 +1,187 @@
+
+
+=head1 NAME
+
+B<is_uint>   - Return success if auguement is a unsigned integer.
+
+B<is_int>    - Return success if auguement is a signed integer.
+
+B<is_ureal>  - Return success if auguement is a unsigned real.
+
+B<is_real>   - Return success if auguement is a signed real.
+
+=head1 SYNOPSIS
+
+B<is_uint>  I<NUM>
+
+B<is_int>   I<NUM>
+
+B<is_ureal> I<NUM>
+
+B<is_real>  I<NUM>
+
+=head1 DESCRIPTION
+
+B<is_uint> returns success if I<NUM> is an unsigned integer, I<e.g.> 99
+
+B<is_int> returns success if I<NUM> is a signed integer, I<e.g.>, 99, +99 & -99
+
+B<is_ureal> returns success if I<NUM> is an unsigned real, I<e.g.>, 99 & 99.99
+
+B<is_real> returns success if I<NUM> is a signed real, I<e.g.>, 99, +99, -99, 99.99, +99.99 & -99.99
+
+=head2 ARGUMENTS & OPTIONS
+
+=over 4
+
+=item I<NUM>
+
+is an variable or value that may have a numerical value. (required)
+
+=back
+
+=head1 SECURITY
+
+B<NOTE:> These functions do not require the user to run as root.
+
+B<NOTE:> These functions do not contain security info.
+
+=head1 AVAILABILITY
+
+These fuctions are available in the Olaus Bash Library.
+
+=head1 EXAMPLES
+
+Included a couple of examples.
+
+    if is_uint 299792458; then
+        echo "299792458 is an unsigned integer."
+    else
+        echo "299792458 is not an unsigned integer."
+    fi
+
+    NUM=0.66274
+    if is_ureal $NUM; then
+        echo "$NUM is an unsigned real."
+    else
+        echo "$NUM is not an unsigned real."
+    fi
+
+=head1 NOTES & CAVEATS
+
+Every unsigned integer is also 
+a signed integer
+and unsigned real and a signed real.
+
+Every unsigned real is also an signed real, I<i.e.>,
+a sign nor a decimal point is required for a real number.
+
+=head1 DIAGNOSTICS
+
+These functions return an exit code of 0.
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+No environmental variables are harmed by these functions.
+
+=head1 DEPENDENCIES
+
+These functions are part of the Olaus Bash Library and
+make use of its internals.
+They are not stand alond functions.
+
+=head1 INCOMPATIBILITIES
+
+There are no known incompatabilities.
+
+=head1 FILES
+
+N/A
+
+=head1 STANDARDS
+
+N/A
+
+=head1 VERSION
+
+Version V00.00.00
+
+=head1 BUGS AND LIMITATIONS
+
+There are no known bugs in this module.
+
+Please report problems to <Mark Jensen> (E<lt>mark@jensen.netE<gt>)
+
+Patches are welcome.
+
+=head1 AUTHOR
+
+Mark J Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 HISTORY
+
+   Date      Version   Description
+2025-02-23  V00.00.00  Function created Mark
+
+=head1 RESOURCES
+
+=over 4
+
+=item Barrett, Daniel J., I<et al.> 2005
+
+Daniel J. Barrett, Richard E. Silverman, and Robert G. Byrnes.
+2005.
+I<SSH, the Secure Shell: The Definitive Guide>,
+2nd Edition.
+(Sebastopol: O'Reilly Media)
+
+=item Robbins, Arnold and Nelson H. F. Beebe 2005
+
+Arnold Robbins and Nelson H. F. Beebe.
+2005.
+I<Classic Shell Scripting>.
+(Sebastopol: O'Reilly Media)
+
+=back
+
+=head1 SEE ALSO
+
+B<ols_begin>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright E<copy> 2025 Mark J. Jensen. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+=over 4
+
+=item 1.
+
+Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+=item 2.
+
+Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+=back
+
+THIS SOFTWARE IS PROVIDED BY MARK JENSEN ``AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL MARK JENSEN OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+
+=cut

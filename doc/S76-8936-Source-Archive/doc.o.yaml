@@ -1,0 +1,82 @@
+
+---
+## Dublin Core Metadata Initiative
+
+dc.title: "Software Specification Document"
+dc.title.alternative: "Software Spec Template"
+dc.title.short: "SRS Template"
+dc.title.subtitle: "Source Archive"
+dc.subject: N/A
+dc.description: |
+    The **archive** manages any number of member=
+    >?:""
+    
+    Cras auctor ut felis eu finibus.
+    Nam lobortis rutrum pharetra.
+    Sed eget mauris vitae odio rhoncus malesuada sed ac dolor.
+    Nullam eu velit enim.
+    Cras nulla purus,
+    accumsan at commodo at,
+    finibus at nulla.
+    Etiam non est nulla.
+dc.description.abstract: Nullam commodo, nisi vel euismod porta, ex arcu blandit orci, sagittis finibus metus massa a nunc. Vestibulum tincidunt scelerisque sem a volutpat. Curabitur ipsum massa, faucibus nec lectus scelerisque, lobortis porttitor nibh.
+dc.type: "text/markdown; charset=UTF-8"
+dc.source: "https://github.com/markj1069/templates-J70413419/tree/master/doc/X76-1589/V00"
+dc.relation: "Version 00"
+
+# Intellectual Property
+
+dc.creator: "Mark J. Jensen"
+dc.publisher: "Mark J. Jensen"
+dc.rights: "CC BY 4.0"
+dc.rights.accessRights: "See license."
+dc.rights.license: "https://creativecommons.org/licenses/by/4.0/legalcode"
+
+# Instantiation
+
+dc.format: "Specification"
+dc.format.medium: "Markdown"
+dc.identifier.doc: "X76-1589-00"
+dc.identifier.proj: "J70413419"
+dc.language: "en-US"
+
+# DCMI Terms
+
+dc.accrualMethod: "Item Creation"
+dc.audience: "Other"
+dc.provenance: "Item Creation"
+dc.rightsHolder: "Mark J. Jensen"
+
+# Pandoc Metadata
+
+title: "Software Specification Document"
+title.short: "SRS Template"
+author: "Mark J. Jensen"
+documentclass: "scrartcl"
+geometry:
+- top=72pt
+- left=72pt
+- right=60pt
+- heightrounded
+papersize: "letter"
+fontsize: "12pt"
+links-as-notes: "true"
+subject: "software, specification, archive, , , "
+stand-alone: true
+keywords: "software, specification, archive, , , "
+description: "|
+    The **archive** manages any number of member=
+    >?:""
+    
+    Cras auctor ut felis eu finibus.
+    Nam lobortis rutrum pharetra.
+    Sed eget mauris vitae odio rhoncus malesuada sed ac dolor.
+    Nullam eu velit enim.
+    Cras nulla purus,
+    accumsan at commodo at,
+    finibus at nulla.
+    Etiam non est nulla."
+lang: "en-US"
+test: "Independent Scholar"
+toc: true
+...

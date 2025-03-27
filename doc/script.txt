@@ -1,19 +1,17 @@
+#! /usr/bin/env bash
+: <<=CUT
+=HEAD1 Name
 
-=head1 NAME
+E<lt> script_nameE<gt> E<mdash> E<lt>One-line description of this script's purposeE<gt>
 
-E<lt>script nameE<gt> E<mdash> E<lt>One-line description of this script's purposeE<gt>
+=HEAD1 Synopsis
 
-=head1 SYNOPSIS
-
-=over 12
-
-=item B<script name>
-
+B< script_name>
 [B<--input>=F<input_file> | B<-i> F<input_file>]
 [B<--output>=F<output_file> | B<-o> F<output_file>]
 [B<--help>]
+[B<--log>]
 [B<--log=F<logfile>>]
-[B<--man>]
 [B<--quiet>]
 [B<--usage>]
 [B<--debug>]
@@ -22,119 +20,107 @@ E<lt>script nameE<gt> E<mdash> E<lt>One-line description of this script's purpos
 [--]
 [F<input_file> ...]
 
-| **Options**     |   Option Value  | Description                                 |
-|-----------------|:---------------:|---------------------------------------------|
-| --output \| -o  |  _output file_  | Specify output destination [Default STDOUT] |
-| --input \| -i   |   _input file_  | Specify input source [Default: STDIN]       |
-| --debug         |                 | Include debugging info on STDOUT            |
-| --quiet \| -q   |                 | Run silent, opposite of verbose.            |
-| --verbose \| -v | [verbose Level] | --quiet is equivalent to level 0            |
-| --log           |    _logfile_    | Log significant events to _logfile_         |
-| --version       |                 | Print version information                   |
-| --usage         |                 | Print the usage line for this program       |
-| --help          |                 | Print summary for this program              |
-| --man           |                 | Print the complete man page                 |
-|                 |                 |                                             |
-| **Arguments**   |                 |                                             |
-| _input file_    |                 | Multiple _input files_ are supported        |
 
-=back
 
-=head1 DESCRIPTION
+=HEAD1 Description
 
 A full description of the script and its features.
 
-May include numerous subsections (I<i.e.>, =head2, =head3, etc.).
+May include numerous subsections (I<i.e.>, =HEAD2, =HEAD3, etc.).
 
-=head2 System Identification
+=HEAD2 System Identification
 
-=over 4
+=OVER 4
 
-=item SYSTEM ID
+=ITEM SYSTEM ID
 
 System Identification
 
-=item COMPONENT ID
+=ITEM COMPONENT ID
 
 Component Identificaiton
 
-=item PROGRAM ID
+=ITEM PROGRAM ID
 
 Program ID
 
 =back
 
-=head1 OPTIONS & ARGUMENTS
+=HEAD1 Options & Arguments
 
-| **Options**     |   Option Value  | Description                                 |
-|-----------------|:---------------:|---------------------------------------------|
-| --output \| -o  |  _output file_  | Specify output destination [Default STDOUT] |
-| --input \| -i   |   _input file_  | Specify input source [Default: STDIN]       |
-| --debug         |                 | Include debugging info on STDOUT            |
-| --quiet \| -q   |                 | Run silent, opposite of verbose.            |
-| --verbose \| -v | [verbose Level] | --quiet is equivalent to level 0            |
-| --log           |    _logfile_    | Log significant events to _logfile_         |
-| --version       |                 | Print version information                   |
-| --usage         |                 | Print the usage line for this program       |
-| --help          |                 | Print summary for this program              |
-| --man           |                 | Print the complete man page                 |
-|                 |                 |                                             |
-| **Arguments**   |                 |                                             |
-| _input file_    |                 | Multiple _input files_ are supported        |
+ | **Options**     |   Option Value  | Description                                  |
+ |-----------------|:---------------:|----------------------------------------------|
+ | --output \| -o  |  _output file_  | Specify output destination [Default STDOUT]  |
+ | --input \| -i   |   _input file_  | Specify input source [Default: STDIN]        |
+ | --debug         |                 | Include debugging info on STDOUT             |
+ | --quiet \| -q   |                 | Run silent, opposite of verbose.             |
+ | --verbose \| -v | [verbose Level] | --quiet is equivalent to level 0             |
+ | --logfile       |    _logfile_    | Log significant events to _logfile_          |
+ | --log           |                 | Log significant events to B<script_name>.log |
+ | --version       |                 | Print version information                    |
+ | --usage         |                 | Print the usage line for this program        |
+ | --help          |                 | Print summary for this program               |
+ |                 |                 |                                              |
+ | **Arguments**   |                 |                                              |
+ | _input file_    |                 | Multiple _input files_ are supported         |
 
-=head2 Standard Options
+=HEAD2 Standard Options
 
-=over 4
+=OVER 4
 
-=item [B<--input>=F<input_file> | -i F<input_file>]
+=ITEM [B<--input>=F<input_file> | -i F<input_file>]
 
 Input file, default is standard in, F<STDIN>.
 Single dash,
 C<->,
 means read from F<STDIN>.
 
-=item [B<--output>=F<output_file> | -o F<output_file>]
+=ITEM [B<--output>=F<output_file> | -o F<output_file>]
 
 Output file, default is standard out, F<STDOUT>.
 Single dash,
 C<->,
 means write to F<STDOUT>.
 
-=item [B<--help>]
+=ITEM [B<--help>]
 
 Print the help message to standard error, F<STDERR>, and exit.
 
-=item [B<--log=F<logfile>>]
+=ITEM [B<--log>]
 
-Copy all STDOUT and STDERR output to the F<logfile>.
-If F<logfile> is not specified, use F<E<lt>PGMNAMEE<gt>.log>.
+Log significant events to _B<script_name>.log_.
 
-=item [B<--man>]
+=ITEM [B<--logfile=F<logfile>>]
+
+Log significant events to 
+If F<logfile> is not specified, use F<E<lt>logfile>>.
+
+=ITEM [B<--man>]
 
 Print the man page to standard error, F<STDERR>, and exit.
 
-=item [B<--quiet>
+=ITEM [B<--quiet>]
 
 Only print fatal error messages to F<STDERR>.
 
-=item [B<--usage>]
+=ITEM [B<--usage>]
 
 Print the usage message to standard error, F<STDERR>, and exit.
 
-=item [B<--debug>]
+=ITEM [B<--debug>]
 
 Turn on the debug switch.
 
-=item [B<--version>]
+=ITEM [B<--version>]
 
 Print the version, copyright, and license message
 to standard error, F<STDERR>, and exit.
 
-=item [B<--verbose>]
+=ITEM [B<--verbose>]
 
 Turn on the verbose switch.
 
-=item [--] File list marker
+=ITEM [--] File list marker
 
 The the double dash, C<-->,
 on the command line signals the end options.
@@ -143,14 +129,14 @@ even if some look like options.
 
 =back
 
-=head2 Arguments
+=HEAD2 Arguments
 
 Only file names are allowed to be arguments.
 For all other items use options.
 
-=over 4
+=OVER 4
 
-=item [F<input_file>]
+=ITEM [F<input_file>]
 
 Input file, default is standard in, F<STDIN>.
 Single dash,
@@ -159,7 +145,7 @@ also means read from F<STDIN>.
 
 =back
 
-=head1 SECURITY
+=HEAD1 Security
 
 B<NOTE:> You must be the superuser to run this script.
 
@@ -168,33 +154,25 @@ Do not set world-readable. Better yet, redesign
 so that security information is not saved
 in your source code. 
 
-=head1 AVAILABILITY
-
-How to get this script.
-
-=head1 EXAMPLES
+=HEAD1 Examples
 
 Insert instructive examples here.
 
-=head1 NOTES & CAVEATS
+=HEAD1 Notes & Caveats
 
 What additional information would be useful to a user.
 
-=head1 DIAGNOSTICS
+=HEAD1 Diagnostics
 
 A list of every error and warning message that the script can generate
 (even the ones that will E<ldquo>never happenE<rdquo>), with a full explanation
 of each problem, one or more likely causes, and any suggested remedies.
 
-=head1 EXIT STATUS
-
-What exit codes exist?
-
-=head1 CONFIGURATION AND ENVIRONMENT
+=HEAD1 Configuration & Environment
 
 No environmental variables were hurt during the development of this script.
 
-=head1 DEPENDENCIES
+=HEAD1 Dependencies
 
 A list of all of the other scripts that
 this script relies upon,
@@ -202,19 +180,19 @@ including any restrictions on versions,
 part of this script's distribution,
 or must be installed separately.
 
-=head1 FILES
+=HEAD1 Files
 
 A list of the files that are used by this script.
 
-=head1 STANDARDS
+=HEAD1 Standards
 
 A list of the standards that this script complies with.
 
-=head1 VERSION
+=HEAD1 Version
 
-B<script name> Version 0.0=$Revision: 220 $ Initial Release
+B< script_name> Version 0.0=$Revision: 220 $ Initial Release
 
-=head1 HISTORY
+=HEAD1 History
 
 Version 0.0
 
@@ -226,7 +204,7 @@ $Id: script.txt 220 2007-08-14 15:31:39Z a0214394 $
 
 Initial Release
 
-=head1 BUGS AND LIMITATIONS
+=HEAD1 Bugs & Limitations
 
 A list of known problems with the module, together with some indication of
 whether they are likely to be fixed in an upcoming release.
@@ -246,17 +224,17 @@ Please report problems to Mark Jensen.
 
 Patches are welcome.
 
-=head1 INCOMPATIBILITIES
+=HEAD1 Incompatibilities
 
 A list of any known scripts that this script cannot be used in conjunction with.
 This may be due to name conflicts in the interface, or competition for system
 or program resources, or due to internal limitations of BASH.
 
-=head1 RESOURCES
+=HEAD1 Resources
 
-=over 4
+=OVER 4
 
-=item Barrett I<et al.> 2005
+=ITEM Barrett I<et al.> 2005
 
 Daniel J. Barrett, Richard E. Silverman, and Robert G. Byrnes.
 2005.
@@ -264,7 +242,7 @@ I<SSH, the Secure Shell: The Definitive Guide>,
 2nd Edition.
 (Sebastopol: OE<rsquo>Reilly Media)
 
-=item Robbins and Beebe 2005
+=ITEM Robbins and Beebe 2005
 
 Arnold Robbins and Nelson H. F. Beebe.
 2005.
@@ -273,16 +251,20 @@ I<Classic Shell Scripting>.
 
 =back
 
-=head1 SEE ALSO
+=HEAD1 See Also
 
 B<ols_begin>
 
-=head1 LICENSE AND COPYRIGHT
+=HEAD1 Copyright & License
 
 include(license.txt)
 
-=head1 AUTHOR
+=HEAD1 Author
 
-Mark Jensen E<lt>mjjensen@ti.comE<gt>, E<lt>mark@jensen.netE<gt>
+Mark Jensen E<lt>mark@jensen.netE<gt>
 
-=cut
+=HEAD1 source
+
+Where to get this script.
+
+=CUT

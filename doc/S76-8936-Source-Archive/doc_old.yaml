@@ -1,0 +1,92 @@
+---
+## Dublin Core Metadata Initiative
+
+dc.title: "dc_title"
+dc.title.alternative: "dc_title_alternative"
+dc.title.short: "dc_title_short"
+dc.title.subtitle: "dc_title_subtitle"
+dc.subject: dc_subject
+dc.description: dc_description
+dc.description.abstract: dc_description_abstract
+dc.description.note: dc_description_note
+dc.description.release: "dc_description_release"
+dc.description.tableOfContents: dc_description_tableOfContents
+dc.type: "dc_type"
+dc.source: "dc_source"
+dc.relation: "dc_relation"
+dc.relation.isVersionOf: "dc_relation_isVersionOf"
+dc.relation.hasVersion: "dc_relation_hasVersion"
+dc.relation.isReplacedBy: "dc_relation_isReplacedBy"
+dc.relation.replaces: "dc_relation_replaces"
+dc.relation.requires: "dc_relation_requires"
+dc.relation.isPartOf: "dc_relation_isPartOf"
+dc.relation.hasPart: "dc_relation_hasPart"
+dc.relation.isReferencedBy: "dc_relation_isReferencedBy"
+dc.relation.references: "dc_relation_references"
+dc.relation.isFormatOf: "dc_relation_isFormatOf"
+dc.relation.hasFormat: "dc_relation_hasFormat"
+dc.relation.conformsTo: "dc_relation_conformsTo"
+dc.coverage: "dc_coverage"
+
+# Intellectual Property
+
+dc.creator: "dc_creator"
+dc.publisher: "dc_publisher"
+dc.contributor: "dc_contributor"
+dc.contributor.role: "dc_contributor_role"
+dc.rights: "dc_rights"
+dc.rights.accessRights: "dc_rights_accessRights"
+dc.rights.license: "dc_rights_license"
+
+# Instantiation
+
+dc.date: "dc_date"
+dc.date.accepted: "dc_date_accepted"
+dc.date.created: "dc_date_created"
+dc.date.dateAccepted: "dc_date_dateAccepted"
+dc.date.dateCopyrighted: "dc_date_dateCopyrighted"
+dc.date.valid: "dc_date_valid"
+dc.date.available: "dc_date_available"
+dc.date.issued: "dc_date_issued"
+dc.date.modified: "dc_date_modified"
+dc.format: "dc_format"
+dc.format.extent: "dc_format_extent"
+dc.format.medium: "dc_format_medium"
+dc.identifier.doc: "dc_identifier_doc"
+dc.identifier.proj: "dc_identifier_proj"
+dc.identifier.bibliographicCitation: "dc_identifier_bibliographicCitation"
+dc.language: "dc_language"
+
+# DCMI Terms
+
+dc.accrualMethod: "dc_accrualMethod"
+dc.accrualPeriodicity: "dc_accrualPeriodicity"
+dc.accrualPolicy: "dc_accrualPolicy"
+dc.audience: "dc_audience"
+dc.audience.educationLevel: "dc_audience_educationLevel"
+dc.instructionalMethod: "dc_instructionalMethod"
+dc.provenance: "dc_provenance"
+dc.rightsHolder: "dc_rightsHolder"
+
+# Pandoc Metadata
+
+title: "dc_title"
+title.short: "dc_title_short"
+author: "dc_creator"
+date: "dc_date"
+documentclass: "scrartcl"
+geometry:
+- top=72pt
+- left=72pt
+- right=60pt
+- heightrounded
+papersize: "letter"
+fontsize: "12pt"
+links-as-notes: "true"
+subject: "dc_keywords"
+stand-alone: true
+keywords: "dc_keywords"
+description: "dc_description"
+lang: "dc_language"
+test: "dc_creator_jobTitle"
+...

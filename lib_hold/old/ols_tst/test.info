@@ -1,0 +1,46 @@
+This is test.info, produced by makeinfo version 6.8 from test.texinfo.
+
+(C) Copyright 2023 Mark J. Jensen
+
+
+File: test.info,  Node: Top,  Next: Usage,  Up: (dir)
+
+Top node
+********
+
+This is the top node.
+
+* Menu:
+
+* Usage:: This is some text
+* Description:: This is some more text
+
+
+File: test.info,  Node: Usage,  Next: Description,  Prev: Top,  Up: Top
+
+1 Usage
+*******
+
+This is the usage.
+
+
+File: test.info,  Node: Description,  Prev: Usage,  Up: Top
+
+2 Description
+*************
+
+This is the description.
+
+
+
+Tag Table:
+Node: Top107
+Node: Usage283
+Node: Description395
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

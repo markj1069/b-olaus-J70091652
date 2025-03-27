@@ -1,37 +1,72 @@
 #! /usr/bin/env bash
 
+# Synopsis: build-lib ols_source_lib ols_target_lib
+
+printf "%s\n" "OLS0000I Begin ${0}"
+
+source $OLS_LIB
+
 # Build the Olaus Shell Test Library
 
-PGMID=OLSBLD
-library="lib/OLSLIB"
-source_lib="lib/ols_lib"
-library_title="Olaus Shell Library"
+ if [[ -z "$1" ]]; then
+    ols_err $OLSID 7001 $EX_USAGE "${FUNCNAME}: Augument #1 missing, library_source"
+else
+    OLS_SOURCE_LIB="$1"
+fi
+
+if [[ -z "$2" ]]; then
+    ols_err $OLSID 7002 $EX_USAGE "${FUNCNAME}: Augument #2 missing, library_target"
+else
+    OLS_TARGET_LIB="$2"
+fi
+
+OLS_FILELIST="../adm/OLS_LIB_FILELIST.txt"
+library_file=olslib
+library="$OLS_TARGET_LIB/olslib"
+source_lib="$OLS_LIB/ols_lib"
+library_title="Olaus Bash Shell Library"
 
 
-# Build the library from it individual components
+
+
+declare    -r -x LIB_TMP="$OLS_TMP_DIR/initial_library.txt"
+declare    -r -x LIB_LS="$OLS_TMP_DIR/ls_sh.txt"
+declare    -r -x LIB_WO="$OLS_TMP_DIR/wo_def.txt"
+declare    -r -x LIB_SORT="$OLS_TMP_DIR/sorted.txt"
+declare    -r -x LIB_FINAL="$OLS_TMP_DIR/final.txt"
+
+# Build the library header
 
 printf "\n%s\n" "Build the $library_title."
 
-# Append the FILELIST files into the library.
+printf "%s\n" "#-------------------------------------------------------------------------------" >$OLS_TARGET_LIB
 
-printf "%s\n" "# Library: $library_title" > $library
+printf "%s\n" "# Library:  $library_title" >>$OLS_TARGET_LIB
 
-# Make the modification time for this filename
-timestamp=$( stat --printf="%y" "$library" )
-timestamp=${timestamp/ /T}   # Insert a "T" in the timestamp.
-timestamp=${timestamp:0:19}  # Strip off the nanoseconds.
+printf "%s\n" "# Filename: $library_file" >>$OLS_TARGET_LIB
 
-printf "%s\n" "# Created: $timestamp" >> $library
+printf "%s\n" "# Released: $(cat $OLS_PROJ/adm/DATE.txt)" >>$OLS_TARGET_LIB
 
-version=$(cat lib/VERSION)
+version=$(cat "$OLS_PROJ/adm/VERSION.txt")
 
-printf "%s\n" "# Version: $version" >> $library
-printf "%s\n" "#-----------------------------------------------------------------------"
+printf "%s\n" "# Version:  $version" >>$OLS_TARGET_LIB
+printf "%s\n" "#-------------------------------------------------------------------------------" >>$OLS_TARGET_LIB
+printf " \n" >>$OLS_TARGET_LIB                                                                                     
+printf " \n" >>$OLS_TARGET_LIB
 
-list_file=$(mktemp)
+# Calculate the members of the library.
 
-sort $source_lib/FILELIST | cut --delimiter=' ' --fields=2 > $list_file
+# Don't want the path included in the filenames from ls.
+pushd $OLS_SOURCE_LIB >/dev/null  # Change to the OLS_SOURCE_LIB directory
 
-sed -e "s'^'$source_lib/'" $list_file | xargs -I % -n 1 -t bin/build-append % $library
+# Read and process every entry in LIB_FINAL
+IFS=''                                # No special processing for this file.
+while IFS= read -r line; do
+    cat "$OLS_SOURCE_LIB/$line" >>$OLS_TARGET_LIB
+done < "$OLS_FILELIST"
 
-rm $list_file
+popd >/dev/null                       # Return to the calling directory.       
+
+printf "%s\n" "OLS0000I END"
+
+exit

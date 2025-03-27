@@ -40,6 +40,7 @@ default: all
 .PHONY: TAGS                 # Regenerate program TAGS
 .PHONY: dvi                  # Generate dvi documentation.
 .PHONY: info                 # Generate info documentation.
+.PHONY: lib                  # Generate Olaus Bash Shell Library
 .PHONY: html                 # Generate HTML documentation.
 .PHONY: pdf                  # Generate PDF documentation.
 .PHONY: ps                   # Generate postscript documentation.
@@ -153,6 +154,9 @@ TAGS:
 
 info:
 	echo "info:"
+
+lib:
+	bin/build-lib.sh $OLS_LIB $OLS_LIB/newlib
 
 dvi:
 	echo "dvi:"

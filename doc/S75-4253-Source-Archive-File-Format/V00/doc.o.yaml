@@ -1,0 +1,60 @@
+
+---
+## Dublin Core Metadata Initiative
+
+dc.title: "Source Archive File Format"
+dc.title.alternative: "Source Archive File"
+dc.title.short: "Source Archive File"
+dc.title.subtitle: "Source Archive Format"
+dc.subject: N/A
+dc.description: The Source Archive .
+dc.type: "text/markdown; charset=UTF-8"
+dc.source: "https://github.com/markj1069/templates-J70413419/tree/master/doc/S75-4253/V00"
+dc.relation: "Version 00"
+dc.relation.references: "ar(1), archive[^1][^2]"
+
+# Intellectual Property
+
+dc.creator: "Mark J. Jensen"
+dc.publisher: "Mark J. Jensen"
+dc.rights: "CC BY 4.0"
+dc.rights.accessRights: "See license."
+dc.rights.license: "https://creativecommons.org/licenses/by/4.0/legalcode"
+
+# Instantiation
+
+dc.format: "Specification"
+dc.format.medium: "Markdown"
+dc.identifier.doc: "X76-1590-00"
+dc.identifier.proj: "J70091652"
+dc.language: "en-US"
+
+# DCMI Terms
+
+dc.accrualMethod: "Item Creation"
+dc.audience: "Other"
+dc.provenance: "Item Creation"
+dc.rightsHolder: "Mark J. Jensen"
+
+# Pandoc Metadata
+
+title: "Source Archive File Format"
+title.short: "Source Archive File"
+author: "Mark J. Jensen"
+documentclass: "scrartcl"
+geometry:
+- top=72pt
+- left=72pt
+- right=60pt
+- heightrounded
+papersize: "letter"
+fontsize: "12pt"
+links-as-notes: "true"
+subject: "software, source archive, file format, srs, , "
+stand-alone: true
+keywords: "software, source archive, file format, srs, , "
+description: "The Source Archive ."
+lang: "en-US"
+test: "Independent Scholar"
+toc: false
+...

@@ -1,0 +1,206 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#ARGUMENTS-OPTIONS">ARGUMENTS &amp; OPTIONS</a></li>
+    </ul>
+  </li>
+  <li><a href="#SECURITY">SECURITY</a></li>
+  <li><a href="#AVAILABILITY">AVAILABILITY</a></li>
+  <li><a href="#EXAMPLES">EXAMPLES</a></li>
+  <li><a href="#NOTES-CAVEATS">NOTES &amp; CAVEATS</a></li>
+  <li><a href="#DIAGNOSTICS">DIAGNOSTICS</a></li>
+  <li><a href="#CONFIGURATION-AND-ENVIRONMENT">CONFIGURATION AND ENVIRONMENT</a></li>
+  <li><a href="#DEPENDENCIES">DEPENDENCIES</a></li>
+  <li><a href="#INCOMPATIBILITIES">INCOMPATIBILITIES</a></li>
+  <li><a href="#FILES">FILES</a></li>
+  <li><a href="#STANDARDS">STANDARDS</a></li>
+  <li><a href="#VERSION">VERSION</a></li>
+  <li><a href="#BUGS-AND-LIMITATIONS">BUGS AND LIMITATIONS</a></li>
+  <li><a href="#AUTHOR">AUTHOR</a></li>
+  <li><a href="#HISTORY">HISTORY</a></li>
+  <li><a href="#RESOURCES">RESOURCES</a></li>
+  <li><a href="#SEE-ALSO">SEE ALSO</a></li>
+  <li><a href="#LICENSE-AND-COPYRIGHT">LICENSE AND COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p><b>is_uint</b> - Return success if auguement is a unsigned integer.</p>
+
+<p><b>is_int</b> - Return success if auguement is a signed integer.</p>
+
+<p><b>is_ureal</b> - Return success if auguement is a unsigned real.</p>
+
+<p><b>is_real</b> - Return success if auguement is a signed real.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<p><b>is_uint</b> <i>NUM</i></p>
+
+<p><b>is_int</b> <i>NUM</i></p>
+
+<p><b>is_ureal</b> <i>NUM</i></p>
+
+<p><b>is_real</b> <i>NUM</i></p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p><b>is_uint</b> returns success if <i>NUM</i> is an unsigned integer, <i>e.g.</i> 99</p>
+
+<p><b>is_int</b> returns success if <i>NUM</i> is a signed integer, <i>e.g.</i>, 99, +99 &amp; -99</p>
+
+<p><b>is_ureal</b> returns success if <i>NUM</i> is an unsigned real, <i>e.g.</i>, 99 &amp; 99.99</p>
+
+<p><b>is_real</b> returns success if <i>NUM</i> is a signed real, <i>e.g.</i>, 99, +99, -99, 99.99, +99.99 &amp; -99.99</p>
+
+<h2 id="ARGUMENTS-OPTIONS">ARGUMENTS &amp; OPTIONS</h2>
+
+<dl>
+
+<dt id="NUM"><i>NUM</i></dt>
+<dd>
+
+<p>is an variable or value that may have a numerical value. (required)</p>
+
+</dd>
+</dl>
+
+<h1 id="SECURITY">SECURITY</h1>
+
+<p><b>NOTE:</b> These functions do not require the user to run as root.</p>
+
+<p><b>NOTE:</b> These functions do not contain security info.</p>
+
+<h1 id="AVAILABILITY">AVAILABILITY</h1>
+
+<p>These fuctions are available in the Olaus Bash Library.</p>
+
+<h1 id="EXAMPLES">EXAMPLES</h1>
+
+<p>Included a couple of examples.</p>
+
+<pre><code>if is_uint 299792458; then
+    echo &quot;299792458 is an unsigned integer.&quot;
+else
+    echo &quot;299792458 is not an unsigned integer.&quot;
+fi
+
+NUM=0.66274
+if is_ureal $NUM; then
+    echo &quot;$NUM is an unsigned real.&quot;
+else
+    echo &quot;$NUM is not an unsigned real.&quot;
+fi</code></pre>
+
+<h1 id="NOTES-CAVEATS">NOTES &amp; CAVEATS</h1>
+
+<p>Every unsigned integer is also a signed integer and unsigned real and a signed real.</p>
+
+<p>Every unsigned real is also an signed real, <i>i.e.</i>, a sign nor a decimal point is required for a real number.</p>
+
+<h1 id="DIAGNOSTICS">DIAGNOSTICS</h1>
+
+<p>These functions return an exit code of 0.</p>
+
+<h1 id="CONFIGURATION-AND-ENVIRONMENT">CONFIGURATION AND ENVIRONMENT</h1>
+
+<p>No environmental variables are harmed by these functions.</p>
+
+<h1 id="DEPENDENCIES">DEPENDENCIES</h1>
+
+<p>These functions are part of the Olaus Bash Library and make use of its internals. They are not stand alond functions.</p>
+
+<h1 id="INCOMPATIBILITIES">INCOMPATIBILITIES</h1>
+
+<p>There are no known incompatabilities.</p>
+
+<h1 id="FILES">FILES</h1>
+
+<p>N/A</p>
+
+<h1 id="STANDARDS">STANDARDS</h1>
+
+<p>N/A</p>
+
+<h1 id="VERSION">VERSION</h1>
+
+<p>Version V00.00.00</p>
+
+<h1 id="BUGS-AND-LIMITATIONS">BUGS AND LIMITATIONS</h1>
+
+<p>There are no known bugs in this module.</p>
+
+<p>Please report problems to &lt;Mark Jensen&gt; (&lt;mark@jensen.net&gt;)</p>
+
+<p>Patches are welcome.</p>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>Mark J Jensen &lt;mark@jensen.net&gt;</p>
+
+<h1 id="HISTORY">HISTORY</h1>
+
+<pre><code>   Date      Version   Description
+2025-02-23  V00.00.00  Function created Mark</code></pre>
+
+<h1 id="RESOURCES">RESOURCES</h1>
+
+<dl>
+
+<dt id="Barrett-Daniel-J.-et-al.-2005">Barrett, Daniel J., <i>et al.</i> 2005</dt>
+<dd>
+
+<p>Daniel J. Barrett, Richard E. Silverman, and Robert G. Byrnes. 2005. <i>SSH, the Secure Shell: The Definitive Guide</i>, 2nd Edition. (Sebastopol: O&#39;Reilly Media)</p>
+
+</dd>
+<dt id="Robbins-Arnold-and-Nelson-H.-F.-Beebe-2005">Robbins, Arnold and Nelson H. F. Beebe 2005</dt>
+<dd>
+
+<p>Arnold Robbins and Nelson H. F. Beebe. 2005. <i>Classic Shell Scripting</i>. (Sebastopol: O&#39;Reilly Media)</p>
+
+</dd>
+</dl>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p><b>ols_begin</b></p>
+
+<h1 id="LICENSE-AND-COPYRIGHT">LICENSE AND COPYRIGHT</h1>
+
+<p>Copyright &copy; 2025 Mark J. Jensen. All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+<ol>
+
+<li><p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p>
+
+</li>
+<li><p>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p>
+
+</li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY MARK JENSEN ``AS IS&#39;&#39; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL MARK JENSEN OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+
+</body>
+
+</html>
+
+

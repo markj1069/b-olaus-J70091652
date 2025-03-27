@@ -12,7 +12,7 @@ printf "\n%s\n" "Build the Olaus Shell Library."
 
 # Append the lib/*.sh files into lib/olaus.
 
-printf "%s\n" "# Library: Olaus Shell Library" >lib/OLSLIB
+printf "%s\n" "#-------------------------- Olaus Bash Shell Library ---------------------------" >lib/OLSLIB
 
 # Make the modification time for this filename
 timestamp=$( stat --printf="%y" "lib/OLSLIB" )
@@ -24,7 +24,7 @@ printf "%s\n" "# Created: $timestamp" >> lib/OLSLIB
 version=$(cat lib/VERSION)
 
 printf "%s\n" "# Version: $version" >> lib/OLSLIB
-printf "%s\n" "#-----------------------------------------------------------------------"
+printf "%s\n" "#-------------------------------------------------------------------------------"
 
 sort lib/ols_lib/FILENAME | cut --delimiter=' ' --fields=2 | xargs -I % -n 1 ./bin/build-append % lib/olslib
 

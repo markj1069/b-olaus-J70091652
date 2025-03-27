@@ -1,0 +1,40 @@
+\input texinfo.tex @c -*-texinfo-*-
+@settitle Sample Manual 1.0
+
+Text ending the preamble.
+
+@node Top
+@top Sample
+
+This manual is a sample
+
+@menu
+* TAP:: Test Anything Protocol
+* test-functions:: Test Functions
+* olst_plan:: First chapter.
+* olst_ok:: Second Chapter.
+* olst_is::
+* olst_isnot::
+* olst_cmp_ok::
+* olst_diag::
+* olst_note::
+* olst_explain::
+* olst_pass::
+* olst_fail::
+* olst_BAIL::
+* olst_done::
+* olst_print::
+
+@end menu
+
+@node Chapter1
+@chapter First chapter
+
+This is the first chapter
+
+@node Chapter2
+@chapter Second chapter
+
+This is the second chapter.
+
+@bye

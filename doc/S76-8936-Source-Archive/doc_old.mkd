@@ -1,0 +1,58 @@
+changecom(`/*', `*/')dnl
+dc_identifier
+
+# dc_title
+
+dc_subtitle
+
+dc_date_issued
+
+dc_creator
+
+
+
+## Heading 1
+
+Enter intro material here
+
+### Heading 1.1
+
+Enter sub heading info here.
+
+### Heading 1.2
+
+Enter next sub heading info here.
+
+## Heading 2
+
+Enter next main heading here.
+
+### Heading 2.1
+
+Enter sub heading here.
+
+### Heading 2.2
+
+Enter next sub heading info here.
+
+## Colophon
+
+| Field            | Value                               |
+|------------------|-------------------------------------|
+| Project No.      | dc_identifier_proj                  |
+| Document Func.   | dc_identifier_func                  |
+| Document Type    | dc_format                           |
+| Document No.     | dc_identifier_doc                   |
+| Publication Date | dc_date                             |
+| Rights           | dc_rights                           |
+| Source           | [dc_source](dc_source)              |
+
+## Abstract
+
+dc_description_abstract
+
+### Keywords
+
+* dc_keyword_1
+* dc_keyword_2
+* dc_keyword_3

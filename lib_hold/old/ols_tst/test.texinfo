@@ -1,0 +1,75 @@
+\input texinfo   @c -*-texinfo-*-
+
+@c %**start if header
+@setfilename Test-of-Texi.html
+@settitle Test of Texinfo
+@setchapternewpage odd
+@paragraphindent 0
+@copying
+@copyright{} Copyright 2023 Mark J. Jensen
+@end copying
+@c %**end of header
+
+@ifinfo
+This file contains ...
+
+Permission is granted ...
+@end ifinfo
+
+
+
+@titlepage
+@title Test of title at
+@subtitle This is the subtitle
+@author Mark Jensen
+@page
+@vskip 0pt plus 1fill
+@insertcopying
+
+Published by ...
+
+Permission is granted ...
+@end titlepage
+
+@contents
+
+
+@node Top
+@top Texinfo
+@menu
+* Usage::       This is some text
+* Description:: This is some more text
+* Auguments::   Yet more text
+@end menu
+
+
+This is some stuff
+
+This is some more stuff
+
+
+
+This dument describes ...
+
+This document applies to version ...
+
+
+
+
+@node Usage, Description, Top, Top
+@node Description, Auguments, Usage, Usage
+@node Auguments, Usage, Description, Description
+@comment node-name, next, previous, up
+@chapter Usage
+This is Usage
+
+@chapter Description
+Descripe
+
+@chapter arguments
+Auguments
+
+
+
+
+@bye

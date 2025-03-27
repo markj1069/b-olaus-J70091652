@@ -1,0 +1,46 @@
+This is tst2.info, produced by makeinfo version 6.8 from tst2.texi.
+
+Text ending the preamble.
+
+
+File: tst2.info,  Node: Top,  Next: Chapter1,  Up: (dir)
+
+Sample
+******
+
+This manual is a sample
+
+* Menu:
+
+* Chapter1:: First chapter.
+* Chapter2:: Second Chapter.
+
+
+File: tst2.info,  Node: Chapter1,  Next: Chapter2,  Prev: Top,  Up: Top
+
+1 First chapter
+***************
+
+This is the first chapter
+
+
+File: tst2.info,  Node: Chapter2,  Prev: Chapter1,  Up: Top
+
+2 Second chapter
+****************
+
+This is the second chapter.
+
+
+
+Tag Table:
+Node: Top96
+Node: Chapter1263
+Node: Chapter2398
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

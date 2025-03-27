@@ -1,0 +1,147 @@
+changecom(`/*', `*/')dnl
+
+# Software Requirement Specification (SRS) Document Template
+
+## Abstract
+
+dc_description_abstract
+
+### Keywords
+
+* dc_keyword_1
+* dc_keyword_2
+* dc_keyword_3
+* dc_keyword_4
+* dc_keyword_5
+* dc_keyword_6
+
+## Identification
+
+| Software         | Values            |
+|:-----------------|:------------------|
+| **Project Name** | dc_title_subtitle |
+| **Date**         | dc_date           |
+| **Version**      | dc_identifier     |
+| **By**           | dc_creator        |
+
+### Revision
+
+| Version      | Party        | Description             | Date          |
+|:-------------|:-------------|:------------------------|:--------------|
+| **History**  |  **Author**  | **Version Description** | **Completed** |
+| X11-9999-00  |  [Author]    | [Description]           |  9999-99-99   |
+|              |              |                         |               |
+| **Approval** | **Reviewer** | **Comments**            |  **Approval** |
+| X11-9999-00  | [Reviewer]   | [Comments]              |  9999-99-99   |
+
+
+## Introduction
+
+[Describe the purpose of the document.]
+
+### Product Scope
+
+[List the benefits, objectives & goals 0f the product.]
+
+### Product Value
+
+[Describe how the audience will fid value in the product.]
+
+### Inatended Audience
+
+[Write who the product is intended to serve.]
+
+### Intended Use
+
+[Describe how the intended ausience will use this product.]
+
+### General Description
+
+[Give a summary fo the functions the software will perform and the features that will be included.]
+
+## Functional Requirements
+
+[List the design requirements, graphics requirements, operating system requirements and constraints of the product.]
+
+## External Interface Requirements
+
+### User Interface Requirements
+
+[Describe the logic behind the interactions between the users and the software (screen layouts, style guides, _etc_).]
+
+### Hardware Interface Requireements
+
+[List the supported devices the software is intended to run on, the network requirements & the communication protocols to be used.]
+
+### Softare Interface Requirements
+
+[Include the connections between your product and otheer software components, including frontend/backend framework libraries, _etc._]
+
+### Communication Interface Requirements
+
+[List any requirements for the communication programs your product will use, like emails or embedded forms.]
+
+## Non-Functional Requirements
+
+### Security
+
+[Include any privacy and data protection regulations that should be adhered to.]
+
+### Capacity
+
+[Describe the current and future storage needs for your software.]
+
+### Compatibility
+
+[List the minimun hardware requirements for your software.]
+
+### Reliability
+
+[Calculate what the critical failure time of your product would be under normal usage.]
+
+### Scalability
+
+[Calculate the highest workloads under which your software will still preform as expected.]
+
+### Maintainability
+
+[Describe how continuous integration should be used to deploy features and bug fixes quickly.]
+
+### Useability
+
+[Describe how easy it should be for end-users to use your software.]
+
+### Other
+
+[List any additional non-functional requirements.]
+
+## References
+
+[Enter references here.]
+
+## Acknowledgements
+
+[Enter acknowledgements here.]
+
+## Appendices
+
+### Definitions & Acronyms
+
+| Word                | Definition                     |
+|:--------------------|:-------------------------------|
+| Word                | Definition                     |
+| Acronym             | Description                    |
+
+\newpage
+
+## Colophon
+
+| Field            | Value                               |
+|------------------|-------------------------------------|
+| Project No.      | dc_identifier_proj                  |
+| Document Func.   | dc_identifier_func                  |
+| Document Type    | dc_format                           |
+| Document No.     | dc_identifier_doc                   |
+| Publication Date | dc_date                             |
+| Rights           | dc_rights                           |
+| Source           | [dc_source](dc_source)              |

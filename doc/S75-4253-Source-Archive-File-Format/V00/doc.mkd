@@ -1,0 +1,65 @@
+changecom(`/*', `*/')dnl
+
+## Name
+
+*sar* - dc_title
+
+## Synopsis
+
+_filename.sar_
+
+## Description
+
+ #-h- filename ownerid group Octal-Permission Access-Date Modify-Date Change-Date Birth-Date
+
+ stat --format=%U                       # Return the owner ID 
+ stat --format=%g                       # Return the group name
+ stat --format=%a                       # Return permission bits in octal
+ stat --format=%x                       # Return time of last access
+ stat --format=%y                       # Return time of data modification
+ stat --format=%z                       # Return time of status change
+ stat --format=%w                       # Return time of birth
+
+ chown
+ touch --date="9999..." --time=atime
+ touch --date="9999..." --time=mtime
+ touch --date="9999..." --time=ctime
+ touch --date="9999..." --time=birth
+
+ Pengwin only supports atime and mtime.
+
+ $-t- filename
+
+## Files
+
+## Notes
+
+Not all system keep the time of birth of a file. Check for a valid date before using.
+
+## Examples
+
+## See Also
+
+ dc_relation_references
+
+## References
+
+[Enter references here.]
+
+## Acknowledgements
+
+[Enter acknowledgements here.]
+
+\newpage
+
+## Colophon
+
+| Field            | Value                               |
+|------------------|-------------------------------------|
+| Project No.      | dc_identifier_proj                  |
+| Document Func.   | dc_identifier_func                  |
+| Document Type    | dc_format                           |
+| Document No.     | dc_identifier_doc                   |
+| Publication Date | dc_date                             |
+| Rights           | dc_rights                           |
+| Source           | [dc_source](dc_source)              |

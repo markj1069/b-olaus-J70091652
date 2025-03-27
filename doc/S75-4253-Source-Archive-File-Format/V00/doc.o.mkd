@@ -1,0 +1,43 @@
+
+
+## Name
+
+*filetype* - Source Archive File Format
+
+## Synopsis
+
+_filename_
+
+## Description
+
+## Files
+
+## Notes
+
+## Examples
+
+## See Also
+
+ ar(1), archive[^1][^2]
+
+## References
+
+[Enter references here.]
+
+## Acknowledgements
+
+[Enter acknowledgements here.]
+
+\newpage
+
+## Colophon
+
+| Field            | Value                               |
+|------------------|-------------------------------------|
+| Project No.      | J70091652                  |
+| Document Func.   | Template                  |
+| Document Type    | Specification                           |
+| Document No.     | X76-1590-00                   |
+| Publication Date | YYYY-MM-DD                             |
+| Rights           | CC BY 4.0                           |
+| Source           | [https://github.com/markj1069/templates-J70413419/tree/master/doc/S75-4253/V00](https://github.com/markj1069/templates-J70413419/tree/master/doc/S75-4253/V00)              |

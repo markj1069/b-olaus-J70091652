@@ -91,6 +91,7 @@ Mark J Jensen E<lt>mark@jensen.netE<gt>
 =head1 HISTORY
 
    Date      Version   Description
+2025-03-10  V00.00.00  Function created by Mark
 2025-03-10  V00.00.01  Initial Release by Mark
 
 =cut
@@ -100,8 +101,7 @@ Mark J Jensen E<lt>mark@jensen.netE<gt>
 function ols_rd_excode() {
 
     # Synopsis: N=$(ols_rd_excode)
+    EX_CODE=$(cat "$OLS_EX_FILE")     # EX_CODE as a trailing NEWLINE
+    printf "%s" "$EX_CODE"            # Strip the NEWLINE
 
-    EX_CODE=$(cat $OLS_EX_FILE)               # EX_CODE as a trailing NEWLINE
-    printf "%s" $EX_CODE                      # Strip the NEWLINE
-
-} # end ols_wt_tstno
+} # end ols_rd_tstno

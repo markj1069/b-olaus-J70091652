@@ -1,0 +1,55 @@
+This is Test-of-Texinfo, produced by makeinfo version 6.8 from
+test.texinfo.
+
+(C) Copyright 2023 Mark J. Jensen
+
+This file contains ...
+
+Permission is granted ...
+
+
+File: Test-of-Texinfo,  Node: Top,  Next: Auguments,  Up: (dir)
+
+Texinfo
+*******
+
+This is some stuff
+
+This is some more stuff
+
+This dument describes ...
+
+This document applies to version ...
+
+* Menu:
+
+* Usage::       This is some text
+* Description:: This is some more text
+* Auguments::   Yet more text
+
+
+File: Test-of-Texinfo,  Node: Usage,  Next: Description,  Prev: Top,  Up: Top
+
+
+File: Test-of-Texinfo,  Node: Description,  Next: Auguments,  Prev: Usage,  Up: Usage
+
+
+File: Test-of-Texinfo,  Node: Auguments,  Next: Usage,  Prev: Description,  Up: Description
+
+1 Usage
+*******
+
+
+
+Tag Table:
+Node: Top164
+Node: Usage471
+Node: Description552
+Node: Auguments641
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:
