@@ -20,12 +20,11 @@ else
     OLS_TARGET_LIB="$2"
 fi
 
-OLS_FILELIST="../adm/OLS_LIB_FILELIST.txt"
+OLS_FILELIST="$OLSPROJ/adm/LIB_FILELIST.txt"
 library_file=olslib
-library="$OLS_TARGET_LIB/olslib"
+library="$OLS_TARGET_LIB"
 source_lib="$OLS_LIB/ols_lib"
 library_title="Olaus Bash Shell Library"
-
 
 
 
@@ -45,9 +44,9 @@ printf "%s\n" "# Library:  $library_title" >>$OLS_TARGET_LIB
 
 printf "%s\n" "# Filename: $library_file" >>$OLS_TARGET_LIB
 
-printf "%s\n" "# Released: $(cat $OLS_PROJ/adm/DATE.txt)" >>$OLS_TARGET_LIB
+printf "%s\n" "# Released: $(cat $OLSPROJ/adm/DATE.txt)" >>$OLS_TARGET_LIB
 
-version=$(cat "$OLS_PROJ/adm/VERSION.txt")
+version=$(cat "$OLSPROJ/adm/VERSION.txt")
 
 printf "%s\n" "# Version:  $version" >>$OLS_TARGET_LIB
 printf "%s\n" "#-------------------------------------------------------------------------------" >>$OLS_TARGET_LIB

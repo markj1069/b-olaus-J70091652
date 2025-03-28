@@ -1,4 +1,149 @@
 #! /usr/bin/env bash
+
+source $OLSLIB
+
+VERSION="0.1.0"
+REL_DATE="9999-99-99"
+BASENAME=$(basename $0)
+SCRIPT_NAME=${BASENAME%.*}
+
+function input() {
+
+    return
+
+} # input
+
+function output() {
+
+    OLS_OUT_FILE="$1"
+
+    return
+
+} # output
+
+function help() {
+
+# Print the <script_name> help and exit with a usage exit code.
+
+    version
+
+    usage
+
+    printf "\n%s\n" "Options & Arguments"
+
+    printf "%s\n" "| **Options**     |   Option Value  | Description                                  |"
+    printf "%s\n" "|-----------------|:---------------:|----------------------------------------------|"
+    printf "%s\n" "| --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |"
+    printf "%s\n" "| --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |"
+    printf "%s\n" "| --debug         |                 | Include debugging info on STDOUT             |"
+    printf "%s\n" "| --quiet   | -q  |                 | Run silent, opposite of verbose.             |"
+    printf "%s\n" "| --verbose | -v  |                 | Opposite of --quiet                          |"
+    printf "%s\n" "| --logfile       |  log_file       | Log significant events to log_file           |"
+    printf "%s\n" "| --log           |                 | Log significant events to script_name.log    |"
+    printf "%s\n" "| --version       |                 | Print version information                    |"
+    printf "%s\n" "| --usage         |                 | Print the usage line for this program        |"
+    printf "%s\n" "| --help          |                 | Print summary for this program               |"
+    printf "%s\n" "|                 |                 |                                              |"
+    printf "%s\n" "| **Arguments**   |                 |                                              |"
+    printf "%s\n" "| input_file      |                 | Multiple input_files are supported           |"
+    printf "\n"
+
+    ols_set_excode $EX_USAGE
+
+
+} # help
+
+function log() {
+
+    OLS_LOG=$TRUE
+    OLS_LOG_FILE="$1"
+
+    return
+
+} # log
+
+function verbose() {
+
+    OLS_VERBOSE="$1"
+
+    return
+
+} # verbose
+
+function usage() {
+
+# Print the <script_name> Synopsis and exit with a usage exit code.
+
+    printf "%s\n\t%s\n\t%s\n\t%s\n" \
+                  "$SCRIPT_NAME [--input=input_file | -i input_file]" \
+                  "[--output=output_file | -o output_file] [--help]" \
+                  "[--log] [--log=log_file] [--quiet | -q] [--usage] [--debug]" \
+                  "[--version] [--verbose] [--] [input_file ...]"
+
+    ols_set_excode $EX_USAGE
+
+} # usage
+
+function debug() {
+
+    OLS_DEBUG=$TRUE
+    return
+
+} # debug
+
+function version() {
+
+# Print the release date and version number and exit with usage exit code.
+    
+    printf "\n%s\n\n" "$SCRIPT_NAME $REL_DATE Version: $VERSION"
+
+    ols_set_excode $EX_USAGE
+
+} # version
+
+# Use getopt to process the command, format the argument in a consistant format.
+
+PARSED_ARGUMENTS=$(getopt -a -n script_name -o i:o:qv --long input:,output:,debug,quiet,verbose,logfile:,log,version,usage,help -- "$@")
+VALID_ARGUMENTS=$?
+
+if (("$VALID_ARGUMENTS" != "0" )); then
+    usage
+fi
+
+eval set -- "$PARSED_ARGUMENTS"       # Reset the script arguments with the canonical format.
+
+while :; do
+    case $1 in #
+        -i | --input   ) input   "$2";                    shift  2;;
+        -o | --output  ) output  "$2";                    shift  2;;
+             --debug   ) debug;                           shift   ;;
+        -q | --quiet   ) verbose -1;                      shift   ;;
+        -v | --verbose ) verbose +1;                      shift   ;;
+             --logfile ) log     "$2";                    shift  2;;
+             --log     ) log     "script_name.log";       shift   ;;
+             --version ) version; exit;                   shift   ;;
+             --usage   ) usage;   exit;                   shift   ;;
+             --help    ) help;    exit;                   shift   ;;
+             --        ) shift;                           break   ;;
+             *         ) echo "Unexpected Option: $1";    usage   ;;
+    esac # case
+done # while
+
+# Process remaining input files.
+
+
+exit
+
+
+
+
+
+
+
+
+
+
+
 : <<=cut
 =head1 Name
 
@@ -11,7 +156,7 @@ B<script_name>
 [B<--output>=F<output_file> | B<-o> F<output_file>]
 [B<--help>]
 [B<--log>]
-[B<--log=F<logfile>>]
+[B<--log=F<log_file>>]
 [B<--quiet>]
 [B<--usage>]
 [B<--debug>]
@@ -35,19 +180,19 @@ May include numerous subsections (I<i.e.>, =head2, =head3, I<etc.>).
 
  | **Options**     |   Option Value  | Description                                  |
  |-----------------|:---------------:|----------------------------------------------|
- | --input \| -i   |   _input file_  | Specify input source [Default: STDIN]        |
- | --output \| -o  |  _output file_  | Specify output destination [Default STDOUT]  |
+ | --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |
+ | --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |
  | --debug         |                 | Include debugging info on STDOUT             |
- | --quiet \| -q   |                 | Run silent, opposite of verbose.             |
- | --verbose \| -v |                 | Opposite of --quiet                          |
- | --logfile       |    _logfile_    | Log significant events to _logfile_          |
- | --log           |                 | Log significant events to B<script_name>.log |
+ | --quiet   | -q  |                 | Run silent, opposite of verbose.             |
+ | --verbose | -v  |                 | Opposite of --quiet                          |
+ | --logfile       |  log_file       | Log significant events to log_file           |
+ | --log           |                 | Log significant events to script_name.log    |
  | --version       |                 | Print version information                    |
  | --usage         |                 | Print the usage line for this program        |
  | --help          |                 | Print summary for this program               |
  |                 |                 |                                              |
  | **Arguments**   |                 |                                              |
- | _input file_    |                 | Multiple _input files_ are supported         |
+ | input_file      |                 | Multiple input_files are supported           |
 
 =head2 Standard Options
 
@@ -73,12 +218,11 @@ Print the help message to standard error, F<STDERR>, and exit.
 
 =item [B<--log>]
 
-Log significant events to _B<script_name>.log_.
+Log significant events to _B<F<script_name.log>.
 
-=item [B<--logfile=F<logfile>>]
+=item [B<--logfile=F<log_file>>]
 
-Log significant events to 
-If F<logfile> is not specified, use F<E<lt>logfile>>.
+Log significant events to F<script_name.log>
 
 =item [B<--quiet>]
 

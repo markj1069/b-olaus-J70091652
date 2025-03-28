@@ -82,6 +82,12 @@ if [[ -z "$OLS_DEF" ]]; then
   # Test harness definitions:
     declare -i -r -x OLS_TST_INIT=0     # Start with test number zero.
     declare    -r -x OLS_TAP_VERSION="TAP version 14"
+
+  # Olaus argument and option processing variables
+    declare -i    -x OLS_VERBOSE=0      # Initialize to normal output.
+    declare -i    -x OLS_DEBUG=$FALSE   # Initialize to no debugging output.
+    declare -i    -x OLS_LOG=$FALSE     # Initialize to no log output.
+    declare -i    -x OLS_INPUT_CTR=0    # Initialize the input file counter to 0.
     
   # Switch to load definitions one time.
     declare    -r -x OLS_DEF=$TRUE      # OLSDEF=T ==> ols_def has been loaded.
