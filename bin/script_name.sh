@@ -147,10 +147,17 @@ function OLS_EXTRA_OPTIONS () {
 #
 #---------------------------------------------------------------------------------------------------
 
-echo start
+
 PARSED_ARGUMENTS=$(getopt -a -n script_name -o i:o:qv --long input:,output:,debug,quiet,verbose,logfile:,log,version,usage,help -- "$@")
 VALID_ARGUMENTS=$?
-echo stop
+
+if [[ $VALID_ARGUMENTS -ne 0 ]]; then
+
+    ols_err "$PGMID" 9999 $EX_USAGE "Unrecoognized options in calling sequence."
+    usage
+    ols_set_excode $EX_USAGE
+    exit
+fi
 
 eval set -- "$PARSED_ARGUMENTS"       # Reset the script arguments with the canonical format.
 
@@ -167,7 +174,7 @@ while :; do
              --usage   ) usage;   exit;                   shift   ;;
              --help    ) help;    exit;                   shift   ;;
              --        ) shift;                           break   ;;
-             *         ) OLS_EXTRA_OPTIONS "$1";          shift   ;;
+             *         ) usage;                           shift   ;;
     esac # case
 done # while
 
@@ -199,11 +206,11 @@ done
 
     >"$OLS_LOG_FILE"
 
-    printf "\n%s\n" "----------------------------------------------------------------------------------------------------"
-    printf "%s\n"
-    printf "%s\n"   "Options and Arguments"
-    printf "%s\n"
-    printf "%s\n\n" "----------------------------------------------------------------------------------------------------"
+    printf "\n%s\n" "----------------------------------------------------------------------------------------------------" >>"$OLS_LOG_FILE"
+    printf "%s\n"                                                                                                          >>"$OLS_LOG_FILE"
+    printf "%s\n"   "Options and Arguments"                                                                                >>"$OLS_LOG_FILE"
+    printf "%s\n"                                                                                                          >>"$OLS_LOG_FILE"
+    printf "%s\n\n" "----------------------------------------------------------------------------------------------------" >>"$OLS_LOG_FILE"
       
     if ((${#OLS_SYSIN[@]} == 0)); then
         printf "%s\n" "Input file: STDIN"                                  >>"$OLS_LOG_FILE"
@@ -223,14 +230,7 @@ done
     printf "%s\n" "Verbose Flag: $OLS_VERBOSE"                             >>"$OLS_LOG_FILE"
     printf "%s\n" "Log Flag: $OLS_LOG"                                     >>"$OLS_LOG_FILE"
     printf "%s\n" "Log File: $OLS_LOG_FILE"                                >>"$OLS_LOG_FILE"
-    if (( ${#OLS_EXTRA_OPT[@]} == 0 )); then
-        printf "%s\n" "Unrecognized option: None"                          >>"$OLS_LOG_FILE"
-    else
-        printf "%s\n" "Unrecognized option:"                               >>"$OLS_LOG_FILE"
-        for opt in "${OLS_EXTRA_OPT[@]}"; do
-            printf "\t%s\n" "$opt"                                         >>"$OLS_LOG_FILE"
-        done
-    fi
+    
     
 
 
