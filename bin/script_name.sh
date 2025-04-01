@@ -2,22 +2,49 @@
 
 source $OLSLIB
 
+BEGIN_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+
 VERSION="0.1.0"
 REL_DATE="9999-99-99"
 BASENAME=$(basename $0)
+PGMID="SCR"
 SCRIPT_NAME=${BASENAME%.*}
+OLS_LOG_FILE="log.log"
 
 function input() {
 
-    return
+    input_file="$1"
+
+    if [[ -z "$input_file" ]]; then
+        ols_err "$PGMID" 7001 "$EX_USAGE" "input: Argument #1 missing, input_file."
+        ols_set_excode $EX_USAGE
+        ols_end
+    fi
+
+    full_file="$(readlink -f $input_file)"
+
+    if [[ ! -f "$full_file" ]]; then
+        ols_err "$PGMID" 9999 $EX_NOINPUT "$SCRIPT_NAME: input_file $full_file does not exist or is not a normal file."
+    fi
+
+    OLS_SYSIN+=("$full_file")        # Put this input file in the OLS_SYSIN array.
+
+    return $EX_OK
 
 } # input
 
 function output() {
 
-    OLS_OUT_FILE="$1"
+    if [[ -z "$OLS_SYSOUT" ]]; then
+        output_file="$1"
+        full_file="$(readlink -f $output_file)"
+        OLS_SYSOUT="$full_file"       # Save the output file in OLS_SYSOUT.
+    else
+        ols_err "$OLSID" 9999 EX_USAGE "$SCRIPT_NAME: Only one --output option allowed."
+    fi
 
-    return
+    return $EX_OK
+
 
 } # output
 
@@ -29,24 +56,27 @@ function help() {
 
     usage
 
-    printf "\n%s\n" "Options & Arguments"
+cat <<'/*'
 
-    printf "%s\n" "| **Options**     |   Option Value  | Description                                  |"
-    printf "%s\n" "|-----------------|:---------------:|----------------------------------------------|"
-    printf "%s\n" "| --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |"
-    printf "%s\n" "| --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |"
-    printf "%s\n" "| --debug         |                 | Include debugging info on STDOUT             |"
-    printf "%s\n" "| --quiet   | -q  |                 | Run silent, opposite of verbose.             |"
-    printf "%s\n" "| --verbose | -v  |                 | Opposite of --quiet                          |"
-    printf "%s\n" "| --logfile       |  log_file       | Log significant events to log_file           |"
-    printf "%s\n" "| --log           |                 | Log significant events to script_name.log    |"
-    printf "%s\n" "| --version       |                 | Print version information                    |"
-    printf "%s\n" "| --usage         |                 | Print the usage line for this program        |"
-    printf "%s\n" "| --help          |                 | Print summary for this program               |"
-    printf "%s\n" "|                 |                 |                                              |"
-    printf "%s\n" "| **Arguments**   |                 |                                              |"
-    printf "%s\n" "| input_file      |                 | Multiple input_files are supported           |"
-    printf "\n"
+Options & Arguments
+
+| Options         |   Option Value  | Description                                  |
+|-----------------|-----------------|----------------------------------------------|
+| --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |
+| --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |
+| --debug         |                 | Include debugging info on STDOUT             |
+| --quiet   | -q  |                 | Run silent, opposite of verbose.             |
+| --verbose | -v  |                 | Opposite of --quiet                          |
+| --logfile       |  log_file       | Log significant events to log_file           |
+| --log           |                 | Log significant events to script_name.log    |
+| --version       |                 | Print version information                    |
+| --usage         |                 | Print the usage line for this program        |
+| --help          |                 | Print summary for this program               |
+|                 |                 |                                              |
+| Arguments       |                 |                                              |
+| input_file      |                 | Multiple input_files are supported           |
+
+/*
 
     ols_set_excode $EX_USAGE
 
@@ -101,14 +131,26 @@ function version() {
 
 } # version
 
-# Use getopt to process the command, format the argument in a consistant format.
+function OLS_EXTRA_OPTIONS () {
 
+    local option="$1"
+    OLS_EXTRA_OPT+=("$option")        # Put this input file in the OLS_SYSIN array.
+
+    return $EX_OK
+
+} # OLS_EXTRA_OPTIONS
+
+#---------------------------------------------------------------------------------------------------
+#
+# Process script_name options and arguments
+# Use getopt to process the command, format the argument in a consistant format.
+#
+#---------------------------------------------------------------------------------------------------
+
+echo start
 PARSED_ARGUMENTS=$(getopt -a -n script_name -o i:o:qv --long input:,output:,debug,quiet,verbose,logfile:,log,version,usage,help -- "$@")
 VALID_ARGUMENTS=$?
-
-if (("$VALID_ARGUMENTS" != "0" )); then
-    usage
-fi
+echo stop
 
 eval set -- "$PARSED_ARGUMENTS"       # Reset the script arguments with the canonical format.
 
@@ -125,14 +167,71 @@ while :; do
              --usage   ) usage;   exit;                   shift   ;;
              --help    ) help;    exit;                   shift   ;;
              --        ) shift;                           break   ;;
-             *         ) echo "Unexpected Option: $1";    usage   ;;
+             *         ) OLS_EXTRA_OPTIONS "$1";          shift   ;;
     esac # case
 done # while
 
 # Process remaining input files.
 
+for input_file in "$@"; do
 
-exit
+    input_file="$1"
+    input "$input_file"
+    shift
+    
+done
+
+for file in "${OLS_SYSIN[@]}"; do
+    if [[ "$file" == "$OLS_SYSOUT" ]]; then
+        ols_err "$PGMID" 9999 $EX_USAGE "Input and Output files can not be the same, $OLS_SYSOUT."
+    fi
+done
+
+#---------------------------------------------------------------------------------------------------
+#
+#   Processing of script_name arguments and options complete.
+#   Time to get on to business
+#
+#---------------------------------------------------------------------------------------------------
+
+
+# Print the status of the
+
+    >"$OLS_LOG_FILE"
+
+    printf "\n%s\n" "----------------------------------------------------------------------------------------------------"
+    printf "%s\n"
+    printf "%s\n"   "Options and Arguments"
+    printf "%s\n"
+    printf "%s\n\n" "----------------------------------------------------------------------------------------------------"
+      
+    if ((${#OLS_SYSIN[@]} == 0)); then
+        printf "%s\n" "Input file: STDIN"                                  >>"$OLS_LOG_FILE"
+    else
+        printf "%s\n" "Input files:"                                       >>"$OLS_LOG_FILE"
+        for file in "${OLS_SYSIN[@]}"; do
+            printf "\t%s\n" "$file"                                        >>"$OLS_LOG_FILE"
+        done
+    fi
+    if [[ -n "$OLS_SYSOUT" ]]; then
+        printf "%s\n" "Output file: $OLS_SYSOUT"                           >>"$OLS_LOG_FILE"
+    else
+        printf "%s\n" "Output file: STDOUT"                                >>"$OLS_LOG_FILE"
+    fi
+
+    printf "%s\n" "Debug Flag: $OLS_DEBUG"                                 >>"$OLS_LOG_FILE"
+    printf "%s\n" "Verbose Flag: $OLS_VERBOSE"                             >>"$OLS_LOG_FILE"
+    printf "%s\n" "Log Flag: $OLS_LOG"                                     >>"$OLS_LOG_FILE"
+    printf "%s\n" "Log File: $OLS_LOG_FILE"                                >>"$OLS_LOG_FILE"
+    if (( ${#OLS_EXTRA_OPT[@]} == 0 )); then
+        printf "%s\n" "Unrecognized option: None"                          >>"$OLS_LOG_FILE"
+    else
+        printf "%s\n" "Unrecognized option:"                               >>"$OLS_LOG_FILE"
+        for opt in "${OLS_EXTRA_OPT[@]}"; do
+            printf "\t%s\n" "$opt"                                         >>"$OLS_LOG_FILE"
+        done
+    fi
+    
 
 
 
@@ -144,14 +243,27 @@ exit
 
 
 
-: <<=cut
+ols_wt_excode $EX_USERABORT
+
+
+
+
+
+
+
+
+
+
+
+
+cat >/dev/null <</*
 =head1 Name
 
-E<lt>script_nameE<gt> E<mdash> E<lt>One-line description of this script's purposeE<gt>
+B<E<lt>script_nameE<gt>> E<mdash> E<lt>One-line description of this script's purposeE<gt>
 
 =head1 Synopsis
 
-B<script_name>
+B<E<lt>script_nameE<gt>>
 [B<--input>=F<input_file> | B<-i> F<input_file>]
 [B<--output>=F<output_file> | B<-o> F<output_file>]
 [B<--help>]
@@ -167,12 +279,12 @@ B<script_name>
 
 =head1 Description
 
-Copy B<script_name> into your new script file. Change B<script_name> to your new script name.
+Copy B<E<lt>script_nameE<gt>> into your new script file. Change B<E<lt>script_nameE<gt>> to your new script name.
 Update L<"/Synopsys"> and L<"/Options & Arguments"> section.
 
 Remove sections that do not apply.
 
-Write a detailed describe of the function of B<script_name>. What does it do?
+Write a detailed describe of the function of B<E<lt>script_nameE<gt>>. What does it do?
 
 May include numerous subsections (I<i.e.>, =head2, =head3, I<etc.>).
 
@@ -208,6 +320,10 @@ means read from F<STDIN>.
 =item [B<--output>=F<output_file> | -o F<output_file>]
 
 Output file, default is standard out, F<STDOUT>.
+
+B<Note:> Do not use the same file as an input_file and as an output_file.
+
+
 Single dash,
 C<->,
 means write to F<STDOUT>.
@@ -218,11 +334,11 @@ Print the help message to standard error, F<STDERR>, and exit.
 
 =item [B<--log>]
 
-Log significant events to _B<F<script_name.log>.
+Log significant events to B<F<script_name.log>>.
 
 =item [B<--logfile=F<log_file>>]
 
-Log significant events to F<script_name.log>
+Log significant events to B<F<script_name.log>>.
 
 =item [B<--quiet>]
 
@@ -286,11 +402,28 @@ This script does not contain any security info.
 
 =head1 Examples
 
+Multiple input files are valid, I<e.g.>,
+
+ B<E<lt>script_nameE<gt>> -i file1 --input=file2 file3 file4 file5
+
+A single output file is valid, I<e.g.>,
+
+ B<E<lt>script_nameE<gt>> -i file1 -o output.file
+
 Insert instructive examples here.
+
+
 
 =head1 Notes & Caveats
 
-What additional information would be useful to a user.
+
+=head2 Warning: Input file and Output File Restriction
+
+Do not use the same file as an input and output in the same command of B<E<lt>script_nameE<gt>>. You will
+destroy your data. B<E<lt>script_nameE<gt>> checks for --input and --output being equal; however,
+you should not do
+
+E<0x10062> script_name --input=file_one >file_one E<0x10062>
 
 =head1 Diagnostics
 
@@ -425,6 +558,8 @@ Mark Jensen E<lt>mark@jensen.netE<gt>
 
 =head1 Source
 
+%Note%: Add the link for B<script_name> after merging back into the master branch.
 B<script_name> may be found at [xxx](yyy).
 
 =cut
+/*
