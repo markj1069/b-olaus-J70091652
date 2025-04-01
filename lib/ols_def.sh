@@ -87,7 +87,7 @@ if [[ -z "$OLS_DEF" ]]; then
     declare -i    -x OLS_VERBOSE=0      # Initialize to normal output.
     declare -i    -x OLS_DEBUG=$FALSE   # Initialize to no debugging output.
     declare -i    -x OLS_LOG=$FALSE     # Initialize to no log output.
-    declare -i    -x OLS_INPUT_CTR=0    # Initialize the input file counter to 0.
+    declare       -x OLS_LOG_FILE="log.log" # Initialize OLS_LOG_FILE for debugging.
     
   # Switch to load definitions one time.
     declare    -r -x OLS_DEF=$TRUE      # OLSDEF=T ==> ols_def has been loaded.

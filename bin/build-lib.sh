@@ -4,7 +4,7 @@
 
 printf "%s\n" "OLS0000I Begin ${0}"
 
-source $OLS_LIB
+source $OLSLIB
 
 # Build the Olaus Shell Test Library
 

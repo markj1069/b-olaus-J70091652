@@ -135,10 +135,12 @@ declare    -r -x OLS_EX_FILE="$OLS_TMP_DIR/EX_CODE.txt"  # Hold the current Exit
 trap "Exit 1"                HUP INT PIPE QUIT TERM 
 trap 'ols_end' EXIT
 
-ols_wt_excode $EX_OK                    # Assume this script will be successful.
-ols_wt_tstno  $OLS_TST_INIT             # Initialize OLS_TMP_DIR/TAP.txt
+ols_wt_excode $EX_OK                  # Assume this script will be successful.
+ols_wt_tstno  $OLS_TST_INIT           # Initialize OLS_TMP_DIR/TAP.txt
 
-declare -a SYSIN=('')            # In
-declare -a SYSOUT=('')           # Output files
+declare -a    -x OLS_SYSIN            # Store the input  files in the OLS_SYSIN array.
+declare       -x OLS_SYSOUT           # Store the Output file  in OLS_SYSOUT.
+
+declare -a    -x OLS_EXTRA_OPT        # Store the unexpected options. 
 
 # end ols_begin

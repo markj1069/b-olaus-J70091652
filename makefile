@@ -156,7 +156,7 @@ info:
 	echo "info:"
 
 lib:
-	bin/build-lib.sh $OLSDIR $OLSDIR/newlib
+	bin/build-lib.sh $(OLSDIR) $(OLSDIR)/newlib
 
 dvi:
 	echo "dvi:"
