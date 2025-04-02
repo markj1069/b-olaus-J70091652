@@ -60,7 +60,7 @@ cat <<'/*'
 
 Options & Arguments
 
-| Options         |   Option Value  | Description                                  |
+| Options         |  Option Value   | Description                                  |
 |-----------------|-----------------|----------------------------------------------|
 | --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |
 | --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |
@@ -152,7 +152,6 @@ PARSED_ARGUMENTS=$(getopt -a -n script_name -o i:o:qv --long input:,output:,debu
 VALID_ARGUMENTS=$?
 
 if [[ $VALID_ARGUMENTS -ne 0 ]]; then
-
     ols_err "$PGMID" 9999 $EX_USAGE "Unrecoognized options in calling sequence."
     usage
     ols_set_excode $EX_USAGE
@@ -174,7 +173,7 @@ while :; do
              --usage   ) usage;   exit;                   shift   ;;
              --help    ) help;    exit;                   shift   ;;
              --        ) shift;                           break   ;;
-             *         ) usage;                           shift   ;;
+             *         ) usage;  exit $EX_USAGE           shift   ;;
     esac # case
 done # while
 
@@ -290,21 +289,21 @@ May include numerous subsections (I<i.e.>, =head2, =head3, I<etc.>).
 
 =head1 Options & Arguments
 
- | **Options**     |   Option Value  | Description                                  |
- |-----------------|:---------------:|----------------------------------------------|
- | --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |
- | --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |
- | --debug         |                 | Include debugging info on STDOUT             |
- | --quiet   | -q  |                 | Run silent, opposite of verbose.             |
- | --verbose | -v  |                 | Opposite of --quiet                          |
- | --logfile       |  log_file       | Log significant events to log_file           |
- | --log           |                 | Log significant events to script_name.log    |
- | --version       |                 | Print version information                    |
- | --usage         |                 | Print the usage line for this program        |
- | --help          |                 | Print summary for this program               |
- |                 |                 |                                              |
- | **Arguments**   |                 |                                              |
- | input_file      |                 | Multiple input_files are supported           |
+ | B<Options>      |  B<Option Value> | B<Description>                                  |
+ |-----------------|------------------|----------------------------------------------|
+ | --input   | -i  |  input_file      | Specify input source [Default: STDIN]        |
+ | --output  | -o  |  output_file     | Specify output destination [Default: STDOUT] |
+ | --debug         |                  | Include debugging info on STDOUT             |
+ | --quiet   | -q  |                  | Run silent, opposite of verbose.             |
+ | --verbose | -v  |                  | Opposite of --quiet                          |
+ | --logfile       |  log_file        | Log significant events to log_file           |
+ | --log           |                  | Log significant events to script_name.log    |
+ | --version       |                  | Print version information                    |
+ | --usage         |                  | Print the usage line for this program        |
+ | --help          |                  | Print summary for this program               |
+ |                 |                  |                                              |
+ | B<Arguments>    |                  |                                              |
+ | input_file      |                  | Multiple input_files are supported           |
 
 =head2 Standard Options
 
