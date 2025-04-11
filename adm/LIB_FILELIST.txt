@@ -11,6 +11,7 @@ ols_begin.sh
 ols_bmp_tstno.sh
 ols_err.sh
 is.sh
+is_csv.sh
 ols_tap_print_assertion.sh
 ols_tap_print_version.sh
 test_plan.sh
