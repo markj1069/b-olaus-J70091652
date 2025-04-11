@@ -9,7 +9,7 @@ OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_
 		   getopt.sh \
 		   tst_plan.sh is.sh isnot.sh ok.sh \
 		   diag.sh pass.sh fail.sh BAIL_OUT.sh \
-		   vprintf.sh)
+		   vprintf.sh is_csv.sh)
 OLSTARGET := lib/olslib
 .SUFFIXES:
 .SUFFIXES: .bash .t
@@ -99,6 +99,7 @@ clean:
 	-rm --force bin/*.tmp
 	-rm --force bin/*.txt
 	-rm --force bin/*~
+	-rm --force bin/tmp.*
 	-rm --force doc/*.html
 	-rm --force doc/*.docx
 	-rm --force doc/*.gfm
@@ -109,6 +110,7 @@ clean:
 	-rm --force lib/*.stackdump
 	-rm --force lib/*.tmp
 	-rm --force lib/*~
+	-rm --force lib/tmp.*
 	-rm --force lib/ols_lib/*.html
 	-rm --force lib/ols_lib/*.stackdump
 	-rm --force lib/ols_lib/*.tmp
@@ -128,6 +130,7 @@ clean:
 	-rm --force t/*.tmp
 	-rm --force t/*.txt
 	-rm --force t/*~
+	-rm --force t/tmp.*
 	-rm --force core
 	-rm --force *.stackdump
 	-rm --force *.tmp
@@ -135,7 +138,8 @@ clean:
 	-rm --force *.html
 	-rm --force *.docx
 	-rm --force *.gfm
-	-rm --force *~	
+	-rm --force *~
+	-rm --force tmp.*	
 
 distclean:
 	echo "distclean:"
@@ -157,6 +161,7 @@ info:
 
 lib:
 	bin/build-lib.sh $(OLSDIR) $(OLSDIR)/newlib
+	mv $(OLSDIR)/newlib $(OLSLIB)
 
 dvi:
 	echo "dvi:"
