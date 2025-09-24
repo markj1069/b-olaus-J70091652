@@ -1,0 +1,14 @@
+| B<Options>      | B<Option Value> | B<Description>                               |
+|-----------------|-----------------|----------------------------------------------|
+| --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |
+| --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |
+| --debug         |                 | Include debugging info on STDOUT             |
+| --quiet   | -q  |                 | Run silent, opposite of verbose.             |
+| --verbose | -v  |                 | Opposite of --quiet                          |
+| --log           |                 | Log significant events to script_name.log    |
+| --version       |                 | Print version information                    |
+| --usage         |                 | Print the usage line for this program        |
+| --help          |                 | Print summary for this program               |
+|                 |                 |                                              |
+| B<Arguments>    |                 |                                              |
+| input_file      |                 | Multiple input_files are supported           |
