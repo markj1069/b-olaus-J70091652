@@ -11,10 +11,17 @@ OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_
 		   diag.sh pass.sh fail.sh BAIL_OUT.sh \
 		   vprintf.sh is_csv.sh)
 OLSTARGET := lib/olslib
+
+LN  := /usr/bin/ln
+MAC := /usr/bin/m4
+MAN := /usr/bin/pod2man
+MV  := /usr/bin/mv
+RM  := /usr/bin/rm
+
 .SUFFIXES:
 .SUFFIXES: .bash .t
 
-default: all
+default: script_name.sh
 
 # Targets
 
@@ -42,6 +49,7 @@ default: all
 .PHONY: info                 # Generate info documentation.
 .PHONY: lib                  # Generate Olaus Bash Shell Library
 .PHONY: html                 # Generate HTML documentation.
+.PHONY: man                  # Generate Man Page documentation.
 .PHONY: pdf                  # Generate PDF documentation.
 .PHONY: ps                   # Generate postscript documentation.
 .PHONY: mostlyclean          # Like clean but leave files most people don't want to recompile.
@@ -53,7 +61,6 @@ default: all
 
 # Distribution Support Targets
 
-.PHONY: ci                   # Runs $(CI) and $(RCS_LABEL) on MANIFEST files.
 .PHONY: dist                 # Creates distribution. Defaults to tardist.
 .PHONY: distcheck            # Report files missing from MANIFEST file.
 .PHONY: distclean            # Run realclean then distcheck.
@@ -69,33 +76,41 @@ default: all
 
 #
 
+all: script_name.m4 help.sh man.txt usage.sh version.sh
+	$(MAC) script_name.m4 >script_name.sh
 
-olslib:
-	bin/build-lib
+help.sh: help.m4 options_src.txt
+	$(MAC) help.m4 >help.sh
 
-olstst:
-	bin/build-tst
+man.pod: man_src.pod
+	$(MAC) man_src.pod >man.pod
 
-olslst:
-	bin/build-lst
+options_man.txt: Σ-options_sed.sh options_src.txt
+	./Σ-options_sed.sh
 
-all: lib/OLSLIB lib/OLSTST lib/OLSTST
-	olslib
-	olstst
-	olslst
+script_name script_name.sh: script_name.m4 help.sh man.pod usage.sh version.sh
+	$(MAC) script_name.m4 >script_name.sh
 
-install:
-	echo "install:"
+script_name.1 man: man.pod
+	$(MAN) man.pod >script_name.1
+
+install: script_name.sh script_name.1
+	$(CP) script_name.sh ~/.local/bin/
+	$(RM) --force script_name
+	$(LN) -s ~/.local/bin/script_name.sh script_name
+	$(CP) script_name.1 ~/.local/man/man1/
 
 uninstall:
-	echo "uninstall:"
+	$(RM) --force ~/.local/bin/script_name ~/.local/bin/script_name.sh
+	$(RM) --force ~/.local/man/man1/script_name.1 
 
 install-strip:
 	echo "install-strip:"
 
 clean:
-	-rm --force options_man.txt
-	-rm --force bin/core
+	-rm --force man.txt
+	-rm --force help.sh
+	-rm --force core
 	-rm --force bin/*.stackdump
 	-rm --force bin/*.tmp
 	-rm --force bin/*~
@@ -206,9 +221,6 @@ shdist:
 zipdist:
 	echo "zipdist:"
 
-ci:
-	echo "ci:"
-
 skipcheck:
 	echo "skipcheck:"
 
@@ -232,7 +244,4 @@ pdf:
 
 ps:
 	echo "ps:"
-
-options_man.txt:
-	./options_sed.sh
 
