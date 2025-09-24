@@ -94,10 +94,10 @@ install-strip:
 	echo "install-strip:"
 
 clean:
+	-rm --force options_man.txt
 	-rm --force bin/core
 	-rm --force bin/*.stackdump
 	-rm --force bin/*.tmp
-	-rm --force bin/*.txt
 	-rm --force bin/*~
 	-rm --force bin/tmp.*
 	-rm --force doc/*.html
@@ -128,13 +128,11 @@ clean:
 	-rm --force lib/ols_tst/*~
 	-rm --force t/*.stackdump
 	-rm --force t/*.tmp
-	-rm --force t/*.txt
 	-rm --force t/*~
 	-rm --force t/tmp.*
 	-rm --force core
 	-rm --force *.stackdump
 	-rm --force *.tmp
-	-rm --force *.txt
 	-rm --force *.html
 	-rm --force *.docx
 	-rm --force *.gfm
@@ -234,3 +232,7 @@ pdf:
 
 ps:
 	echo "ps:"
+
+options_man.txt:
+	./options_sed.sh
+
