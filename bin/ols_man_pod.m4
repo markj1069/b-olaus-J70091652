@@ -1,0 +1,298 @@
+=head1 Name
+
+B<E<lt>${SCRIPT_NAME}E<gt>> E<mdash> E<lt>One-line description of this script's purposeE<gt>
+
+=head1 Synopsis
+
+B<E<lt>${SCRIPT_NAME}E<gt>>
+[B<--input>=F<input_file> | B<-i> F<input_file>]
+[B<--output>=F<output_file> | B<-o> F<output_file>]
+[B<--help>]
+[B<--log>]
+[B<--log=F<log_file>>]
+[B<--quiet>]
+[B<--usage>]
+[B<--debug>]
+[B<--version>]
+[B<--verbose>]
+[B<-->]
+[F<input_file> ...]
+
+=head1 Description
+
+Copy B<E<lt>${SCRIPT_NAME}E<gt>> into your new script file. Change B<E<lt>${SCRIPT_NAME}E<gt>> to your new script name.
+Update L<"/Synopsys"> and L<"/Options & Arguments"> section.
+
+Remove sections that do not apply.
+
+Write a detailed describe of the function of B<E<lt>${SCRIPT_NAME}E<gt>>. What does it do?
+
+May include numerous subsections (I<i.e.>, =head2, =head3, I<etc.>).
+
+=head1 Options & Arguments
+
+include(`ols_options_src.txt')
+
+=head2 Standard Options
+
+=over 4
+
+=item [B<--input>=F<input_file> | -i F<input_file>]
+
+Input file, default is standard in, F<STDIN>.
+Single dash,
+C<->,
+means read from F<STDIN>.
+
+=item [B<--output>=F<output_file> | -o F<output_file>]
+
+Output file, default is standard out, F<STDOUT>.
+
+B<Note:> Do not use the same file as an input_file and as an output_file.
+
+Single dash,
+C<->,
+means write to F<STDOUT>.
+
+=item [B<--help>]
+
+Print the help message to standard error, F<STDERR>, and exit.
+
+=item [B<--log>]
+
+Log significant events to B<F<${SCRIPT_NAME}.log>>.
+
+=item [B<--logfile=F<log_file>>]
+
+Log significant events to B<F<${SCRIPT_NAME}.log>>.
+
+=item [B<--quiet>]
+
+Only print fatal error messages to F<STDERR>.
+
+=item [B<--usage>]
+
+Print the usage message to standard error, F<STDERR>, and exit.
+
+=item [B<--debug>]
+
+Turn on the debug switch.
+
+=item [B<--version>]
+
+Print the version, copyright, and license message
+to standard error, F<STDERR>, and exit.
+
+=item [B<--verbose>]
+
+Turn on the verbose switch.
+
+=item [B<-->] File list marker
+
+The the double dash, C<-->,
+on the command line signals the end options.
+The remaining items arguments,
+even if some look like options.
+
+=back
+
+=head2 Arguments
+
+Only file names are allowed to be arguments.
+For all other items use options.
+
+=over 4
+
+=item [F<input_file>]
+
+Input file, default is standard in, F<STDIN>.
+Single dash,
+C<->,
+also means read from F<STDIN>.
+
+=back
+
+=head1 STDIN
+
+=head2 Input Files
+
+=head1 STDOUT
+
+=head1 STDERR
+
+=head1 Security
+
+B<NOTE:> You must be the superuser to run this script.
+
+B<WARNING:> This script contains security info.
+Do not set world-readable. Better yet, redesign
+so that security information is not saved
+in your source code.
+
+This script does not need root/superuser/administrator
+permission to function.
+
+This script does not contain any security info.
+
+=head1 Examples
+
+Multiple input files are valid, I<e.g.>,
+
+ B<E<lt>${SCRIPT_NAME}E<gt>> -i file1 --input=file2 file3 file4 file5
+
+A single output file is valid, I<e.g.>,
+
+ B<E<lt>${SCRIPT_NAME}E<gt>> -i file1 -o output.file
+
+Insert instructive examples here.
+
+
+
+=head1 Notes & Caveats
+
+
+=head2 Warning: Input file and Output File Restriction
+
+Do not use the same file as an input and output in the same command of B<E<lt>${SCRIPT_NAME}E<gt>>. You will
+destroy your data. B<E<lt>${SCRIPT_NAME}E<gt>> checks for --input and --output being equal; however,
+you should not do
+
+E<0x10062> ${SCRIPT_NAME} --input=file_one >file_one E<0x10062>
+
+=head1 Diagnostics
+
+A list of every error and warning message that the script can generate
+(even the ones that will E<ldquo>never happenE<rdquo>), with a full explanation
+of each problem, one or more likely causes, and any suggested remedies.
+
+=head2 ZZZ9999X
+
+routine: Error message
+
+=head3 Severity
+
+Fatal Error, Exit Code 16
+
+=head3 Explanation
+
+Why was this error message generated.
+
+=head3 System Action
+
+The system action depends upon the error conditions described in the accompanying messages.
+
+=head3 User Response
+
+See the specific error message to determine the user action.
+
+=head3 Programmer Response
+
+See the specific error message to determine the programmer action.
+
+=head3 System Programmer Response
+
+See the specific error message to determine the system programmer action.
+
+=head1 Configuration & Environment
+
+No environmental variables were hurt during the development of this script.
+
+=head1 Dependencies
+
+A list of all of the other scripts that
+this script relies upon,
+including any restrictions on versions,
+part of this script's distribution,
+or must be installed separately.
+
+=head1 Incompatabilities
+
+The programmer and user can not use this script with the following commands.
+This restriction may be due to name conflicts in the interface, competition
+for system or program resources, or internal limitations of BASH (for example,
+many modules that use source code filters are mutually incompatible).
+
+=head1 Files
+
+A list of the files that are used by this script.
+
+=head1 Standards
+
+A list of the standards that this script complies with.
+
+=head1 Version
+
+Version 0.0.1
+
+=head1 History
+
+ Version  | Author         | Description     | Date       |
+ 0.0.1    | Mark J. Jensen | Initial Release | 2025-99-99 |
+
+=head1 Bugs & Limitations
+
+A list of known problems with the module, together with some indication of
+whether they are likely to be fixed in an upcoming release.
+
+Also, a list of restrictions on the features the module does provide:
+data types that cannot be handled,
+performance issues
+and the circumstances in which they may arise,
+practical limitations on the size of data sets,
+special cases that are not (yet) handled, etc.
+
+The initial release usually just has:
+
+There are no known bugs in this script.
+
+Please report problems to Mark Jensen.
+
+Patches are welcome.
+
+=head1 Incompatibilities
+
+A list of any known scripts that this script cannot be used in conjunction with.
+This may be due to name conflicts in the interface, or competition for system
+or program resources, or due to internal limitations of BASH.
+
+=head1 Resources
+
+=over 4
+
+=item Barrett I<et al.> 2005
+
+Daniel J. Barrett, Richard E. Silverman, and Robert G. Byrnes.
+2005.
+I<SSH, the Secure Shell: The Definitive Guide>,
+2nd Edition.
+(Sebastopol: OE<rsquo>Reilly Media)
+
+=item Robbins and Beebe 2005
+
+Arnold Robbins and Nelson H. F. Beebe.
+2005.
+I<Classic Shell Scripting>.
+(Sebastopol: OE<rsquo>Reilly Media)
+
+=back
+
+=head1 See Also
+
+B<ols_begin>
+
+=head1 Copyright & License
+
+B<${SCRIPT_NAME}> is licensed under
+L<CC BY 4.0|https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1>
+by L<Mark J. Jensen|https://www.linkedin.com/in/jensenmark/>.
+
+=head1 Author
+
+Mark Jensen E<lt>mark@jensen.netE<gt>
+
+=head1 Source
+
+%Note%: Add the link for B<${SCRIPT_NAME}> after merging back into the master branch.
+B<${SCRIPT_NAME}> may be found at [xxx](yyy).
+
+=cut
