@@ -1,7 +1,7 @@
 #---------------------------------------------------------------------------------------------------
 #
-# Usage:        ols_verbose
-# Purpose:      Set OLS_VERBOSE to true.
+# Usage:        ols_load_verbose
+# Purpose:      Set OLS_VERBOSE to TRUE.
 # Returns:      
 # Parameteres:  (N/A)
 # Throws:       None
@@ -12,10 +12,10 @@
 #
 #---------------------------------------------------------------------------------------------------
 
-function ols_verbose() {
+function ols_load_verbose() {
 
     OLS_VERBOSE=$TRUE
 
     return $EX_OK
 
-} # ols_verbose
+} # ols_load_verbose
