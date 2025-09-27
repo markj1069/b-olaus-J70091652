@@ -23,11 +23,12 @@ BASENAME=$(basename $0)
 SCRIPT_NAME=${BASENAME%.*}
 OLS_LOG_FILE="$SCRIPT_NAME.log"
 
-include(`ols_debug.bash')
 include(`ols_help.bash')
+include(`ols_load_debug.bash')
 include(`ols_load_input.bash')
-include(`ols_log.bash')
+include(`ols_load_log.bash')
 include(`ols_load_output.bash')
+include(`ols_load_quiet.bash')
 include(`ols_usage.bash')
 include(`ols_verbose.bash')
 include(`ols_version.bash')
