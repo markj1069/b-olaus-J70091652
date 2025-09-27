@@ -4,7 +4,7 @@ source $OLSLIB
 
 test_plan 3
 
-podchecker bin/script_name.sh
+podchecker bin/script_name.sh 2>/dev/null
 EX=$?
 
 is $EX $EX_OK podchecker "Does script_name pass the podchecker?"

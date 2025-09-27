@@ -176,7 +176,8 @@ installdirs:
 	echo "installdirs:"
 
 test:
-	echo "test:"
+	prove xt
+	prove t
 
 distcheck:
 	echo "distcheck:"
