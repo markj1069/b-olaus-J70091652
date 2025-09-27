@@ -11,9 +11,9 @@
 # Source:       bash
 #
 #---------------------------------------------------------------------------------------------------
-function ols_debug() {
+function ols_load_debug() {
 
     OLS_DEBUG=$TRUE
     return $EX_OK
 
-} # ols_debug
+} # ols_load_debug
