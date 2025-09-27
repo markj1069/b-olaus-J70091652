@@ -14,7 +14,7 @@ source $OLSLIB
     declare    -r    SCRIPT_NAME=${BASENAME%.*}  # Strip any suffix.
     declare    -r    unit_test="ols_load_log"
 
-test_plan 4
+test_plan 3
 
 source bin/ols_load_log.bash
 

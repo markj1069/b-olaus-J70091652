@@ -18,89 +18,23 @@ BEGIN_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
 VERSION="0.0.0"
 REL_DATE="9999-99-99"
-BASENAME=$(basename $0)
 PGMID="SCR"
+BASENAME=$(basename $0)
 SCRIPT_NAME=${BASENAME%.*}
-OLS_LOG_FILE="log.log"
+OLS_LOG_FILE="$SCRIPT_NAME.log"
 
-include(`help.sh')
-include(`usage.sh')
-include(`version.sh')
+include(`ols_debug.bash')
+include(`ols_help.bash')
+include(`ols_load_input.bash')
+include(`ols_log.bash')
+include(`ols_load_output.bash')
+include(`ols_usage.bash')
+include(`ols_verbose.bash')
+include(`ols_version.bash')
 
 # See the include man.pod at the bottom of this script.
 
 
-function input() {
-
-    input_file="$1"
-
-    if [[ -z "$input_file" ]]; then
-        ols_err "$PGMID" 7001 "$EX_USAGE" "input: Argument #1 missing, input_file."
-        ols_set_excode $EX_USAGE
-        ols_end
-    fi
-
-    full_file="$(readlink -f $input_file)"
-
-    if [[ ! -f "$full_file" ]]; then
-        ols_err "$PGMID" 9999 $EX_NOINPUT "$SCRIPT_NAME: input_file $full_file does not exist or is not a normal file."
-    fi
-
-    OLS_SYSIN+=("$full_file")        # Put this input file in the OLS_SYSIN array.
-
-    return $EX_OK
-
-} # input
-
-function output() {
-
-    if [[ -z "$OLS_SYSOUT" ]]; then
-        output_file="$1"
-        full_file="$(readlink -f $output_file)"
-        OLS_SYSOUT="$full_file"       # Save the output file in OLS_SYSOUT.
-    else
-        ols_err "$OLSID" 9999 EX_USAGE "$SCRIPT_NAME: Only one --output option allowed."
-    fi
-
-    return $EX_OK
-
-
-} # output
-
-
-function log() {
-
-    OLS_LOG=$TRUE
-    OLS_LOG_FILE="$1"
-
-    return
-
-} # log
-
-function verbose() {
-
-    OLS_VERBOSE="$1"
-
-    return
-
-} # verbose
-
-
-function debug() {
-
-    OLS_DEBUG=$TRUE
-    return
-
-} # debug
-
-function OLS_EXTRA_OPTIONS () {
-
-    local option="$1"
-    OLS_EXTRA_OPT+=("$option")        # Put this input file in the OLS_SYSIN array.
-
-    return $EX_OK
-
-} # OLS_EXTRA_OPTIONS
 
 #---------------------------------------------------------------------------------------------------
 #
@@ -110,7 +44,7 @@ function OLS_EXTRA_OPTIONS () {
 #---------------------------------------------------------------------------------------------------
 
 
-PARSED_ARGUMENTS=$(getopt -a -n script_name -o i:o:qv --long input:,output:,debug,quiet,verbose,logfile:,log,version,usage,help -- "$@")
+PARSED_ARGUMENTS=$(getopt -a -n script_name -o i:o:qv --long input:,output:,debug,quiet,verbose:,log,version,usage,help -- "$@")
 VALID_ARGUMENTS=$?
 
 if [[ $VALID_ARGUMENTS -ne 0 ]]; then
@@ -124,36 +58,33 @@ eval set -- "$PARSED_ARGUMENTS"       # Reset the script arguments with the cano
 
 while :; do
     case $1 in #
-        -i | --input   ) input   "$2";                    shift  2;;
-        -o | --output  ) output  "$2";                    shift  2;;
-             --debug   ) debug;                           shift   ;;
-        -q | --quiet   ) verbose -1;                      shift   ;;
-        -v | --verbose ) verbose +1;                      shift   ;;
-             --logfile ) log     "$2";                    shift  2;;
-             --log     ) log     "script_name.log";       shift   ;;
-             --version ) version; exit;                   shift   ;;
-             --usage   ) usage;   exit;                   shift   ;;
-             --help    ) help;    exit;                   shift   ;;
-             --        ) shift;                           break   ;;
-             *         ) usage;  exit $EX_USAGE           shift   ;;
+        -i | --input   ) ols_load_input   "$2";     shift  2;;
+        -o | --output  ) ols_load_output  "$2";     shift  2;;
+             --debug   ) ols_debug;                 shift   ;;
+        -q | --quiet   ) ols_verbose      -1;       shift   ;;
+        -v | --verbose ) ols_verbose      +1;       shift   ;;
+             --log     ) ols_log                    shift   ;;
+             --version ) ols_version;     ols_end;  shift   ;;
+             --usage   ) ols_usage;       ols_end;  shift   ;;
+             --help    ) ols_help;        ols_end;  shift   ;;
+             --        ) shift;                     break   ;;
+             *         ) ols_usage;       ols_end   shift   ;;
     esac # case
 done # while
 
 # Process remaining input files.
 
 for input_file in "$@"; do
-
     input_file="$1"
-    input "$input_file"
-    shift
-    
-done
+    ols_input "$input_file"
+    shift  
+done  # for input_file
 
 for file in "${OLS_SYSIN[@]}"; do
     if [[ "$file" == "$OLS_SYSOUT" ]]; then
         ols_err "$PGMID" 9999 $EX_USAGE "Input and Output files can not be the same, $OLS_SYSOUT."
     fi
-done
+done  # for file
 
 #---------------------------------------------------------------------------------------------------
 #
@@ -219,6 +150,6 @@ ols_wt_excode $EX_USERABORT
 
 cat >/dev/null <</*
 
-include(`man.pod')
+include(`ols_man.pod')
 
 /*

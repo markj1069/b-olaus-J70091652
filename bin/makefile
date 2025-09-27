@@ -1,22 +1,27 @@
+#---------------------------------------------------------------------------------------------------
+#
+# Makefile for script_name.sh.
+#
+#---------------------------------------------------------------------------------------------------
 
 FILENAMESLIB := lib
 
-OLSLIST := $(addprefix $(FILENAMESLIB)/, ols_begin.sh ols_def.sh ols_end.sh ols_err.sh \
-           ols_file.sh ols_help.sh ols_list.sh ols_man.sh \
-		   ols_mktemp.sh ols_rmtemp.sh ols_setex.sh ols_signal.sh \
-		   ols_test.sh ols_type.sh ols_usage.sh ols_version.sh \
-		   filebase.sh filename.sh filepath.sh  filesfx.sh \
-		   getopt.sh \
-		   tst_plan.sh is.sh isnot.sh ok.sh \
-		   diag.sh pass.sh fail.sh BAIL_OUT.sh \
-		   vprintf.sh is_csv.sh)
-OLSTARGET := lib/olslib
+SCRIPT_NAME := "script_name"          # Replace "script_name" with the new command name.
+SCRIPT_LIST := ols_
 
-LN  := /usr/bin/ln
-MAC := /usr/bin/m4
-MAN := /usr/bin/pod2man
-MV  := /usr/bin/mv
-RM  := /usr/bin/rm
+#---------------------------------------------------------------------------------------------------
+#
+# Commands used in makefile.
+#
+#---------------------------------------------------------------------------------------------------
+
+HTML := /usr/bin/pod2html
+LN   := /usr/bin/ln
+MAC  := /usr/bin/m4
+MAN  := /usr/bin/pod2man
+MOD  := /usr/bin/chmod
+MV   := /usr/bin/mv
+RM   := /usr/bin/rm
 
 .SUFFIXES:
 .SUFFIXES: .bash .t
@@ -76,23 +81,28 @@ default: script_name.sh
 
 #
 
-all: script_name.m4 help.sh man.txt usage.sh version.sh
+all: script_name.m4 ols_help.bash  ols_load_input.bash ols_load_output.bash ols_man.txt \
+                    ols_usage.bash ols_version.bash
 	$(MAC) script_name.m4 >script_name.sh
 
-help.sh: help.m4 options_src.txt
-	$(MAC) help.m4 >help.sh
+ols_help.bash: ols_help.m4 ols_options_src.txt
+	$(MAC) ols_help.m4 >ols_help.bash
 
-man.pod: man_src.pod
-	$(MAC) man_src.pod >man.pod
+ols_man.pod: ols_man_pod.m4 ols_options_src.txt
+	$(MAC) ols_man_pod.m4 >ols_man.pod
 
-options_man.txt: Σ-options_sed.sh options_src.txt
-	./Σ-options_sed.sh
+ols_options_man.txt: Σ-ols_options_sed.sh ols_options_src.txt
+	./Σ-ols_options_sed.sh
 
-script_name script_name.sh: script_name.m4 help.sh man.pod usage.sh version.sh
+script_name script_name.sh: script_name.m4 ols_help.bash  ols_man.pod \
+                                           ols_usage.bash ols_version.bash
 	$(MAC) script_name.m4 >script_name.sh
+	$(MOD) +x script_name.sh
+	$(RM) --force script_name
+	$(LN) -s script_name.sh script_name
 
-script_name.1 man: man.pod
-	$(MAN) man.pod >script_name.1
+script_name.1 man: script_name.sh
+	$(MAN) script_name.sh >script_name.1
 
 install: script_name.sh script_name.1
 	$(CP) script_name.sh ~/.local/bin/
@@ -108,8 +118,9 @@ install-strip:
 	echo "install-strip:"
 
 clean:
-	-rm --force man.txt
-	-rm --force help.sh
+	-rm --force ols_man.txt
+	-rm --force ols_man.pod
+	-rm --force ols_help.bash
 	-rm --force core
 	-rm --force bin/*.stackdump
 	-rm --force bin/*.tmp
@@ -173,9 +184,7 @@ info:
 	echo "info:"
 
 lib:
-	bin/build-lib.sh $(OLSDIR) $(OLSDIR)/newlib
-	mv $(OLSDIR)/newlib $(OLSLIB)
-
+	echo "lib:"
 dvi:
 	echo "dvi:"
 
@@ -236,8 +245,8 @@ install-pdf:
 install-ps:
 	echo "install-ps:"
 
-html:
-	echo "html:"
+html: script_name.sh
+	$(HTML) script_name.sh >script_name.html
 
 pdf:
 	echo "pdf:"

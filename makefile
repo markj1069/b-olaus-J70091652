@@ -79,9 +79,6 @@ olstst:
 olslst:
 	bin/build-lst
 
-all: lib/OLSLIB lib/OLSTST lib/OLSTST
-	olslib
-	olstst
 	olslst
 
 install:
