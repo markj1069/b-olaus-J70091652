@@ -6,8 +6,13 @@
 
 FILENAMESLIB := lib
 
-SCRIPT_NAME := "script_name"          # Replace "script_name" with the new command name.
-SCRIPT_LIST := ols_
+SCRIPT_NAME = "script_name"          # Replace "script_name" with the new command name.
+SCRIPT_LIST = ols_
+OBJ_LIST    = script_name.m4 \
+			ols_help.bash  \
+			ols_load_debug.bash  ols_load_input.bash   ols_load_log.bash  \
+			ols_load_output.bash ols_load_quiet.bash   ols_load_verbose.bash \
+			ols_usage.bash       ols_load_verbose.bash ols_version.bash
 
 #---------------------------------------------------------------------------------------------------
 #
@@ -81,21 +86,18 @@ default: script_name.sh
 
 #
 
-all: script_name.m4 ols_help.bash  ols_load_input.bash ols_load_output.bash ols_man.txt \
-                    ols_usage.bash ols_version.bash
-	$(MAC) script_name.m4 >script_name.sh
-
 ols_help.bash: ols_help.m4 ols_options_src.txt
 	$(MAC) ols_help.m4 >ols_help.bash
 
 ols_man.pod: ols_man_pod.m4 ols_options_src.txt
 	$(MAC) ols_man_pod.m4 >ols_man.pod
 
-ols_options_man.txt: Σ-ols_options_sed.sh ols_options_src.txt
-	./Σ-ols_options_sed.sh
+script_name script_name.sh: script_name.m4 \
+			ols_help.bash \
+			ols_load_debug.bash  ols_load_input.bash   ols_load_log.bash  \
+			ols_load_output.bash ols_load_quiet.bash   ols_load_verbose.bash \
+			ols_usage.bash       ols_load_verbose.bash ols_version.bash
 
-script_name script_name.sh: script_name.m4 ols_help.bash  ols_man.pod \
-                                           ols_usage.bash ols_version.bash
 	$(MAC) script_name.m4 >script_name.sh
 	$(MOD) +x script_name.sh
 	$(RM) --force script_name
@@ -118,52 +120,52 @@ install-strip:
 	echo "install-strip:"
 
 clean:
-	-rm --force ols_man.txt
-	-rm --force ols_man.pod
-	-rm --force ols_help.bash
-	-rm --force core
-	-rm --force bin/*.stackdump
-	-rm --force bin/*.tmp
-	-rm --force bin/*~
-	-rm --force bin/tmp.*
-	-rm --force doc/*.html
-	-rm --force doc/*.docx
-	-rm --force doc/*.gfm
-	-rm --force doc/*.stackdump
-	-rm --force doc/*~
-	-rm --force doc/*.tmp
-	-rm --force lib/*.html
-	-rm --force lib/*.stackdump
-	-rm --force lib/*.tmp
-	-rm --force lib/*~
-	-rm --force lib/tmp.*
-	-rm --force lib/ols_lib/*.html
-	-rm --force lib/ols_lib/*.stackdump
-	-rm --force lib/ols_lib/*.tmp
-	-rm --force lib/ols_lib/*~
-	-rm --force lib/ols_lst/*.html
-	-rm --force lib/ols_lst/*.stackdump
-	-rm --force lib/ols_lst/*.tmp
-	-rm --force lib/ols_lst/*~
-	-rm --force lib/ols_tmp/*.html
-	-rm --force lib/ols_tmp/*.stackdump
-	-rm --force lib/ols_tmp/*.tmp
-	-rm --force lib/ols_tst/*.html
-	-rm --force lib/ols_tst/*.stackdump
-	-rm --force lib/ols_tst/*.tmp
-	-rm --force lib/ols_tst/*~
-	-rm --force t/*.stackdump
-	-rm --force t/*.tmp
-	-rm --force t/*~
-	-rm --force t/tmp.*
-	-rm --force core
-	-rm --force *.stackdump
-	-rm --force *.tmp
-	-rm --force *.html
-	-rm --force *.docx
-	-rm --force *.gfm
-	-rm --force *~
-	-rm --force tmp.*	
+	-ln ols_man.txt
+	-ln ols_man.pod
+	-ln ols_help.bash
+	-ln core
+	-ln bin/*.stackdump
+	-ln bin/*.tmp
+	-ln bin/*~
+	-ln bin/tmp.*
+	-ln doc/*.html
+	-ln doc/*.docx
+	-ln doc/*.gfm
+	-ln doc/*.stackdump
+	-ln doc/*~
+	-ln doc/*.tmp
+	-ln lib/*.html
+	-ln lib/*.stackdump
+	-ln lib/*.tmp
+	-ln lib/*~
+	-ln lib/tmp.*
+	-ln lib/ols_lib/*.html
+	-ln lib/ols_lib/*.stackdump
+	-ln lib/ols_lib/*.tmp
+	-ln lib/ols_lib/*~
+	-ln lib/ols_lst/*.html
+	-ln lib/ols_lst/*.stackdump
+	-ln lib/ols_lst/*.tmp
+	-ln lib/ols_lst/*~
+	-ln lib/ols_tmp/*.html
+	-ln lib/ols_tmp/*.stackdump
+	-ln lib/ols_tmp/*.tmp
+	-ln lib/ols_tst/*.html
+	-ln lib/ols_tst/*.stackdump
+	-ln lib/ols_tst/*.tmp
+	-ln lib/ols_tst/*~
+	-ln t/*.stackdump
+	-ln t/*.tmp
+	-ln t/*~
+	-ln t/tmp.*
+	-ln core
+	-ln *.stackdump
+	-ln *.tmp
+	-ln *.html
+	-ln *.docx
+	-ln *.gfm
+	-ln *~
+	-ln tmp.*	
 
 distclean:
 	echo "distclean:"

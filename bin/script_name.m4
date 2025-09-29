@@ -59,27 +59,26 @@ eval set -- "$PARSED_ARGUMENTS"       # Reset the script arguments with the cano
 
 while :; do
     case $1 in #
-        -i | --input   ) ols_load_input   "$2";     shift  2;;
-        -o | --output  ) ols_load_output  "$2";     shift  2;;
-             --debug   ) ols_debug;                 shift   ;;
-        -q | --quiet   ) ols_verbose      -1;       shift   ;;
-        -v | --verbose ) ols_verbose      +1;       shift   ;;
-             --log     ) ols_log                    shift   ;;
-             --version ) ols_version;     ols_end;  shift   ;;
-             --usage   ) ols_usage;       ols_end;  shift   ;;
-             --help    ) ols_help;        ols_end;  shift   ;;
-             --        ) shift;                     break   ;;
-             *         ) ols_usage;       ols_end   shift   ;;
+        -i | --input   ) ols_load_input     "$2";     shift  2;;
+        -o | --output  ) ols_load_output    "$2";     shift  2;;
+             --debug   ) ols_load_debug;              shift   ;;
+        -q | --quiet   ) ols_load_quiet;              shift   ;;
+        -v | --verbose ) ols_load_verbose;            shift   ;;
+             --log     ) ols_load_log;                shift   ;;
+             --version ) ols_version;       ols_end;  shift   ;;
+             --usage   ) ols_usage;         ols_end;  shift   ;;
+             --help    ) ols_help;          ols_end;  shift   ;;
+             --        ) shift;             break             ;;
+             *         ) ols_usage;         ols_end;  shift   ;;
     esac # case
 done # while
 
 # Process remaining input files.
 
-for input_file in "$@"; do
-    input_file="$1"
-    ols_input "$input_file"
+for input_file_name in "$@"; do
+    ols_load_input "$input_file_name"
     shift  
-done  # for input_file
+done  # for input_file_name
 
 for file in "${OLS_SYSIN[@]}"; do
     if [[ "$file" == "$OLS_SYSOUT" ]]; then
