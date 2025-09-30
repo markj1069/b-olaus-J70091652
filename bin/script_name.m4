@@ -29,11 +29,11 @@ include(`ols_load_input.bash')
 include(`ols_load_log.bash')
 include(`ols_load_output.bash')
 include(`ols_load_quiet.bash')
+include(`ols_load_verbose.bash')
 include(`ols_usage.bash')
-include(`ols_verbose.bash')
 include(`ols_version.bash')
 
-# See the include man.pod at the bottom of this script.
+# See the include ols_man.pod at the bottom of this script.
 
 
 

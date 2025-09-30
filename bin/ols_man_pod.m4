@@ -9,7 +9,6 @@ B<E<lt>${SCRIPT_NAME}E<gt>>
 [B<--output>=F<output_file> | B<-o> F<output_file>]
 [B<--help>]
 [B<--log>]
-[B<--log=F<log_file>>]
 [B<--quiet>]
 [B<--usage>]
 [B<--debug>]
@@ -39,30 +38,26 @@ include(`ols_options_src.txt')
 
 =item [B<--input>=F<input_file> | -i F<input_file>]
 
-Input file, default is standard in, F<STDIN>.
-Single dash,
-C<->,
-means read from F<STDIN>.
+If no input files are specified, I<i.e.>, --input or -i, the input is read from standard in, F<STDIN>.
+Multiple input files are supported.
+
+If no input or output files are specified, B<E<lt>${SCRIPT_NAME}E<gt>> copies F<STDIN> to F<STDOUT> much like cat.
+
+If no input file or F<STDIN> exists, B<E<lt>${SCRIPT_NAME}E<gt>> exits gracefully with a exit code of 0.
 
 =item [B<--output>=F<output_file> | -o F<output_file>]
 
-Output file, default is standard out, F<STDOUT>.
+If no output file is specified, I<i.e.>, --output orr -o, the output is written to, F<STDOUT>.
+
+If no input or output files are specified, B<E<lt>${SCRIPT_NAME}E<gt>> copies F<STDIN> to F<STDOUT> much like cat.
 
 B<Note:> Do not use the same file as an input_file and as an output_file.
 
-Single dash,
-C<->,
-means write to F<STDOUT>.
-
 =item [B<--help>]
 
-Print the help message to standard error, F<STDERR>, and exit.
+Print the help message to standard error, F<STDERR>, and exit with an exit code of 0.
 
 =item [B<--log>]
-
-Log significant events to B<F<${SCRIPT_NAME}.log>>.
-
-=item [B<--logfile=F<log_file>>]
 
 Log significant events to B<F<${SCRIPT_NAME}.log>>.
 
@@ -72,7 +67,7 @@ Only print fatal error messages to F<STDERR>.
 
 =item [B<--usage>]
 
-Print the usage message to standard error, F<STDERR>, and exit.
+Print the usage message to standard error, F<STDERR>, and exit with an exit code of 0.
 
 =item [B<--debug>]
 
@@ -81,7 +76,7 @@ Turn on the debug switch.
 =item [B<--version>]
 
 Print the version, copyright, and license message
-to standard error, F<STDERR>, and exit.
+to standard error, F<STDERR>, and exit with an exit code of 0.
 
 =item [B<--verbose>]
 
@@ -106,9 +101,6 @@ For all other items use options.
 =item [F<input_file>]
 
 Input file, default is standard in, F<STDIN>.
-Single dash,
-C<->,
-also means read from F<STDIN>.
 
 =back
 

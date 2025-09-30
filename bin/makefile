@@ -12,7 +12,7 @@ OBJ_LIST    = script_name.m4 \
 			ols_help.bash  \
 			ols_load_debug.bash  ols_load_input.bash   ols_load_log.bash  \
 			ols_load_output.bash ols_load_quiet.bash   ols_load_verbose.bash \
-			ols_usage.bash       ols_load_verbose.bash ols_version.bash
+			ols_man.pod          ols_usage.bash        ols_version.bash
 
 #---------------------------------------------------------------------------------------------------
 #
@@ -75,7 +75,9 @@ default: script_name.sh
 .PHONY: distcheck            # Report files missing from MANIFEST file.
 .PHONY: distclean            # Run realclean then distcheck.
 .PHONY: distdir              # Copies MANIFEST files to $(DISTNAME)-$(VERSION).
+.PHONY: dtest                # Runs distribution tests.
 .PHONY: disttest             # Creates tarfile. See MakeMaker.
+.PHONY: dtest                # Distribution test.
 .PHONY: manifest             # Rewrites MANIFEST file with remaining files.
 .PHONY: shdist               # Run distdir then create a shar archive.
 .PHONY: skipcheck            # Report skipped files from MANIFEST.SKIP file.
@@ -92,12 +94,7 @@ ols_help.bash: ols_help.m4 ols_options_src.txt
 ols_man.pod: ols_man_pod.m4 ols_options_src.txt
 	$(MAC) ols_man_pod.m4 >ols_man.pod
 
-script_name script_name.sh: script_name.m4 \
-			ols_help.bash \
-			ols_load_debug.bash  ols_load_input.bash   ols_load_log.bash  \
-			ols_load_output.bash ols_load_quiet.bash   ols_load_verbose.bash \
-			ols_usage.bash       ols_load_verbose.bash ols_version.bash
-
+script_name script_name.sh: $(OBJ_LIST)
 	$(MAC) script_name.m4 >script_name.sh
 	$(MOD) +x script_name.sh
 	$(RM) --force script_name
@@ -114,58 +111,51 @@ install: script_name.sh script_name.1
 
 uninstall:
 	$(RM) --force ~/.local/bin/script_name ~/.local/bin/script_name.sh
-	$(RM) --force ~/.local/man/man1/script_name.1 
+	$(RM) --force ~/.local/man/man1/script_name.1
+
 
 install-strip:
 	echo "install-strip:"
 
 clean:
-	-ln ols_man.txt
-	-ln ols_man.pod
-	-ln ols_help.bash
-	-ln core
-	-ln bin/*.stackdump
-	-ln bin/*.tmp
-	-ln bin/*~
-	-ln bin/tmp.*
-	-ln doc/*.html
-	-ln doc/*.docx
-	-ln doc/*.gfm
-	-ln doc/*.stackdump
-	-ln doc/*~
-	-ln doc/*.tmp
-	-ln lib/*.html
-	-ln lib/*.stackdump
-	-ln lib/*.tmp
-	-ln lib/*~
-	-ln lib/tmp.*
-	-ln lib/ols_lib/*.html
-	-ln lib/ols_lib/*.stackdump
-	-ln lib/ols_lib/*.tmp
-	-ln lib/ols_lib/*~
-	-ln lib/ols_lst/*.html
-	-ln lib/ols_lst/*.stackdump
-	-ln lib/ols_lst/*.tmp
-	-ln lib/ols_lst/*~
-	-ln lib/ols_tmp/*.html
-	-ln lib/ols_tmp/*.stackdump
-	-ln lib/ols_tmp/*.tmp
-	-ln lib/ols_tst/*.html
-	-ln lib/ols_tst/*.stackdump
-	-ln lib/ols_tst/*.tmp
-	-ln lib/ols_tst/*~
-	-ln t/*.stackdump
-	-ln t/*.tmp
-	-ln t/*~
-	-ln t/tmp.*
-	-ln core
-	-ln *.stackdump
-	-ln *.tmp
-	-ln *.html
-	-ln *.docx
-	-ln *.gfm
-	-ln *~
-	-ln tmp.*	
+	-rm --force ols_man.txt
+	-rm --force ols_man.pod
+	-rm --force ols_help.bash
+	-rm --force core
+	-rm --force bin/*.stackdump
+	-rm --force bin/*.tmp
+	-rm --force bin/tmp.*
+	-rm --force doc/*.html
+	-rm --force doc/*.docx
+	-rm --force doc/*.gfm
+	-rm --force doc/*.stackdump
+	-rm --force doc/*.tmp
+	-rm --force lib/*.html
+	-rm --force lib/*.stackdump
+	-rm --force lib/*.tmp
+	-rm --force lib/tmp.*
+	-rm --force lib/ols_lib/*.html
+	-rm --force lib/ols_lib/*.stackdump
+	-rm --force lib/ols_lib/*.tm
+	-rm --force lib/ols_lst/*.html
+	-rm --force lib/ols_lst/*.stackdump
+	-rm --force lib/ols_lst/*.tmp
+	-rm --force lib/ols_tmp/*.html
+	-rm --force lib/ols_tmp/*.stackdump
+	-rm --force lib/ols_tmp/*.tmp
+	-rm --force lib/ols_tst/*.html
+	-rm --force lib/ols_tst/*.stackdump
+	-rm --force lib/ols_tst/*.tmp
+	-rm --force t/*.stackdump
+	-rm --force t/*.tmp
+	-rm --force t/tmp.*
+	-rm --force core
+	-rm --force *.stackdump
+	-rm --force *.tmp
+	-rm --force *.html
+	-rm --force *.docx
+	-rm --force *.gfm
+	-rm --force tmp.*	
 
 distclean:
 	echo "distclean:"
@@ -203,7 +193,7 @@ installdirs:
 	echo "installdirs:"
 
 test:
-	echo "test:"
+	cd .. && prove xt
 
 distcheck:
 	echo "distcheck:"
@@ -217,8 +207,8 @@ manifest:
 distdir:
 	echo "distdir:"
 
-disttest:
-	echo "disttest:"
+dtest disttest:
+	cd .. && prove t
 
 tardist:
 	echo "tardist:"

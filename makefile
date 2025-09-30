@@ -94,48 +94,37 @@ clean:
 	-rm --force bin/core
 	-rm --force bin/*.stackdump
 	-rm --force bin/*.tmp
-	-rm --force bin/*.txt
-	-rm --force bin/*~
 	-rm --force bin/tmp.*
 	-rm --force doc/*.html
 	-rm --force doc/*.docx
 	-rm --force doc/*.gfm
 	-rm --force doc/*.stackdump
-	-rm --force doc/*~
 	-rm --force doc/*.tmp
 	-rm --force lib/*.html
 	-rm --force lib/*.stackdump
 	-rm --force lib/*.tmp
-	-rm --force lib/*~
 	-rm --force lib/tmp.*
 	-rm --force lib/ols_lib/*.html
 	-rm --force lib/ols_lib/*.stackdump
 	-rm --force lib/ols_lib/*.tmp
-	-rm --force lib/ols_lib/*~
 	-rm --force lib/ols_lst/*.html
 	-rm --force lib/ols_lst/*.stackdump
 	-rm --force lib/ols_lst/*.tmp
-	-rm --force lib/ols_lst/*~
 	-rm --force lib/ols_tmp/*.html
 	-rm --force lib/ols_tmp/*.stackdump
 	-rm --force lib/ols_tmp/*.tmp
 	-rm --force lib/ols_tst/*.html
 	-rm --force lib/ols_tst/*.stackdump
 	-rm --force lib/ols_tst/*.tmp
-	-rm --force lib/ols_tst/*~
 	-rm --force t/*.stackdump
 	-rm --force t/*.tmp
-	-rm --force t/*.txt
-	-rm --force t/*~
 	-rm --force t/tmp.*
 	-rm --force core
 	-rm --force *.stackdump
 	-rm --force *.tmp
-	-rm --force *.txt
 	-rm --force *.html
 	-rm --force *.docx
 	-rm --force *.gfm
-	-rm --force *~
 	-rm --force tmp.*	
 
 distclean:
@@ -177,7 +166,7 @@ installdirs:
 
 test:
 	prove xt
-	prove t
+
 
 distcheck:
 	echo "distcheck:"

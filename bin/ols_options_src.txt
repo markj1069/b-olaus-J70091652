@@ -1,4 +1,4 @@
- | Options         |  Option Value   | Description                                  |
+ |   Options       |  Option Value   | Description                                  |
  |-----------------|-----------------|----------------------------------------------|
  | --input   | -i  |  input_file     | Specify input source [Default: STDIN]        |
  | --output  | -o  |  output_file    | Specify output destination [Default: STDOUT] |
