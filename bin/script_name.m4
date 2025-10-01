@@ -12,7 +12,6 @@
 # Include Olaus Setup and Functions
 #
 #---------------------------------------------------------------------------------------------------
-source $OLSLIB
 
 BEGIN_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
@@ -22,6 +21,12 @@ PGMID="SCR"
 BASENAME=$(basename $0)
 SCRIPT_NAME=${BASENAME%.*}
 OLS_LOG_FILE="$SCRIPT_NAME.log"
+
+source $OLSLIB
+
+if [[ -z "$OLS_DEF" ]]; then          # Check that OLSLIB loaded correctly.
+    ols_err  "$PGMID" 9999 $EX_MISSINGFILE "OLSLIB is missing or did not load."
+fi
 
 include(`ols_help.bash')
 include(`ols_load_debug.bash')
@@ -140,9 +145,9 @@ ols_wt_excode $EX_USERABORT
 
 
 
+# script map
 
-
-
+script_name 
 
 
 
